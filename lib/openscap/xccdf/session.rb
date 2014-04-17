@@ -23,7 +23,7 @@ module OpenSCAP
       end
     end
 
-    end
-    attach_function :xccdf_session_new, [:string], :pointer
-    attach_function :xccdf_session_free, [:pointer], :void
+  end
+  attach_function :xccdf_session_new, [:string], :pointer
+  attach_function :xccdf_session_free, [:pointer], :void
 end

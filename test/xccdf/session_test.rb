@@ -13,7 +13,14 @@ require 'test/unit'
 require 'openscap'
 
 class TestSession < Test::Unit::TestCase
-  def test_session_new
-    s = OpenSCAP::Xccdf::Session.new("")
+  def test_session_new_bad
+    msg = nil
+    begin
+      s = OpenSCAP::Xccdf::Session.new("")
+      assert false
+    rescue OpenSCAP::OpenSCAPError => e
+      msg = e.to_s
+    end
+    assert msg.start_with?("Unable to open file: ''")
   end
 end

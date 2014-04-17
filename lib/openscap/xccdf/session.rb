@@ -16,6 +16,9 @@ module OpenSCAP
       def initialize(input_filename)
         @input_filename = input_filename
         @s = OpenSCAP.xccdf_session_new(input_filename)
+        if @s.null?
+          OpenSCAP.raise!
+        end
       end
 
       def finalize(s)

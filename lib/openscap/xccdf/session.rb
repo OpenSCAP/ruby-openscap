@@ -21,6 +21,12 @@ module OpenSCAP
         end
       end
 
+      def load
+        if OpenSCAP.xccdf_session_load(@s) != 0
+          OpenSCAP.raise!
+        end
+      end
+
       def finalize(s)
         OpenSCAP.xccdf_session_free(s.s)
       end
@@ -29,4 +35,5 @@ module OpenSCAP
   end
   attach_function :xccdf_session_new, [:string], :pointer
   attach_function :xccdf_session_free, [:pointer], :void
+  attach_function :xccdf_session_load, [:pointer], :int
 end

@@ -9,8 +9,24 @@
 # http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt.
 #
 
-require 'openscap/openscap'
-require 'openscap/xccdf/session'
+require 'ffi'
 
 module OpenSCAP
+  module Xccdf
+    extend FFI::Library
+
+    class Session
+      def initialize(input_filename)
+        @input_filename = input_filename
+        @s = OpenSCAP.xccdf_session_new(input_filename)
+      end
+
+      def finalize(s)
+        OpenSCAP.xccdf_session_free(s.s)
+      end
+    end
+
+    end
+    attach_function :xccdf_session_new, [:string], :pointer
+    attach_function :xccdf_session_free, [:pointer], :void
 end

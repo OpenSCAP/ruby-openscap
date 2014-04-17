@@ -9,9 +9,7 @@
 # http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt.
 #
 
-require 'openscap/openscap'
-require 'openscap/exceptions'
-require 'openscap/xccdf/session'
-
 module OpenSCAP
+  class OpenSCAPError < StandardError
+  end
 end

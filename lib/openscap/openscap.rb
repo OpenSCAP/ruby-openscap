@@ -24,6 +24,14 @@ module OpenSCAP
     return err.null? ? nil : err.read_string()
   end
 
+  def self.raise!
+    err = get_full_error
+    if err.nil?
+      err = '(unknown error)'
+    end
+    raise OpenSCAPError, err
+  end
+
   attach_function :oscap_init, [], :void
   attach_function :oscap_cleanup, [], :void
   attach_function :oscap_get_version, [], :string

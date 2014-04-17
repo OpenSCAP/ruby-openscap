@@ -19,4 +19,12 @@ class TestOscapVersion < Test::Unit::TestCase
     OpenSCAP.oscap_cleanup
     assert version.include?(".")
   end
+
+  def test_double_read_error
+    assert ! OpenSCAP.error?
+    msg = OpenSCAP.get_full_error
+    assert msg.nil?
+    msg = OpenSCAP.get_full_error
+    assert msg.nil?
+  end
 end

@@ -16,8 +16,8 @@ GEMSPEC = Gem::Specification.new do |gem|
   gem.description = "A FFI wrapper around the OpenSCAP library.
   Currently it provides only subset of libopenscap functionality."
 
-  gem.add_development_dependency "bundler" ">=1.0.0"
-  gem.add_runtime_dependency "ffi" ">= 1.4.0"
+  gem.add_development_dependency "bundler", ">=1.0.0"
+  gem.add_runtime_dependency "ffi", ">= 1.4.0"
 
   gem.files = `git ls-files`.split("\n")
   gem.require_path = 'lib'

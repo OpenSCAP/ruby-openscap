@@ -25,7 +25,7 @@ module OpenSCAP
         return OpenSCAP.xccdf_session_is_sds(@s)
       end
 
-      def load(datastream_id=nil, component_id=nil)
+      def load(datastream_id:nil, component_id:nil)
         if sds?
           OpenSCAP.xccdf_session_set_datastream_id(@s, datastream_id)
           OpenSCAP.xccdf_session_set_component_id(@s, component_id)
@@ -41,8 +41,8 @@ module OpenSCAP
         end
       end
 
-      def export_results(rds_file=nil, xccdf_file=nil, report_file=nil,
-        oval_results=false, oval_variables=false, engines_results=false)
+      def export_results(rds_file:nil, xccdf_file:nil, report_file:nil,
+        oval_results:false, oval_variables:false, engines_results:false)
         OpenSCAP.raise! unless OpenSCAP.xccdf_session_set_arf_export(@s, rds_file)
         OpenSCAP.raise! unless OpenSCAP.xccdf_session_set_xccdf_export(@s, xccdf_file)
         OpenSCAP.raise! unless OpenSCAP.xccdf_session_set_report_export(@s, report_file)

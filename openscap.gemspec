@@ -21,4 +21,5 @@ GEMSPEC = Gem::Specification.new do |gem|
 
   gem.files = `git ls-files`.split("\n")
   gem.require_path = 'lib'
+  gem.required_ruby_version = '>= 2.0.0'
 end

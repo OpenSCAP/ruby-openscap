@@ -40,6 +40,36 @@ class TestSession < Test::Unit::TestCase
     s.evaluate
   end
 
+  def test_session_load_ds_comp
+    s = OpenSCAP::Xccdf::Session.new("../data/sds-complex.xml")
+    s.load(datastream_id:"scap_org.open-scap_datastream_tst2", component_id:"scap_org.open-scap_cref_second-xccdf.xml2")
+    s.evaluate
+  end
+
+  def test_session_load_bad_datastream
+    s = OpenSCAP::Xccdf::Session.new("../data/sds-complex.xml")
+    msg = nil
+    begin
+      s.load(datastream_id:"nonexistent")
+      assert false
+    rescue OpenSCAP::OpenSCAPError => e
+      msg = e.to_s
+    end
+    assert msg.start_with?("Failed to locate a datastream with ID matching 'nonexistent' ID and checklist inside matching '<any>' ID.")
+  end
+
+  def test_session_load_bad_component
+    s = OpenSCAP::Xccdf::Session.new("../data/sds-complex.xml")
+    msg = nil
+    begin
+      s.load(component_id:"nonexistent")
+      assert false
+    rescue OpenSCAP::OpenSCAPError => e
+      msg = e.to_s
+    end
+    assert msg.start_with?("Failed to locate a datastream with ID matching '<any>' ID and checklist inside matching 'nonexistent' ID.")
+  end
+
   def test_session_export_rds
     s = OpenSCAP::Xccdf::Session.new("../data/sds-complex.xml")
     s.load

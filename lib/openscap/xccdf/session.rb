@@ -35,6 +35,13 @@ module OpenSCAP
         end
       end
 
+      def profile=(p)
+        @profile = p
+        if OpenSCAP.xccdf_session_set_profile_id(@s, p) == false
+          raise OpenSCAPError, "No profile '" + p + "' found"
+        end
+      end
+
       def evaluate
         if OpenSCAP.xccdf_session_evaluate(@s) != 0
           OpenSCAP.raise!
@@ -73,6 +80,7 @@ module OpenSCAP
 
   attach_function :xccdf_session_is_sds, [:pointer], :bool
 
+  attach_function :xccdf_session_set_profile_id, [:pointer, :string], :bool
   attach_function :xccdf_session_set_datastream_id, [:pointer, :string], :void
   attach_function :xccdf_session_set_component_id, [:pointer, :string], :void
   attach_function :xccdf_session_set_arf_export, [:pointer, :string], :bool

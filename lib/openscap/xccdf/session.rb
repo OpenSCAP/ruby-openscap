@@ -21,6 +21,10 @@ module OpenSCAP
         end
       end
 
+      def sds?
+        return OpenSCAP.xccdf_session_is_sds(@s)
+      end
+
       def load
         if OpenSCAP.xccdf_session_load(@s) != 0
           OpenSCAP.raise!
@@ -62,6 +66,8 @@ module OpenSCAP
   attach_function :xccdf_session_export_check_engine_plugins, [:pointer], :int
   attach_function :xccdf_session_export_xccdf, [:pointer], :int
   attach_function :xccdf_session_export_arf, [:pointer], :int
+
+  attach_function :xccdf_session_is_sds, [:pointer], :bool
 
   attach_function :xccdf_session_set_arf_export, [:pointer, :string], :bool
   attach_function :xccdf_session_set_xccdf_export, [:pointer, :string], :bool

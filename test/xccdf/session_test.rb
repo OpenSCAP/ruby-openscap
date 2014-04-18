@@ -33,10 +33,10 @@ class TestSession < Test::Unit::TestCase
   end
 
   def test_session_export
-    s = OpenSCAP::Xccdf::Session.new("test/data/sds-complex.xml")
+    to_work_dir
+    s = OpenSCAP::Xccdf::Session.new("../data/sds-complex.xml")
     s.load
     s.evaluate
-    to_work_dir
     s.export_results(rds_file="report.rds.xml")
     to_root_dir
     OpenSCAP.raise! if OpenSCAP.error?

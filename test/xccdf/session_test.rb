@@ -24,6 +24,16 @@ class TestSession < Test::Unit::TestCase
     assert msg.start_with?("Unable to open file: ''")
   end
 
+  def test_sds_true
+    s = OpenSCAP::Xccdf::Session.new("../data/sds-complex.xml")
+    assert s.sds?
+  end
+
+  def test_sds_false
+    s = OpenSCAP::Xccdf::Session.new("../data/xccdf.xml")
+    assert ! s.sds?
+  end
+
   def test_session_load
     s = OpenSCAP::Xccdf::Session.new("../data/sds-complex.xml")
     s.load

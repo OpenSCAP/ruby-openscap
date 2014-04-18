@@ -22,14 +22,12 @@ class TestSession < Test::Unit::TestCase
       msg = e.to_s
     end
     assert msg.start_with?("Unable to open file: ''")
-    OpenSCAP.raise! if OpenSCAP.error?
   end
 
   def test_session_load
     s = OpenSCAP::Xccdf::Session.new("../data/sds-complex.xml")
     s.load
     s.evaluate
-    OpenSCAP.raise! if OpenSCAP.error?
   end
 
   def test_session_export
@@ -37,7 +35,6 @@ class TestSession < Test::Unit::TestCase
     s.load
     s.evaluate
     s.export_results(rds_file="report.rds.xml")
-    OpenSCAP.raise! if OpenSCAP.error?
   end
 
   def setup
@@ -49,5 +46,6 @@ class TestSession < Test::Unit::TestCase
 
   def cleanup
     Dir.chdir "../.."
+    OpenSCAP.raise! if OpenSCAP.error?
   end
 end

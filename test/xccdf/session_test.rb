@@ -27,5 +27,6 @@ class TestSession < Test::Unit::TestCase
   def test_session_load
     s = OpenSCAP::Xccdf::Session.new("test/data/sds-complex.xml")
     s.load
+    s.evaluate
   end
 end

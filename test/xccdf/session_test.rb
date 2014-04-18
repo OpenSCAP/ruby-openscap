@@ -29,4 +29,25 @@ class TestSession < Test::Unit::TestCase
     s.load
     s.evaluate
   end
+
+  def test_session_export
+    s = OpenSCAP::Xccdf::Session.new("test/data/sds-complex.xml")
+    s.load
+    s.evaluate
+    to_work_dir
+    s.export_results(rds_file="report.rds.xml")
+    to_root_dir
+  end
+
+  private
+  def to_work_dir()
+    workdir = "test/output"
+    FileUtils.rmdir workdir
+    Dir.mkdir workdir
+    Dir.chdir workdir
+  end
+
+  def to_root_dir
+    Dir.chdir "../.."
+  end
 end

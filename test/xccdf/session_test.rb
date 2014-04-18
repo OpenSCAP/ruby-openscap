@@ -70,6 +70,26 @@ class TestSession < Test::Unit::TestCase
     assert msg.start_with?("Failed to locate a datastream with ID matching '<any>' ID and checklist inside matching 'nonexistent' ID.")
   end
 
+  def test_session_set_profile
+    s = OpenSCAP::Xccdf::Session.new("../data/sds-complex.xml")
+    s.load(component_id:"scap_org.open-scap_cref_second-xccdf.xml")
+    s.profile = "xccdf_moc.elpmaxe.www_profile_1"
+    s.evaluate
+  end
+
+  def test_session_set_profile_bad
+    s = OpenSCAP::Xccdf::Session.new("../data/sds-complex.xml")
+    s.load
+    msg = nil
+    begin
+      s.profile = "xccdf_moc.elpmaxe.www_profile_1"
+      assert false
+    rescue OpenSCAP::OpenSCAPError => e
+      msg = e.to_s
+    end
+    assert msg.start_with?("No profile 'xccdf_moc.elpmaxe.www_profile_1' found")
+  end
+
   def test_session_export_rds
     s = OpenSCAP::Xccdf::Session.new("../data/sds-complex.xml")
     s.load

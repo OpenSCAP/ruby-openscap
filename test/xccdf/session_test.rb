@@ -45,7 +45,7 @@ class TestSession < Test::Unit::TestCase
   private
   def to_work_dir()
     workdir = "test/output"
-    FileUtils.rmdir workdir
+    FileUtils.rm_rf workdir
     Dir.mkdir workdir
     Dir.chdir workdir
   end

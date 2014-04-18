@@ -25,7 +25,11 @@ module OpenSCAP
         return OpenSCAP.xccdf_session_is_sds(@s)
       end
 
-      def load
+      def load(datastream_id=nil, component_id=nil)
+        if sds?
+          OpenSCAP.xccdf_session_set_datastream_id(@s, datastream_id)
+          OpenSCAP.xccdf_session_set_component_id(@s, component_id)
+        end
         if OpenSCAP.xccdf_session_load(@s) != 0
           OpenSCAP.raise!
         end
@@ -69,6 +73,8 @@ module OpenSCAP
 
   attach_function :xccdf_session_is_sds, [:pointer], :bool
 
+  attach_function :xccdf_session_set_datastream_id, [:pointer, :string], :void
+  attach_function :xccdf_session_set_component_id, [:pointer, :string], :void
   attach_function :xccdf_session_set_arf_export, [:pointer, :string], :bool
   attach_function :xccdf_session_set_xccdf_export, [:pointer, :string], :bool
   attach_function :xccdf_session_set_report_export, [:pointer, :string], :bool

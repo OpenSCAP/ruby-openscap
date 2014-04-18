@@ -30,11 +30,13 @@ class TestSession < Test::Unit::TestCase
     s.evaluate
   end
 
-  def test_session_export
+  def test_session_export_rds
     s = OpenSCAP::Xccdf::Session.new("../data/sds-complex.xml")
     s.load
     s.evaluate
     s.export_results(rds_file="report.rds.xml")
+    assert Dir.glob("*").size == 1
+    assert Dir.glob("*").include?("report.rds.xml")
   end
 
   def setup

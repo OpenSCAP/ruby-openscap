@@ -13,6 +13,16 @@ require 'test/unit'
 
 module OpenSCAP
   class TestCase < Test::Unit::TestCase
+    class << self
+      def startup
+        OpenSCAP.oscap_init
+      end
+
+      def shutdown
+        OpenSCAP.oscap_cleanup
+      end
+    end
+
     def setup
       workdir = "test/output"
       FileUtils.rm_rf workdir

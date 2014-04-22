@@ -98,16 +98,4 @@ class TestSession < OpenSCAP::TestCase
     assert Dir.glob("*").size == 1
     assert Dir.glob("*").include?("report.rds.xml")
   end
-
-  def setup
-    workdir = "test/output"
-    FileUtils.rm_rf workdir
-    Dir.mkdir workdir
-    Dir.chdir workdir
-  end
-
-  def cleanup
-    Dir.chdir "../.."
-    OpenSCAP.raise! if OpenSCAP.error?
-  end
 end

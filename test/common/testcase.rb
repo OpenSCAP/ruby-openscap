@@ -13,5 +13,16 @@ require 'test/unit'
 
 module OpenSCAP
   class TestCase < Test::Unit::TestCase
+    def setup
+      workdir = "test/output"
+      FileUtils.rm_rf workdir
+      Dir.mkdir workdir
+      Dir.chdir workdir
+    end
+
+    def cleanup
+      Dir.chdir "../.."
+      OpenSCAP.raise! if OpenSCAP.error?
+    end
   end
 end

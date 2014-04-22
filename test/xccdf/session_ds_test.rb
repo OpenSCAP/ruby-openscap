@@ -109,6 +109,14 @@ class TestSessionDS < OpenSCAP::TestCase
     assert_exported []
   end
 
+  def test_remediate
+    s = OpenSCAP::Xccdf::Session.new("../data/sds-complex.xml")
+    s.load(component_id:"scap_org.open-scap_cref_second-xccdf.xml")
+    s.profile = "xccdf_moc.elpmaxe.www_profile_1"
+    s.evaluate
+    s.remediate
+  end
+
   def assert_exported(files)
     # libopenscap compiled with --enable-debug creates debug files
     FileUtils.rm_rf(Dir.glob "oscap_debug.log.*")

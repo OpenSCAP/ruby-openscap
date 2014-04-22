@@ -48,6 +48,10 @@ module OpenSCAP
         end
       end
 
+      def remediate
+        OpenSCAP.raise! unless OpenSCAP.xccdf_session_remediate(@s) == 0
+      end
+
       def export_results(rds_file:nil, xccdf_file:nil, report_file:nil,
         oval_results:false, oval_variables:false, engines_results:false)
         OpenSCAP.raise! unless OpenSCAP.xccdf_session_set_arf_export(@s, rds_file)
@@ -73,6 +77,7 @@ module OpenSCAP
   attach_function :xccdf_session_free, [:pointer], :void
   attach_function :xccdf_session_load, [:pointer], :int
   attach_function :xccdf_session_evaluate, [:pointer], :int
+  attach_function :xccdf_session_remediate, [:pointer], :int
   attach_function :xccdf_session_export_oval, [:pointer], :int
   attach_function :xccdf_session_export_check_engine_plugins, [:pointer], :int
   attach_function :xccdf_session_export_xccdf, [:pointer], :int

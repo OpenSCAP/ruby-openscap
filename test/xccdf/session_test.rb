@@ -21,7 +21,7 @@ class TestSession < OpenSCAP::TestCase
     rescue OpenSCAP::OpenSCAPError => e
       msg = e.to_s
     end
-    assert msg.start_with?("Unable to open file: ''")
+    assert msg.start_with?("Unable to open file: ''"), "Message was: " + msg
   end
 
   def test_sds_false

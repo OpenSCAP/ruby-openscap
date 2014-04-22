@@ -13,7 +13,7 @@ require 'ffi'
 
 module OpenSCAP
   extend FFI::Library
-  ffi_lib 'openscap'
+  ffi_lib ['libopenscap.so.8', 'openscap']
 
   def self.error?
     return oscap_err()

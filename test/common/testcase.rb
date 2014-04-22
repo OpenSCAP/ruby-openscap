@@ -9,22 +9,9 @@
 # http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt.
 #
 
-require 'common/testcase'
-require 'openscap'
+require 'test/unit'
 
-class TestOscapVersion < OpenSCAP::TestCase
-  def test_oscap_version
-    OpenSCAP.oscap_init
-    version = OpenSCAP.oscap_get_version
-    OpenSCAP.oscap_cleanup
-    assert version.include?(".")
-  end
-
-  def test_double_read_error
-    assert ! OpenSCAP.error?
-    msg = OpenSCAP.get_full_error
-    assert msg.nil?
-    msg = OpenSCAP.get_full_error
-    assert msg.nil?
+module OpenSCAP
+  class TestCase < Test::Unit::TestCase
   end
 end

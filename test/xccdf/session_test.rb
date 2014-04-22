@@ -9,10 +9,10 @@
 # http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt.
 #
 
-require 'test/unit'
 require 'openscap'
+require 'common/testcase'
 
-class TestSession < Test::Unit::TestCase
+class TestSession < OpenSCAP::TestCase
   def test_session_new_bad
     msg = nil
     begin

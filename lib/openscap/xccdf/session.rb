@@ -33,6 +33,7 @@ module OpenSCAP
         if OpenSCAP.xccdf_session_load(@s) != 0
           OpenSCAP.raise!
         end
+        OpenSCAP.raise! unless OpenSCAP.xccdf_session_load_check_engine_plugins(@s) == 0
       end
 
       def profile=(p)
@@ -76,6 +77,7 @@ module OpenSCAP
   attach_function :xccdf_session_new, [:string], :pointer
   attach_function :xccdf_session_free, [:pointer], :void
   attach_function :xccdf_session_load, [:pointer], :int
+  attach_function :xccdf_session_load_check_engine_plugins, [:pointer], :int
   attach_function :xccdf_session_evaluate, [:pointer], :int
   attach_function :xccdf_session_remediate, [:pointer], :int
   attach_function :xccdf_session_export_oval, [:pointer], :int

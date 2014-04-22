@@ -79,8 +79,7 @@ class TestSessionDS < OpenSCAP::TestCase
     s.load
     s.evaluate
     s.export_results(rds_file:"report.rds.xml")
-    assert Dir.glob("*").size == 1
-    assert Dir.glob("*").include?("report.rds.xml")
+    assert_exported ["report.rds.xml"]
   end
 
   def test_session_export_xccdf_results
@@ -89,8 +88,7 @@ class TestSessionDS < OpenSCAP::TestCase
     s.profile = "xccdf_moc.elpmaxe.www_profile_1"
     s.evaluate
     s.export_results(xccdf_file:"result.xccdf.xml")
-    assert Dir.glob("*").size == 1
-    assert Dir.glob("*").include?("result.xccdf.xml")
+    assert_exported ["result.xccdf.xml"]
   end
 
   def test_session_export_oval_variables
@@ -99,6 +97,10 @@ class TestSessionDS < OpenSCAP::TestCase
     s.profile = "xccdf_moc.elpmaxe.www_profile_1"
     s.evaluate
     s.export_results(oval_variables:true)
-    assert Dir.glob("*").size == 0 # no variables in this test
+    assert_exported []
+  end
+
+  def assert_exported(files)
+    assert files == Dir.glob("*")
   end
 end

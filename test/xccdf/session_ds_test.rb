@@ -91,6 +91,15 @@ class TestSessionDS < OpenSCAP::TestCase
     assert_exported ["result.xccdf.xml"]
   end
 
+  def test_session_export_html_report
+    s = OpenSCAP::Xccdf::Session.new("../data/sds-complex.xml")
+    s.load(component_id:"scap_org.open-scap_cref_second-xccdf.xml")
+    s.profile = "xccdf_moc.elpmaxe.www_profile_1"
+    s.evaluate
+    s.export_results(report_file:"report.html", xccdf_file:"result.xccdf.xml")
+    assert_exported ["report.html", "result.xccdf.xml"]
+  end
+
   def test_session_export_oval_variables
     s = OpenSCAP::Xccdf::Session.new("../data/sds-complex.xml")
     s.load(component_id:"scap_org.open-scap_cref_second-xccdf.xml")

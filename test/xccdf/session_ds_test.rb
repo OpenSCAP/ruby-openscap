@@ -82,4 +82,13 @@ class TestSessionDS < OpenSCAP::TestCase
     assert Dir.glob("*").size == 1
     assert Dir.glob("*").include?("report.rds.xml")
   end
+
+  def test_session_export_oval_variables
+    s = OpenSCAP::Xccdf::Session.new("../data/sds-complex.xml")
+    s.load(component_id:"scap_org.open-scap_cref_second-xccdf.xml")
+    s.profile = "xccdf_moc.elpmaxe.www_profile_1"
+    s.evaluate
+    s.export_results(oval_variables:true)
+    assert Dir.glob("*").size == 0 # no variables in this test
+  end
 end

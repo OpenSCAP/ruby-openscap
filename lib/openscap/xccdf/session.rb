@@ -14,6 +14,7 @@ module OpenSCAP
 
     class Session
       def initialize(input_filename)
+        raise OpenSCAPError, "No filename specified!" unless input_filename
         @input_filename = input_filename
         @s = OpenSCAP.xccdf_session_new(input_filename)
         if @s.null?

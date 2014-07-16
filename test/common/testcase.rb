@@ -28,9 +28,11 @@ module OpenSCAP
       FileUtils.rm_rf workdir
       Dir.mkdir workdir
       Dir.chdir workdir
+      @s = nil
     end
 
     def cleanup
+      @s.destroy if @s
       Dir.chdir "../.."
       OpenSCAP.raise! if OpenSCAP.error?
     end

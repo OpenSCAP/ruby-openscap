@@ -18,4 +18,5 @@ Sample Scanner Implementation
     s.profile = "xccdf_org.ssgproject.content_profile_common"
     s.evaluate
     s.export_results(rds_file:"results.rds.xml")
+    s.destroy
 

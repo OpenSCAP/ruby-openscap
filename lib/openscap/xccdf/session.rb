@@ -69,8 +69,9 @@ module OpenSCAP
         OpenSCAP.raise! unless OpenSCAP.xccdf_session_export_arf(@s) == 0
       end
 
-      def finalize(s)
-        OpenSCAP.xccdf_session_free(s.s)
+      def destroy
+        OpenSCAP.xccdf_session_free(@s)
+        @s = nil
       end
     end
   end

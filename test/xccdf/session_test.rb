@@ -36,7 +36,7 @@ class TestSession < OpenSCAP::TestCase
   end
 
   def test_sds_false
-    s = OpenSCAP::Xccdf::Session.new("../data/xccdf.xml")
-    assert ! s.sds?
+    @s = OpenSCAP::Xccdf::Session.new("../data/xccdf.xml")
+    assert ! @s.sds?
   end
 end

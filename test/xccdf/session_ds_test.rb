@@ -78,7 +78,7 @@ class TestSessionDS < OpenSCAP::TestCase
     @s = OpenSCAP::Xccdf::Session.new("../data/sds-complex.xml")
     @s.load
     @s.evaluate
-    @s.export_results(rds_file:"report.rds.xml")
+    @s.export_results(:rds_file => "report.rds.xml")
     assert_exported ["report.rds.xml"]
   end
 
@@ -87,7 +87,7 @@ class TestSessionDS < OpenSCAP::TestCase
     @s.load(:component_id => "scap_org.open-scap_cref_second-xccdf.xml")
     @s.profile = "xccdf_moc.elpmaxe.www_profile_1"
     @s.evaluate
-    @s.export_results(xccdf_file:"result.xccdf.xml")
+    @s.export_results(:xccdf_file => "result.xccdf.xml")
     assert_exported ["result.xccdf.xml"]
   end
 
@@ -96,7 +96,7 @@ class TestSessionDS < OpenSCAP::TestCase
     @s.load(:component_id => "scap_org.open-scap_cref_second-xccdf.xml")
     @s.profile = "xccdf_moc.elpmaxe.www_profile_1"
     @s.evaluate
-    @s.export_results(report_file:"report.html", xccdf_file:"result.xccdf.xml")
+    @s.export_results(:report_file => "report.html", :xccdf_file => "result.xccdf.xml")
     assert_exported ["report.html", "result.xccdf.xml"]
   end
 
@@ -105,7 +105,7 @@ class TestSessionDS < OpenSCAP::TestCase
     @s.load(:component_id => "scap_org.open-scap_cref_second-xccdf.xml")
     @s.profile = "xccdf_moc.elpmaxe.www_profile_1"
     @s.evaluate
-    @s.export_results(oval_variables:true)
+    @s.export_results(:oval_variables => true)
     assert_exported []
   end
 

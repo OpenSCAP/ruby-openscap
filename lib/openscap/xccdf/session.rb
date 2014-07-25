@@ -58,14 +58,21 @@ module OpenSCAP
         OpenSCAP.raise! unless OpenSCAP.xccdf_session_remediate(@s) == 0
       end
 
-      def export_results(rds_file:nil, xccdf_file:nil, report_file:nil,
-        oval_results:false, oval_variables:false, engines_results:false)
-        OpenSCAP.raise! unless OpenSCAP.xccdf_session_set_arf_export(@s, rds_file)
-        OpenSCAP.raise! unless OpenSCAP.xccdf_session_set_xccdf_export(@s, xccdf_file)
-        OpenSCAP.raise! unless OpenSCAP.xccdf_session_set_report_export(@s, report_file)
-        OpenSCAP.xccdf_session_set_oval_results_export(@s, oval_results)
-        OpenSCAP.xccdf_session_set_oval_variables_export(@s, oval_variables)
-        OpenSCAP.xccdf_session_set_check_engine_plugins_results_export(@s, engines_results)
+      def export_results(opts = {})
+        o = {
+          :rds_file => nil,
+          :xccdf_file => nil,
+          :report_file => nil,
+          :oval_results => false,
+          :oval_variables => false,
+          :engines_results => false,
+        }.merge!(opts)
+        OpenSCAP.raise! unless OpenSCAP.xccdf_session_set_arf_export(@s, o[:rds_file])
+        OpenSCAP.raise! unless OpenSCAP.xccdf_session_set_xccdf_export(@s, o[:xccdf_file])
+        OpenSCAP.raise! unless OpenSCAP.xccdf_session_set_report_export(@s, o:[report_file])
+        OpenSCAP.xccdf_session_set_oval_results_export(@s, o[:oval_results])
+        OpenSCAP.xccdf_session_set_oval_variables_export(@s, o[:oval_variables])
+        OpenSCAP.xccdf_session_set_check_engine_plugins_results_export(@s, o[:engines_results])
 
         OpenSCAP.raise! unless OpenSCAP.xccdf_session_export_oval(@s) == 0
         OpenSCAP.raise! unless OpenSCAP.xccdf_session_export_check_engine_plugins(@s) == 0

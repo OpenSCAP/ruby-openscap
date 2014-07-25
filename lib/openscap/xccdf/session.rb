@@ -26,10 +26,14 @@ module OpenSCAP
         return OpenSCAP.xccdf_session_is_sds(@s)
       end
 
-      def load(datastream_id:nil, component_id:nil)
+      def load(opts = {})
+        o = {
+          :datastream_id => nil,
+          :component_id => nil,
+        }.merge(opts)
         if sds?
-          OpenSCAP.xccdf_session_set_datastream_id(@s, datastream_id)
-          OpenSCAP.xccdf_session_set_component_id(@s, component_id)
+          OpenSCAP.xccdf_session_set_datastream_id(@s, o[:datastream_id])
+          OpenSCAP.xccdf_session_set_component_id(@s, o[:component_id])
         end
         if OpenSCAP.xccdf_session_load(@s) != 0
           OpenSCAP.raise!

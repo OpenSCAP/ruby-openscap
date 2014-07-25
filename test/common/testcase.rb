@@ -36,5 +36,8 @@ module OpenSCAP
       Dir.chdir "../.."
       OpenSCAP.raise! if OpenSCAP.error?
     end
+
+    def test_x
+    end
   end
 end

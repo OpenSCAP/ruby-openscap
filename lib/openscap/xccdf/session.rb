@@ -69,7 +69,7 @@ module OpenSCAP
         }.merge!(opts)
         OpenSCAP.raise! unless OpenSCAP.xccdf_session_set_arf_export(@s, o[:rds_file])
         OpenSCAP.raise! unless OpenSCAP.xccdf_session_set_xccdf_export(@s, o[:xccdf_file])
-        OpenSCAP.raise! unless OpenSCAP.xccdf_session_set_report_export(@s, o:[report_file])
+        OpenSCAP.raise! unless OpenSCAP.xccdf_session_set_report_export(@s, o[:report_file])
         OpenSCAP.xccdf_session_set_oval_results_export(@s, o[:oval_results])
         OpenSCAP.xccdf_session_set_oval_variables_export(@s, o[:oval_variables])
         OpenSCAP.xccdf_session_set_check_engine_plugins_results_export(@s, o[:engines_results])

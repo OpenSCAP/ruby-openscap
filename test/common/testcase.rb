@@ -25,6 +25,9 @@ module OpenSCAP
 
     def setup
       workdir = "test/output"
+      if Dir.pwd.end_with? 'test/output'
+        cleanup # Older TestCase do not run cleanup method.
+      end
       FileUtils.rm_rf workdir
       Dir.mkdir workdir
       Dir.chdir workdir

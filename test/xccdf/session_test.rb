@@ -21,7 +21,8 @@ class TestSession < OpenSCAP::TestCase
     rescue OpenSCAP::OpenSCAPError => e
       msg = e.to_s
     end
-    assert msg.start_with?("Unable to open file: ''"), "Message was: " + msg
+    assert msg.start_with?('failed to load external entity ""'), "Message was: " + msg
+    assert msg.include?('Unable to parse XML at:'), "Message was: " + msg
   end
 
   def test_session_new_nil

@@ -22,14 +22,14 @@ module OpenSCAP
         end
       end
 
-    def destroy
-      OpenSCAP.ds_rds_session_free(@session)
-      @session = nil
-      @source.destroy()
+      def destroy
+        OpenSCAP.ds_rds_session_free(@session)
+        @session = nil
+        @source.destroy()
+      end
     end
   end
 
   attach_function :ds_rds_session_new_from_source, [:pointer], :pointer
   attach_function :ds_rds_session_free, [:pointer], :void
-  end
 end

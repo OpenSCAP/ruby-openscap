@@ -13,7 +13,7 @@ require 'openscap'
 require 'openscap/source'
 require 'common/testcase'
 
-class TestSession < OpenSCAP::TestCase
+class TestSource < OpenSCAP::TestCase
   def test_source_new_nil
     msg = nil
     begin

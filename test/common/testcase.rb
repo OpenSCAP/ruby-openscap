@@ -13,16 +13,6 @@ require 'test/unit'
 
 module OpenSCAP
   class TestCase < Test::Unit::TestCase
-    class << self
-      def startup
-        OpenSCAP.oscap_init
-      end
-
-      def shutdown
-        OpenSCAP.oscap_cleanup
-      end
-    end
-
     def setup
       workdir = "test/output"
       if Dir.pwd.end_with? 'test/output'
@@ -32,12 +22,14 @@ module OpenSCAP
       Dir.mkdir workdir
       Dir.chdir workdir
       @s = nil
+      OpenSCAP.oscap_init
     end
 
     def cleanup
       @s.destroy if @s
       Dir.chdir "../.."
       OpenSCAP.raise! if OpenSCAP.error?
+      OpenSCAP.oscap_cleanup
     end
 
     def test_x

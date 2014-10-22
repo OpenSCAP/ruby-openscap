@@ -37,4 +37,17 @@ class TestSession < OpenSCAP::TestCase
     assert msg.include?('Could not create Result DataStream session: File is not Result DataStream.'),
         "Message was: " + msg
   end
+
+  def test_create_arf_and_get_html
+    @s = OpenSCAP::Xccdf::Session.new("../data/sds-complex.xml")
+    @s.load(:component_id => "scap_org.open-scap_cref_second-xccdf.xml")
+    @s.profile = "xccdf_moc.elpmaxe.www_profile_1"
+    @s.evaluate
+    @s.export_results(:rds_file => "report.rds.xml")
+    arf = OpenSCAP::DS::Arf.new("report.rds.xml")
+    html = arf.html
+    assert html.start_with?('<!DOCTYPE html><html'), "DOCTYPE missing."
+    assert html.include?('OpenSCAP')
+    assert html.include?('Compliance and Scoring')
+  end
 end

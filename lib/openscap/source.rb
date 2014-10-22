@@ -19,6 +19,10 @@ module OpenSCAP
       end
     end
 
+    def raw
+      @s
+    end
+
     def destroy
       OpenSCAP.oscap_source_free(@s)
       @s = nil

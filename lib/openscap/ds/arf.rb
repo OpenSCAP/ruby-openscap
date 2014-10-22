@@ -31,6 +31,7 @@ module OpenSCAP
 
       def html
         html_p = OpenSCAP.ds_rds_session_get_html_report @session
+        OpenSCAP.raise! if OpenSCAP.error?
         return nil if html_p.null?
         html = html_p.read_string()
         OpenSCAP::LibC.free html_p

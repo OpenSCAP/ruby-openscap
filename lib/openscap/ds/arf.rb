@@ -10,6 +10,7 @@
 #
 
 require 'openscap/source'
+require 'openscap/libc'
 
 module OpenSCAP
   module DS
@@ -27,9 +28,17 @@ module OpenSCAP
         @session = nil
         @source.destroy()
       end
+
+      def html
+        html_p = OpenSCAP.ds_rds_session_get_html_report @session
+        html = html_p.read_string()
+        OpenSCAP::LibC.free html_p
+        return html
+      end
     end
   end
 
   attach_function :ds_rds_session_new_from_source, [:pointer], :pointer
   attach_function :ds_rds_session_free, [:pointer], :void
+  attach_function :ds_rds_session_get_html_report, [:pointer], :pointer
 end

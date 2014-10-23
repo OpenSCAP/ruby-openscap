@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 require 'date'
 require File.expand_path('../lib/openscap/version', __FILE__)
 
@@ -8,7 +7,7 @@ GEMSPEC = Gem::Specification.new do |gem|
   gem.date = Date.today.to_s
   gem.platform = Gem::Platform::RUBY
 
-  gem.author = "Šimon Lukašík"
+  gem.author = "Simon Lukasik"
   gem.email = "isimluk@fedoraproject.org"
   gem.homepage = "https://github.com/OpenSCAP/ruby-openscap"
   gem.license = "GPL-2.0"

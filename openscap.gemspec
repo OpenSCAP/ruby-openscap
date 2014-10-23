@@ -1,9 +1,10 @@
 # -*- encoding: utf-8 -*-
 require 'date'
+require File.expand_path('../lib/openscap/version', __FILE__)
 
 GEMSPEC = Gem::Specification.new do |gem|
   gem.name = "openscap"
-  gem.version = File.open('VERSION').readline.chomp
+  gem.version = OpenSCAP::VERSION
   gem.date = Date.today.to_s
   gem.platform = Gem::Platform::RUBY
 

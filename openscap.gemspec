@@ -20,6 +20,6 @@ GEMSPEC = Gem::Specification.new do |gem|
   gem.add_development_dependency "bundler", ">=1.0.0"
   gem.add_runtime_dependency "ffi", ">= 1.0.9"
 
-  gem.files = `git ls-files`.split("\n")
+  gem.files = Dir["{lib,test}/**/*"] + ["COPYING", "README.md", "Rakefile"]
   gem.require_path = 'lib'
 end

@@ -28,10 +28,12 @@ class TestSession < OpenSCAP::TestCase
         "Message was: " + msg
   end
 
-  def test_result_get_id
+  def test_result_create_and_query_properties
     tr = new_tr
     assert tr.id == 'xccdf_org.open-scap_testresult_xccdf_org.ssgproject.content_profile_common',
-        tr.id
+        "TestResult.id was '#{tr.id}"
+    assert tr.profile == 'xccdf_org.ssgproject.content_profile_common',
+        "TestResult.profile was '#{tr.profile}'"
     tr.destroy
   end
 

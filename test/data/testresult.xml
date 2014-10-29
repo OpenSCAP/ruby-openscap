@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestResult xmlns="http://checklists.nist.gov/xccdf/1.2" id="xccdf_org.open-scap_testresult_xccdf_org.ssgproject.content_profile_common" start-time="2014-10-17T09:07:43" end-time="2014-10-17T09:07:55">
+    <benchmark href="/usr/share/xml/scap/ssg/fedora/ssg-fedora-ds.xml" id="xccdf_org.ssgproject.content_benchmark_FEDORA"/>
+    <title>OSCAP Scan Result</title>
+    <identity authenticated="false" privileged="false">root</identity>
+    <profile idref="xccdf_org.ssgproject.content_profile_common"/>
+    <target>fedora20.mydomain</target>
+    <target-address>127.0.0.1</target-address>
+    <target-address>0:0:0:0:0:0:0:1</target-address>
+    <target-facts>
+      <fact name="urn:xccdf:fact:scanner:name" type="string">OpenSCAP</fact>
+      <fact name="urn:xccdf:fact:scanner:version" type="string">1.0.9</fact>
+      <fact name="urn:xccdf:fact:ethernet:MAC" type="string">00:00:00:00:00:00</fact>
+    </target-facts><target-id-ref system="http://scap.nist.gov/schema/asset-identification/1.1" name="asset0" href=""/>
+    <platform idref="cpe:/o:fedoraproject:fedora:20"/>
+    <rule-result idref="xccdf_org.ssgproject.content_rule_disable_prelink" time="2014-10-17T09:07:43" severity="low" weight="1.000000">
+      <result>fail</result>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <check-content-ref name="oval:ssg:def:151" href="#xccdf1"/>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_org.ssgproject.content_rule_ensure_gpgcheck_globally_activated" time="2014-10-17T09:07:43" severity="high" weight="1.000000">
+      <result>pass</result>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <check-content-ref name="oval:ssg:def:140" href="#xccdf1"/>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_org.ssgproject.content_rule_ensure_gpgcheck_never_disabled" time="2014-10-17T09:07:43" severity="high" weight="1.000000">
+      <result>pass</result>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <check-content-ref name="oval:ssg:def:149" href="#xccdf1"/>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_org.ssgproject.content_rule_file_permissions_library_dirs" time="2014-10-17T09:07:51" severity="medium" weight="1.000000">
+      <result>fail</result>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <check-content-ref name="oval:ssg:def:137" href="#xccdf1"/>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_org.ssgproject.content_rule_file_ownership_library_dirs" time="2014-10-17T09:07:53" severity="medium" weight="1.000000">
+      <result>pass</result>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <check-content-ref name="oval:ssg:def:124" href="#xccdf1"/>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_org.ssgproject.content_rule_file_permissions_binary_dirs" time="2014-10-17T09:07:55" severity="medium" weight="1.000000">
+      <result>pass</result>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <check-content-ref name="oval:ssg:def:161" href="#xccdf1"/>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_org.ssgproject.content_rule_file_ownership_binary_dirs" time="2014-10-17T09:07:55" severity="medium" weight="1.000000">
+      <result>pass</result>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <check-content-ref name="oval:ssg:def:154" href="#xccdf1"/>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_org.ssgproject.content_rule_no_direct_root_logins" time="2014-10-17T09:07:55" severity="medium" weight="1.000000">
+      <result>notchecked</result>
+      <message severity="info">No candidate or applicable check found.</message>
+      <check system="ocil-transitional">
+        <check-export export-name="the /etc/securetty file is not empty" value-id="xccdf_org.ssgproject.content_value_conditional_clause"/>
+        <check-content xmlns:xhtml="http://www.w3.org/1999/xhtml">
+To ensure root may not directly login to the system over physical consoles,
+run the following command:
+<pre xmlns="http://www.w3.org/1999/xhtml">cat /etc/securetty</pre>
+If any output is returned, this is a finding.
+</check-content>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_org.ssgproject.content_rule_securetty_root_login_console_only" time="2014-10-17T09:07:55" severity="medium" weight="1.000000">
+      <result>fail</result>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <check-content-ref name="oval:ssg:def:109" href="#xccdf1"/>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_org.ssgproject.content_rule_restrict_serial_port_logins" time="2014-10-17T09:07:55" severity="low" weight="1.000000">
+      <result>pass</result>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <check-content-ref name="oval:ssg:def:144" href="#xccdf1"/>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_org.ssgproject.content_rule_no_root_webbrowsing" time="2014-10-17T09:07:55" severity="low" weight="1.000000">
+      <result>notselected</result>
+      <check system="ocil-transitional">
+        <check-export export-name="this is not the case" value-id="xccdf_org.ssgproject.content_value_conditional_clause"/>
+        <check-content xmlns:xhtml="http://www.w3.org/1999/xhtml">
+Check the <xhtml:code>root</xhtml:code> home directory for a <xhtml:code>.mozilla</xhtml:code> directory. If
+one exists, ensure browsing is limited to local service administration.
+</check-content>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_org.ssgproject.content_rule_no_shelllogin_for_systemaccounts" time="2014-10-17T09:07:55" severity="medium" weight="1.000000">
+      <result>notselected</result>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <check-content-ref name="oval:ssg:def:122" href="#xccdf1"/>
+      </check>
+      <check system="ocil-transitional">
+        <check-export export-name="any system account (other than root) has a login shell" value-id="xccdf_org.ssgproject.content_value_conditional_clause"/>
+        <check-content xmlns:xhtml="http://www.w3.org/1999/xhtml">
+To obtain a listing of all users,
+their UIDs, and their shells, run the command:
+<pre xmlns="http://www.w3.org/1999/xhtml">$ awk -F: '{print $1 ":" $3 ":" $7}' /etc/passwd</pre>
+Identify the system accounts from this listing. These will
+primarily be the accounts with UID numbers less than 500, other
+than root.
+</check-content>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_org.ssgproject.content_rule_no_uidzero_except_root" time="2014-10-17T09:07:55" severity="medium" weight="1.000000">
+      <result>pass</result>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <check-content-ref name="oval:ssg:def:118" href="#xccdf1"/>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_org.ssgproject.content_rule_root_path_default" time="2014-10-17T09:07:55" severity="low" weight="1.000000">
+      <result>notselected</result>
+      <check system="ocil-transitional">
+        <check-export export-name="any of these conditions are not met" value-id="xccdf_org.ssgproject.content_value_conditional_clause"/>
+        <check-content xmlns:xhtml="http://www.w3.org/1999/xhtml">
+To view the root user's <xhtml:code>PATH</xhtml:code>, run the following command:
+<pre xmlns="http://www.w3.org/1999/xhtml"># env | grep PATH</pre>
+If correctly configured, the <xhtml:code>PATH</xhtml:code> must: use vendor default settings,
+have no empty entries, and have no entries beginning with a character
+other than a slash (/).
+</check-content>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_org.ssgproject.content_rule_no_empty_passwords" time="2014-10-17T09:07:55" severity="high" weight="1.000000">
+      <result>fail</result>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <check-content-ref name="oval:ssg:def:111" href="#xccdf1"/>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_org.ssgproject.content_rule_no_hashes_outside_shadow" time="2014-10-17T09:07:55" severity="medium" weight="1.000000">
+      <result>pass</result>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <check-content-ref name="oval:ssg:def:107" href="#xccdf1"/>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_org.ssgproject.content_rule_gid_passwd_group_same" time="2014-10-17T09:07:55" severity="low" weight="1.000000">
+      <result>notselected</result>
+      <check system="ocil-transitional">
+        <check-export export-name="there is output" value-id="xccdf_org.ssgproject.content_value_conditional_clause"/>
+        <check-content xmlns:xhtml="http://www.w3.org/1999/xhtml">
+To ensure all GIDs referenced in <xhtml:code>/etc/passwd</xhtml:code> are defined in <xhtml:code>/etc/group</xhtml:code>,
+run the following command:
+<pre xmlns="http://www.w3.org/1999/xhtml"># pwck -qr</pre>
+There should be no output.
+</check-content>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_org.ssgproject.content_rule_no_netrc_files" time="2014-10-17T09:07:55" severity="medium" weight="1.000000">
+      <result>pass</result>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <check-content-ref name="oval:ssg:def:157" href="#xccdf1"/>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_org.ssgproject.content_rule_accounts_password_minlen_login_defs" time="2014-10-17T09:07:55" severity="medium" weight="1.000000">
+      <result>fail</result>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <check-export export-name="oval:ssg:var:213" value-id="xccdf_org.ssgproject.content_value_var_accounts_password_minlen_login_defs"/>
+        <check-content-ref name="oval:ssg:def:133" href="#xccdf1"/>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_org.ssgproject.content_rule_accounts_minimum_age_login_defs" time="2014-10-17T09:07:55" severity="medium" weight="1.000000">
+      <result>fail</result>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <check-export export-name="oval:ssg:var:214" value-id="xccdf_org.ssgproject.content_value_var_accounts_minimum_age_login_defs"/>
+        <check-content-ref name="oval:ssg:def:159" href="#xccdf1"/>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_org.ssgproject.content_rule_accounts_maximum_age_login_defs" time="2014-10-17T09:07:55" severity="medium" weight="1.000000">
+      <result>fail</result>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <check-export export-name="oval:ssg:var:211" value-id="xccdf_org.ssgproject.content_value_var_accounts_maximum_age_login_defs"/>
+        <check-content-ref name="oval:ssg:def:113" href="#xccdf1"/>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_org.ssgproject.content_rule_accounts_password_warn_age_login_defs" time="2014-10-17T09:07:55" severity="low" weight="1.000000">
+      <result>pass</result>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <check-export export-name="oval:ssg:var:215" value-id="xccdf_org.ssgproject.content_value_var_accounts_password_warn_age_login_defs"/>
+        <check-content-ref name="oval:ssg:def:163" href="#xccdf1"/>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_org.ssgproject.content_rule_service_ntpd_enabled" time="2014-10-17T09:07:55" severity="medium" weight="1.000000">
+      <result>fail</result>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <check-content-ref name="oval:ssg:def:129" href="#xccdf1"/>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_org.ssgproject.content_rule_ntpd_specify_remote_server" time="2014-10-17T09:07:55" severity="medium" weight="1.000000">
+      <result>fail</result>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <check-content-ref name="oval:ssg:def:142" href="#xccdf1"/>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_org.ssgproject.content_rule_sshd_disable_root_login" time="2014-10-17T09:07:55" severity="medium" weight="1.000000">
+      <result>fail</result>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <check-content-ref name="oval:ssg:def:115" href="#xccdf1"/>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_org.ssgproject.content_rule_sshd_disable_empty_passwords" time="2014-10-17T09:07:55" severity="high" weight="1.000000">
+      <result>pass</result>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <check-content-ref name="oval:ssg:def:146" href="#xccdf1"/>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_org.ssgproject.content_rule_sshd_set_idle_timeout" time="2014-10-17T09:07:55" severity="low" weight="1.000000">
+      <result>fail</result>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <check-export export-name="oval:ssg:var:212" value-id="xccdf_org.ssgproject.content_value_sshd_idle_timeout_value"/>
+        <check-content-ref name="oval:ssg:def:120" href="#xccdf1"/>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_org.ssgproject.content_rule_sshd_set_keepalive" time="2014-10-17T09:07:55" severity="low" weight="1.000000">
+      <result>fail</result>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <check-content-ref name="oval:ssg:def:135" href="#xccdf1"/>
+      </check>
+    </rule-result>
+    <score system="urn:xccdf:scoring:default" maximum="100.000000">34.722221</score>
+  </TestResult>

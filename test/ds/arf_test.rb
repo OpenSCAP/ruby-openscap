@@ -47,6 +47,15 @@ class TestSession < OpenSCAP::TestCase
     assert html.include?('Compliance and Scoring')
   end
 
+  def test_create_arf_and_get_profile
+    arf = new_arf
+    tr = arf.test_result
+    assert tr.profile == 'xccdf_moc.elpmaxe.www_profile_1',
+      "TestResult.profile was '#{tr.profile}'"
+    tr.destroy
+    arf.destroy
+  end
+
   private
   def new_arf
     @s = OpenSCAP::Xccdf::Session.new("../data/sds-complex.xml")

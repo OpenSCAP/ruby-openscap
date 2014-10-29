@@ -20,6 +20,9 @@ module OpenSCAP
         when OpenSCAP::Source
           @tr = OpenSCAP.xccdf_result_import_source(t.raw)
           OpenSCAP.raise! if @tr.null?
+        when FFI::Pointer
+          @tr = OpenSCAP.xccdf_result_import_source(t)
+          OpenSCAP.raise! if @tr.null?
         else
           raise OpenSCAP::OpenSCAPError, "Cannot initialize TestResult with #{t}"
         end

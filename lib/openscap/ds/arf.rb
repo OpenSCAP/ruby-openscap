@@ -10,6 +10,7 @@
 #
 
 require 'openscap/source'
+require 'openscap/xccdf/testresult'
 require 'openscap/libc'
 
 module OpenSCAP
@@ -29,6 +30,12 @@ module OpenSCAP
         @source.destroy()
       end
 
+      def test_result(id=nil)
+        source = OpenSCAP.ds_rds_session_select_report(@session, id)
+        OpenSCAP.raise!() if source.nil?
+        OpenSCAP::Xccdf::TestResult.new(source)
+      end
+
       def html
         html_p = OpenSCAP.ds_rds_session_get_html_report @session
         OpenSCAP.raise! if OpenSCAP.error?
@@ -42,5 +49,6 @@ module OpenSCAP
 
   attach_function :ds_rds_session_new_from_source, [:pointer], :pointer
   attach_function :ds_rds_session_free, [:pointer], :void
+  attach_function :ds_rds_session_select_report, [:pointer, :string], :pointer
   attach_function :ds_rds_session_get_html_report, [:pointer], :pointer
 end

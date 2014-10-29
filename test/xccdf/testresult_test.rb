@@ -29,10 +29,16 @@ class TestSession < OpenSCAP::TestCase
   end
 
   def test_result_new_ok
+    tr = new_tr
+    tr.destroy
+  end
+
+  private
+  def new_tr
     source = OpenSCAP::Source.new('../data/testresult.xml')
     assert !source.nil?
-    s = OpenSCAP::Xccdf::TestResult.new(source)
+    tr = OpenSCAP::Xccdf::TestResult.new(source)
     source.destroy
-    s.destroy()
+    return tr
   end
 end

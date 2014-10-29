@@ -25,6 +25,10 @@ module OpenSCAP
         end
       end
 
+      def id
+        return OpenSCAP.xccdf_result_get_id(@tr)
+      end
+
       def destroy
         OpenSCAP.xccdf_result_free @tr
         @tr = nil
@@ -34,4 +38,5 @@ module OpenSCAP
 
   attach_function :xccdf_result_import_source, [:pointer], :pointer
   attach_function :xccdf_result_free, [:pointer], :void
+  attach_function :xccdf_result_get_id, [:pointer], :string
 end

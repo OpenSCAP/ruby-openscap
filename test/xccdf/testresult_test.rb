@@ -28,8 +28,10 @@ class TestSession < OpenSCAP::TestCase
         "Message was: " + msg
   end
 
-  def test_result_new_ok
+  def test_result_get_id
     tr = new_tr
+    assert tr.id == 'xccdf_org.open-scap_testresult_xccdf_org.ssgproject.content_profile_common',
+        tr.id
     tr.destroy
   end
 

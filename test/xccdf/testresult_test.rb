@@ -42,6 +42,8 @@ class TestSession < OpenSCAP::TestCase
     assert tr.rr.size == 28
     assert tr.rr.key?('xccdf_org.ssgproject.content_rule_disable_prelink')
     assert tr.rr.key?('xccdf_org.ssgproject.content_rule_no_direct_root_logins')
+    assert 'fail' == tr.rr['xccdf_org.ssgproject.content_rule_disable_prelink'].result
+    assert 'notchecked' == tr.rr['xccdf_org.ssgproject.content_rule_no_direct_root_logins'].result
     tr.destroy
   end
 

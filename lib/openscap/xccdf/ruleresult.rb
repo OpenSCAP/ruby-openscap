@@ -27,6 +27,11 @@ module OpenSCAP
         OpenSCAP.xccdf_rule_result_get_idref @rr
       end
 
+      def result
+        OpenSCAP.xccdf_test_result_type_get_text \
+            OpenSCAP.xccdf_rule_result_get_result(@rr)
+      end
+
       def destroy
         OpenSCAP.xccdf_rule_result_free @rr
       end
@@ -35,4 +40,6 @@ module OpenSCAP
 
   attach_function :xccdf_rule_result_get_idref, [:pointer], :string
   attach_function :xccdf_rule_result_free, [:pointer], :void
+  attach_function :xccdf_rule_result_get_result, [:pointer], :int
+  attach_function :xccdf_test_result_type_get_text, [:int], :string
 end

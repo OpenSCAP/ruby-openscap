@@ -11,10 +11,13 @@
 
 require 'openscap/source'
 require 'openscap/exceptions'
+require 'openscap/xccdf/ruleresult'
 
 module OpenSCAP
   module Xccdf
     class TestResult
+      attr_reader :rr
+
       def initialize(t)
         case t
         when OpenSCAP::Source
@@ -26,6 +29,7 @@ module OpenSCAP
         else
           raise OpenSCAP::OpenSCAPError, "Cannot initialize TestResult with #{t}"
         end
+        init_ruleresults
       end
 
       def id
@@ -40,6 +44,18 @@ module OpenSCAP
         OpenSCAP.xccdf_result_free @tr
         @tr = nil
       end
+
+      private
+      def init_ruleresults
+        @rr = Hash.new
+        rr_it = OpenSCAP.xccdf_result_get_rule_results(@tr)
+        while OpenSCAP.xccdf_rule_result_iterator_has_more(rr_it) do
+          rr_raw = OpenSCAP.xccdf_rule_result_iterator_next(rr_it)
+          rr = OpenSCAP::Xccdf::RuleResult.new rr_raw
+          @rr[rr.id] = rr
+        end
+        OpenSCAP.xccdf_rule_result_iterator_free(rr_it)
+      end
     end
   end
 
@@ -47,4 +63,9 @@ module OpenSCAP
   attach_function :xccdf_result_free, [:pointer], :void
   attach_function :xccdf_result_get_id, [:pointer], :string
   attach_function :xccdf_result_get_profile, [:pointer], :string
+
+  attach_function :xccdf_result_get_rule_results, [:pointer] ,:pointer
+  attach_function :xccdf_rule_result_iterator_has_more, [:pointer], :bool
+  attach_function :xccdf_rule_result_iterator_free, [:pointer], :void
+  attach_function :xccdf_rule_result_iterator_next, [:pointer], :pointer
 end

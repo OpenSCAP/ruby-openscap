@@ -37,6 +37,14 @@ class TestSession < OpenSCAP::TestCase
     tr.destroy
   end
 
+  def test_result_create_and_query_rr
+    tr = new_tr
+    assert tr.rr.size == 28
+    assert tr.rr.key?('xccdf_org.ssgproject.content_rule_disable_prelink')
+    assert tr.rr.key?('xccdf_org.ssgproject.content_rule_no_direct_root_logins')
+    tr.destroy
+  end
+
   private
   def new_tr
     source = OpenSCAP::Source.new('../data/testresult.xml')

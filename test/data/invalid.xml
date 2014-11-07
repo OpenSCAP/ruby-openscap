@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Benchmark xmlns="http://checklists.nist.gov/xccdf/1.2" id="xccdf_moc.elpmaxe.www_benchmark_second">
+  <version>1.0</version>
+  <status>incomplete</status>
+  <Profile id="xccdf_moc.elpmaxe.www_profile_1">
+    <title>is kinda compulsory</title>
+    <select idref="xccdf_moc.elpmaxe.www_rule_second" selected="true"/>
+  </Profile>
+  <Profile id="xccdf_moc.elpmaxe.www_profile_2" extends="xccdf_moc.elpmaxe.www_profile_1">
+    <title>is kinda compulsory</title>
+    <select idref="xccdf_moc.elpmaxe.www_group_one" selected="true"/>
+  </Profile>
+  <Group selected="false" id="xccdf_moc.elpmaxe.www_group_one">
+    <Rule selected="false" id="xccdf_moc.elpmaxe.www_rule_second">
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <check-content-ref href="stub-oval.xml"/>
+      </check>
+    </Rule>
+  </Group>
+</Benchmark>

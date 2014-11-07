@@ -26,7 +26,7 @@ class TestSource < OpenSCAP::TestCase
   end
 
   def test_source_new_ok
-    s = OpenSCAP::Source.new("data/xccdf.xml")
+    s = OpenSCAP::Source.new("../data/xccdf.xml")
     s.destroy
   end
 end

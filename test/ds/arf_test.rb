@@ -28,12 +28,11 @@ class TestSession < OpenSCAP::TestCase
   def test_arf_new_wrong_format
     msg = nil
     begin
-      s = OpenSCAP::DS::Arf.new("data/xccdf.xml")
+      s = OpenSCAP::DS::Arf.new("../data/xccdf.xml")
       assert false
     rescue OpenSCAP::OpenSCAPError => e
       msg = e.to_s
     end
-    assert msg.start_with?('failed to load external entity "data/xccdf.xml"'), "Message was: " + msg
     assert msg.include?('Could not create Result DataStream session: File is not Result DataStream.'),
         "Message was: " + msg
   end

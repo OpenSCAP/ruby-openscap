@@ -29,4 +29,11 @@ class TestSource < OpenSCAP::TestCase
     s = OpenSCAP::Source.new("../data/xccdf.xml")
     s.destroy
   end
+
+  def test_source_new_memory
+    raw_data = File.read("../data/xccdf.xml")
+    assert raw_data.length > 0
+    s = OpenSCAP::Source.new(:content => raw_data, :path => '/mytestpath')
+    s.destroy
+  end
 end

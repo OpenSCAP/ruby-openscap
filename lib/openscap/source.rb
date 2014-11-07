@@ -17,6 +17,8 @@ module OpenSCAP
         raise OpenSCAPError, "No filename specified!"
       when String
         @s = OpenSCAP.oscap_source_new_from_file(param)
+      when Hash
+        @s = OpenSCAP.oscap_source_new_from_memory param[:content], param[:content].length, param[:path]
       else
         raise OpenSCAP::OpenSCAPError, "Cannot initialize OpenSCAP::Source with '#{param}'"
       end
@@ -34,5 +36,6 @@ module OpenSCAP
   end
 
   attach_function :oscap_source_new_from_file, [:string], :pointer
+  attach_function :oscap_source_new_from_memory, [:string, :int, :string], :pointer
   attach_function :oscap_source_free, [:pointer], :void
 end

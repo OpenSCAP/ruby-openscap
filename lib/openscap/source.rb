@@ -11,12 +11,16 @@
 
 module OpenSCAP
   class Source
-    def initialize(input_filename)
-      raise OpenSCAPError, "No filename specified!" unless input_filename
-      @s = OpenSCAP.oscap_source_new_from_file(input_filename)
-      if @s.null?
-        OpenSCAP.raise!
+    def initialize(param)
+      case param
+      when nil
+        raise OpenSCAPError, "No filename specified!"
+      when String
+        @s = OpenSCAP.oscap_source_new_from_file(param)
+      else
+        raise OpenSCAP::OpenSCAPError, "Cannot initialize OpenSCAP::Source with '#{param}'"
       end
+      OpenSCAP.raise! if @s.null?
     end
 
     def raw

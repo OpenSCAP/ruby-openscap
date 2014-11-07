@@ -47,6 +47,18 @@ class TestTestResult < OpenSCAP::TestCase
     tr.destroy
   end
 
+  def test_override
+    tr = new_tr
+    rr = tr.rr['xccdf_org.ssgproject.content_rule_disable_prelink']
+    assert 'fail' == rr.result
+    rr.override!(:new_result => :pass,
+                 :time => 'yesterday',
+                 :authority => 'John Hacker',
+                 :raw_text => 'We are testing prelink on this machine')
+    assert 'pass' == rr.result
+    tr.destroy()
+  end
+
   private
   def new_tr
     source = OpenSCAP::Source.new('../data/testresult.xml')

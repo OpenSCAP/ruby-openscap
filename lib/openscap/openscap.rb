@@ -24,10 +24,12 @@ module OpenSCAP
     return err.null? ? nil : err.read_string()
   end
 
-  def self.raise!
+  def self.raise!(msg=nil)
     err = get_full_error
     if err.nil?
-      err = '(unknown error)'
+      err = msg.nil? ? '(unknown error)' : msg
+    else
+      err += "\n#{msg}"
     end
     raise OpenSCAPError, err
   end

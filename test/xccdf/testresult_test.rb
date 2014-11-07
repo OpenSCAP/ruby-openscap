@@ -13,7 +13,7 @@ require 'openscap/source'
 require 'openscap/xccdf/testresult'
 require 'common/testcase'
 
-class TestSession < OpenSCAP::TestCase
+class TestTestResult < OpenSCAP::TestCase
   def test_testresult_new_bad
     source = OpenSCAP::Source.new('../data/xccdf.xml')
     assert !source.nil?

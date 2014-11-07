@@ -29,6 +29,14 @@ module OpenSCAP
       OpenSCAP.oscap_document_type_to_string(OpenSCAP.oscap_source_get_scap_type(@s))
     end
 
+    def validate!
+      e = FFI::MemoryPointer.new(:char, 4096)
+      if 0 != OpenSCAP.oscap_source_validate(@s, XmlReporterCallback, e)
+        OpenSCAP.raise! e.read_string
+      end
+
+    end
+
     def raw
       @s
     end
@@ -43,4 +51,18 @@ module OpenSCAP
   attach_function :oscap_source_new_from_memory, [:string, :int, :string], :pointer
   attach_function :oscap_source_get_scap_type, [:pointer], :int
   attach_function :oscap_source_free, [:pointer], :void
+
+
+  callback :xml_reporter, [:string, :int, :string, :pointer], :int
+  attach_function :oscap_source_validate, [:pointer, :xml_reporter, :pointer], :int
+  XmlReporterCallback = Proc.new do |filename, line_number, error_message, e|
+    offset = e.get_string(0).length
+    msg = "#{filename}:#{line_number}: #{error_message}"
+    if msg.length + offset + 1 < e.size
+      e.put_string(offset, msg)
+      0
+    else
+      1
+    end
+  end
 end

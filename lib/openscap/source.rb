@@ -25,6 +25,10 @@ module OpenSCAP
       OpenSCAP.raise! if @s.null?
     end
 
+    def type
+      OpenSCAP.oscap_document_type_to_string(OpenSCAP.oscap_source_get_scap_type(@s))
+    end
+
     def raw
       @s
     end
@@ -37,5 +41,6 @@ module OpenSCAP
 
   attach_function :oscap_source_new_from_file, [:string], :pointer
   attach_function :oscap_source_new_from_memory, [:string, :int, :string], :pointer
+  attach_function :oscap_source_get_scap_type, [:pointer], :int
   attach_function :oscap_source_free, [:pointer], :void
 end

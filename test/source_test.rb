@@ -36,4 +36,22 @@ class TestSource < OpenSCAP::TestCase
     s = OpenSCAP::Source.new(:content => raw_data, :path => '/mytestpath')
     s.destroy
   end
+
+  def test_type_xccdf
+    s = OpenSCAP::Source.new("../data/xccdf.xml")
+    assert s.type == 'XCCDF Checklist', "Type was #{s.type}"
+    s.destroy
+  end
+
+  def test_type_sds
+    s = OpenSCAP::Source.new("../data/sds-complex.xml")
+    assert s.type == 'SCAP Source Datastream', "Type was #{s.type}"
+    s.destroy
+  end
+
+  def test_type_test_result
+    s = OpenSCAP::Source.new("../data/testresult.xml")
+    assert s.type == 'XCCDF Checklist', "Type was #{s.type}"
+    s.destroy
+  end
 end

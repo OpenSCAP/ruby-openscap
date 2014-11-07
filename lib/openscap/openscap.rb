@@ -36,6 +36,8 @@ module OpenSCAP
   attach_function :oscap_cleanup, [], :void
   attach_function :oscap_get_version, [], :string
 
+  attach_function :oscap_document_type_to_string, [:int], :string
+
   attach_function :oscap_err, [], :bool
   attach_function :oscap_err_get_full_error, [], :pointer
   private_class_method :oscap_err, :oscap_err_get_full_error

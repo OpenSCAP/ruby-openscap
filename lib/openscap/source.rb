@@ -41,6 +41,10 @@ module OpenSCAP
       @s
     end
 
+    def save(filepath=nil)
+      OpenSCAP.raise! unless OpenSCAP.oscap_source_save_as(raw, filepath) == 0
+    end
+
     def destroy
       OpenSCAP.oscap_source_free(@s)
       @s = nil
@@ -51,7 +55,7 @@ module OpenSCAP
   attach_function :oscap_source_new_from_memory, [:string, :int, :string], :pointer
   attach_function :oscap_source_get_scap_type, [:pointer], :int
   attach_function :oscap_source_free, [:pointer], :void
-
+  attach_function :oscap_source_save_as, [:pointer, :string], :int
 
   callback :xml_reporter, [:string, :int, :string, :pointer], :int
   attach_function :oscap_source_validate, [:pointer, :xml_reporter, :pointer], :int

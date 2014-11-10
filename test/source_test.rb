@@ -75,4 +75,13 @@ class TestSource < OpenSCAP::TestCase
       "Message was: " + msg
     s.destroy
   end
+
+  def test_save
+    s = OpenSCAP::Source.new("../data/testresult.xml")
+    filename = './newly_created.xml'
+    assert !File.exists?(filename)
+    s.save(filename)
+    assert File.exists?(filename)
+    FileUtils.rm_rf filename
+  end
 end

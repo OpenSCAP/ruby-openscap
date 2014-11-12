@@ -16,12 +16,7 @@ require 'common/testcase'
 
 class TestSds < OpenSCAP::TestCase
   def test_new
-    filename = '../data/sds-complex.xml'
-    @s = OpenSCAP::Source.new filename
-    assert !@s.nil?
-    sds = OpenSCAP::DS::Sds.new :source => @s
-    assert !sds.nil?
-    sds.destroy
+    new_sds.destroy
   end
 
   def test_new_non_sds
@@ -36,5 +31,15 @@ class TestSds < OpenSCAP::TestCase
       msg = e.to_s
     end
     assert msg.start_with?('Could not create Source DataStream session: File is not Source DataStream.'), msg
+  end
+
+  private
+  def new_sds
+    filename = '../data/sds-complex.xml'
+    @s = OpenSCAP::Source.new filename
+    assert !@s.nil?
+    sds = OpenSCAP::DS::Sds.new :source => @s
+    assert !sds.nil?
+    return sds
   end
 end

@@ -21,6 +21,16 @@ module OpenSCAP
         OpenSCAP.raise! if @raw.null?
       end
 
+      def select_checklist(p={})
+        OpenSCAP.ds_sds_session_select_checklist(@raw, p[:datastream_id], p[:component_id], nil)
+      end
+
+      def select_checklist!(p={})
+        checklist = select_checklist(p)
+        OpenSCAP.raise! if checklist.null?
+        return checklist
+      end
+
       def destroy
         OpenSCAP.ds_sds_session_free(@raw)
         @raw = nil
@@ -30,4 +40,6 @@ module OpenSCAP
 
   attach_function :ds_sds_session_new_from_source, [:pointer], :pointer
   attach_function :ds_sds_session_free, [:pointer], :void
+  attach_function :ds_sds_session_select_checklist, [:pointer, :string, :string, :string], :pointer
+
 end

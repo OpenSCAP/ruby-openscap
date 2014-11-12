@@ -33,6 +33,27 @@ class TestSds < OpenSCAP::TestCase
     assert msg.start_with?('Could not create Source DataStream session: File is not Source DataStream.'), msg
   end
 
+  def test_select_checklist
+    sds = new_sds
+    benchmark = sds.select_checklist!
+    assert !benchmark.nil?
+    sds.destroy
+  end
+
+  def tests_select_checklist_wrong
+    sds = new_sds
+    msg = nil
+    begin
+      benchmark = sds.select_checklist! :datastream_id => "wrong"
+      assert false
+    rescue OpenSCAP::OpenSCAPError => e
+      msg = e.to_s
+    end
+    assert msg.start_with?('Failed to locate a datastream with ID matching'), msg
+    assert benchmark.nil?
+    sds.destroy
+  end
+
   private
   def new_sds
     filename = '../data/sds-complex.xml'

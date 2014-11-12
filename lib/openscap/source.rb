@@ -19,6 +19,8 @@ module OpenSCAP
         @s = OpenSCAP.oscap_source_new_from_file(param)
       when Hash
         @s = OpenSCAP.oscap_source_new_from_memory param[:content], param[:content].length, param[:path]
+      when FFI::Pointer
+        @s = param
       else
         raise OpenSCAP::OpenSCAPError, "Cannot initialize OpenSCAP::Source with '#{param}'"
       end

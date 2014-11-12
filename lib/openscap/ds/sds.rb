@@ -22,7 +22,7 @@ module OpenSCAP
       end
 
       def destroy
-        OpenSCAP.ds_rds_session_free(@raw)
+        OpenSCAP.ds_sds_session_free(@raw)
         @raw = nil
       end
     end

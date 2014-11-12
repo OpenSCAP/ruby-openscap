@@ -17,7 +17,12 @@ module OpenSCAP
       attr_reader :raw
 
       def initialize(param)
-        @raw = OpenSCAP.ds_sds_session_new_from_source param[:source].raw
+        @raw = case param
+        when OpenSCAP::Source
+          @raw = OpenSCAP.ds_sds_session_new_from_source param.raw
+        when Hash
+          @raw = OpenSCAP.ds_sds_session_new_from_source param[:source].raw
+        end
         OpenSCAP.raise! if @raw.null?
       end
 

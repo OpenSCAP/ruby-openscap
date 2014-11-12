@@ -27,12 +27,13 @@ module OpenSCAP
       end
 
       def select_checklist(p={})
-        OpenSCAP.ds_sds_session_select_checklist(@raw, p[:datastream_id], p[:component_id], nil)
+        source_p = OpenSCAP.ds_sds_session_select_checklist(@raw, p[:datastream_id], p[:component_id], nil)
+        OpenSCAP::Source.new source_p
       end
 
       def select_checklist!(p={})
         checklist = select_checklist(p)
-        OpenSCAP.raise! if checklist.null?
+        OpenSCAP.raise! if checklist.nil? or checklist.raw.null?
         return checklist
       end
 

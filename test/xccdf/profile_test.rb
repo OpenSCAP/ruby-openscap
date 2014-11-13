@@ -21,9 +21,13 @@ class TestProfile < OpenSCAP::TestCase
     b = OpenSCAP::Xccdf::Benchmark.new @s
     assert !b.nil?
     assert b.profiles.size == 2, b.profiles.to_s
-    assert b.profiles['xccdf_moc.elpmaxe.www_profile_1']
-    assert b.profiles['xccdf_moc.elpmaxe.www_profile_2']
+    profile1 = b.profiles['xccdf_moc.elpmaxe.www_profile_1']
+    assert profile1
+    profile2 = b.profiles['xccdf_moc.elpmaxe.www_profile_2']
+    assert profile2
     assert !b.profiles['xccdf_moc.elpmaxe.www_profile_3']
+    assert profile1.title == 'is kinda compulsory'
+    assert profile2.title == 'is kinda compulsory'
     b.destroy
   end
 end

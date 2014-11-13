@@ -9,6 +9,8 @@
 # http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt.
 #
 
+require 'openscap/text'
+
 module OpenSCAP
   module Xccdf
     class Profile
@@ -26,8 +28,16 @@ module OpenSCAP
       def id
         OpenSCAP.xccdf_profile_get_id raw
       end
+
+      def title(prefered_lang=nil)
+        textlist = OpenSCAP::TextList.new(OpenSCAP.xccdf_profile_get_title(@raw))
+        title = textlist.plaintext(prefered_lang)
+        textlist.destroy
+        return title
+      end
     end
   end
 
   attach_function :xccdf_profile_get_id, [:pointer], :string
+  attach_function :xccdf_profile_get_title, [:pointer], :pointer
 end

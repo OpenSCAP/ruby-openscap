@@ -40,6 +40,19 @@ class TestSds < OpenSCAP::TestCase
     sds.destroy
   end
 
+  def test_show_guides
+    sds = new_sds
+    benchmark_source = sds.select_checklist!
+    benchmark = OpenSCAP::Xccdf::Benchmark.new benchmark_source
+    benchmark.profiles.keys.each { |id|
+      guide = sds.html_guide id
+      assert !guide.nil?
+      assert guide.include?(id)
+    }
+    benchmark.destroy
+    sds.destroy
+  end
+
   def tests_select_checklist_wrong
     sds = new_sds
     msg = nil

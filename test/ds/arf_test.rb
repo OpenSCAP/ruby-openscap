@@ -13,7 +13,7 @@ require 'openscap'
 require 'openscap/ds/arf'
 require 'common/testcase'
 
-class TestSession < OpenSCAP::TestCase
+class TestArf < OpenSCAP::TestCase
   def test_arf_new_nil
     msg = nil
     begin

@@ -55,6 +55,14 @@ class TestArf < OpenSCAP::TestCase
     arf.destroy
   end
 
+  def test_new_memory
+    create_arf
+    raw_data = File.read("report.rds.xml")
+    assert raw_data.length > 0
+    arf = OpenSCAP::DS::Arf.new :content => raw_data, :path => "report.rds.xml"
+    arf.destroy
+  end
+
   private
   def new_arf
     create_arf

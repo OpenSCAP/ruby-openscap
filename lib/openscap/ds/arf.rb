@@ -18,7 +18,7 @@ module OpenSCAP
     class Arf
       def initialize(param)
         case param
-        when String
+        when String, Hash
           @source = OpenSCAP::Source.new(param)
           @session = OpenSCAP.ds_rds_session_new_from_source @source.raw
         else

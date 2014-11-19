@@ -57,11 +57,15 @@ class TestArf < OpenSCAP::TestCase
 
   private
   def new_arf
+    create_arf
+    arf = OpenSCAP::DS::Arf.new("report.rds.xml")
+  end
+
+  def create_arf
     @s = OpenSCAP::Xccdf::Session.new("../data/sds-complex.xml")
     @s.load(:component_id => "scap_org.open-scap_cref_second-xccdf.xml")
     @s.profile = "xccdf_moc.elpmaxe.www_profile_1"
     @s.evaluate
     @s.export_results(:rds_file => "report.rds.xml")
-    arf = OpenSCAP::DS::Arf.new("report.rds.xml")
   end
 end

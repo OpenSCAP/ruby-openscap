@@ -59,6 +59,19 @@ class TestTestResult < OpenSCAP::TestCase
     tr.destroy()
   end
 
+  def test_score
+    tr = new_tr
+    tr.score
+    assert tr.score.size == 1
+    s = tr.score['urn:xccdf:scoring:default']
+    assert !s.nil?
+    assert s[:system] == 'urn:xccdf:scoring:default'
+    assert 34 < s[:value]
+    assert s[:value] < 35
+    assert 99 < s[:max]
+    assert s[:max] < 101
+  end
+
   private
   def new_tr
     source = OpenSCAP::Source.new('../data/testresult.xml')

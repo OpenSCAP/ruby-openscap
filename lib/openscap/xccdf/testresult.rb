@@ -11,6 +11,7 @@
 
 require 'openscap/source'
 require 'openscap/exceptions'
+require 'openscap/xccdf'
 require 'openscap/xccdf/ruleresult'
 
 module OpenSCAP
@@ -40,6 +41,10 @@ module OpenSCAP
         return OpenSCAP.xccdf_result_get_profile(@tr)
       end
 
+      def score
+        @score ||= score_init
+      end
+
       def destroy
         OpenSCAP.xccdf_result_free @tr
         @tr = nil
@@ -56,6 +61,21 @@ module OpenSCAP
         end
         OpenSCAP.xccdf_rule_result_iterator_free(rr_it)
       end
+
+      def score_init
+        scores = Hash.new
+        scorit = OpenSCAP.xccdf_result_get_scores(@tr)
+        while OpenSCAP.xccdf_score_iterator_has_more(scorit) do
+          s = OpenSCAP.xccdf_score_iterator_next(scorit)
+          scores[OpenSCAP.xccdf_score_get_system(s)] = {
+            :system => OpenSCAP.xccdf_score_get_system(s),
+            :value => OpenSCAP.xccdf_score_get_score(s),
+            :max => OpenSCAP.xccdf_score_get_maximum(s)
+            }
+        end
+        OpenSCAP.xccdf_score_iterator_free(scorit)
+        scores
+      end
     end
   end
 
@@ -68,4 +88,12 @@ module OpenSCAP
   attach_function :xccdf_rule_result_iterator_has_more, [:pointer], :bool
   attach_function :xccdf_rule_result_iterator_free, [:pointer], :void
   attach_function :xccdf_rule_result_iterator_next, [:pointer], :pointer
+
+  attach_function :xccdf_result_get_scores, [:pointer], :pointer
+  attach_function :xccdf_score_iterator_has_more, [:pointer], :bool
+  attach_function :xccdf_score_iterator_free, [:pointer], :void
+  attach_function :xccdf_score_iterator_next, [:pointer], :pointer
+  attach_function :xccdf_score_get_system, [:pointer], :string
+  attach_function :xccdf_score_get_score, [:pointer], OpenSCAP::Xccdf::NUMERIC
+  attach_function :xccdf_score_get_maximum, [:pointer], OpenSCAP::Xccdf::NUMERIC
 end

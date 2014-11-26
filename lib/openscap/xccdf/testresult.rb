@@ -22,11 +22,11 @@ module OpenSCAP
       def initialize(t)
         case t
         when OpenSCAP::Source
-          @tr = OpenSCAP.xccdf_result_import_source(t.raw)
-          OpenSCAP.raise! if @tr.null?
+          @raw = OpenSCAP.xccdf_result_import_source(t.raw)
+          OpenSCAP.raise! if @raw.null?
         when FFI::Pointer
-          @tr = OpenSCAP.xccdf_result_import_source(t)
-          OpenSCAP.raise! if @tr.null?
+          @raw = OpenSCAP.xccdf_result_import_source(t)
+          OpenSCAP.raise! if @raw.null?
         else
           raise OpenSCAP::OpenSCAPError, "Cannot initialize TestResult with #{t}"
         end
@@ -34,11 +34,11 @@ module OpenSCAP
       end
 
       def id
-        return OpenSCAP.xccdf_result_get_id(@tr)
+        return OpenSCAP.xccdf_result_get_id(@raw)
       end
 
       def profile
-        return OpenSCAP.xccdf_result_get_profile(@tr)
+        return OpenSCAP.xccdf_result_get_profile(@raw)
       end
 
       def score
@@ -48,7 +48,7 @@ module OpenSCAP
       def score!(benchmark)
         #recalculate the scores in the scope of given benchmark
         @score = nil
-        OpenSCAP.raise! unless OpenSCAP.xccdf_result_recalculate_scores(@tr, benchmark.raw) == 0
+        OpenSCAP.raise! unless OpenSCAP.xccdf_result_recalculate_scores(@raw, benchmark.raw) == 0
         score
       end
 
@@ -58,14 +58,14 @@ module OpenSCAP
       end
 
       def destroy
-        OpenSCAP.xccdf_result_free @tr
-        @tr = nil
+        OpenSCAP.xccdf_result_free @raw
+        @raw = nil
       end
 
       private
       def init_ruleresults
         @rr = Hash.new
-        rr_it = OpenSCAP.xccdf_result_get_rule_results(@tr)
+        rr_it = OpenSCAP.xccdf_result_get_rule_results(@raw)
         while OpenSCAP.xccdf_rule_result_iterator_has_more(rr_it) do
           rr_raw = OpenSCAP.xccdf_rule_result_iterator_next(rr_it)
           rr = OpenSCAP::Xccdf::RuleResult.new rr_raw
@@ -76,7 +76,7 @@ module OpenSCAP
 
       def score_init
         scores = Hash.new
-        scorit = OpenSCAP.xccdf_result_get_scores(@tr)
+        scorit = OpenSCAP.xccdf_result_get_scores(@raw)
         while OpenSCAP.xccdf_score_iterator_has_more(scorit) do
           s = OpenSCAP.xccdf_score_iterator_next(scorit)
           scores[OpenSCAP.xccdf_score_get_system(s)] = {

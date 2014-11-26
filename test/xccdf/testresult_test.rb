@@ -61,15 +61,17 @@ class TestTestResult < OpenSCAP::TestCase
 
   def test_score
     tr = new_tr
-    tr.score
-    assert tr.score.size == 1
-    s = tr.score['urn:xccdf:scoring:default']
+    assert_default_score tr.score, 34, 35
+  end
+
+  def assert_default_score(scores, low, high)
+    assert scores.size == 1
+    s = scores['urn:xccdf:scoring:default']
     assert !s.nil?
     assert s[:system] == 'urn:xccdf:scoring:default'
-    assert 34 < s[:value]
-    assert s[:value] < 35
-    assert 99 < s[:max]
-    assert s[:max] < 101
+    assert low < s[:value]
+    assert s[:value] < high
+    assert s[:max] == 100
   end
 
   private

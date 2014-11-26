@@ -18,6 +18,7 @@ module OpenSCAP
   module Xccdf
     class TestResult
       attr_reader :rr
+      attr_reader :raw
 
       def initialize(t)
         case t

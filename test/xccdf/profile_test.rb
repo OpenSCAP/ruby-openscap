@@ -20,14 +20,10 @@ class TestProfile < OpenSCAP::TestCase
     @s = OpenSCAP::Source.new '../data/xccdf.xml'
     b = OpenSCAP::Xccdf::Benchmark.new @s
     assert !b.nil?
-    assert b.profiles.size == 2, b.profiles.to_s
-    profile1 = b.profiles['xccdf_moc.elpmaxe.www_profile_1']
+    assert b.profiles.size == 1, b.profiles.to_s
+    profile1 = b.profiles['xccdf_org.ssgproject.content_profile_common']
     assert profile1
-    profile2 = b.profiles['xccdf_moc.elpmaxe.www_profile_2']
-    assert profile2
-    assert !b.profiles['xccdf_moc.elpmaxe.www_profile_3']
-    assert profile1.title == 'is kinda compulsory'
-    assert profile2.title == 'is kinda compulsory'
+    assert profile1.title == 'Common Profile for General-Purpose Fedora Systems'
     b.destroy
   end
 end

@@ -56,12 +56,13 @@ class TestTestResult < OpenSCAP::TestCase
                  :authority => 'John Hacker',
                  :raw_text => 'We are testing prelink on this machine')
     assert 'pass' == rr.result
-    tr.destroy()
+    tr.destroy
   end
 
   def test_score
     tr = new_tr
     assert_default_score tr.score, 34, 35
+    tr.destroy
   end
 
   def assert_default_score(scores, low, high)

@@ -45,6 +45,13 @@ module OpenSCAP
         @score ||= score_init
       end
 
+      def score!(benchmark)
+        #recalculate the scores in the scope of given benchmark
+        @score = nil
+        OpenSCAP.raise! unless OpenSCAP.xccdf_result_recalculate_scores(@tr, benchmark.raw) == 0
+        score
+      end
+
       def destroy
         OpenSCAP.xccdf_result_free @tr
         @tr = nil
@@ -83,6 +90,7 @@ module OpenSCAP
   attach_function :xccdf_result_free, [:pointer], :void
   attach_function :xccdf_result_get_id, [:pointer], :string
   attach_function :xccdf_result_get_profile, [:pointer], :string
+  attach_function :xccdf_result_recalculate_scores, [:pointer, :pointer], :int
 
   attach_function :xccdf_result_get_rule_results, [:pointer] ,:pointer
   attach_function :xccdf_rule_result_iterator_has_more, [:pointer], :bool

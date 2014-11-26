@@ -10,6 +10,7 @@
 #
 
 require 'openscap/source'
+require 'openscap/xccdf/benchmark'
 require 'openscap/xccdf/testresult'
 require 'common/testcase'
 
@@ -75,7 +76,36 @@ class TestTestResult < OpenSCAP::TestCase
     assert s[:max] == 100
   end
 
+  def test_waive_and_score
+    tr = new_tr
+    benchmark = benchmark_for_tr
+
+    assert_default_score tr.score, 34, 35
+    assert_default_score tr.score!(benchmark), 34, 35
+
+    rr = tr.rr['xccdf_org.ssgproject.content_rule_disable_prelink']
+    assert 'fail' == rr.result
+    rr.override!(:new_result => :pass,
+                 :time => 'yesterday',
+                 :authority => 'John Hacker',
+                 :raw_text => 'We are testing prelink on this machine')
+    assert 'pass' == rr.result
+
+    assert_default_score tr.score, 34, 35
+    assert_default_score tr.score!(benchmark), 47, 48
+
+    benchmark.destroy
+    tr.destroy
+  end
+
   private
+  def benchmark_for_tr
+    source = OpenSCAP::Source.new('../data/xccdf.xml')
+    benchmark = OpenSCAP::Xccdf::Benchmark.new source
+    source.destroy
+    benchmark
+  end
+
   def new_tr
     source = OpenSCAP::Source.new('../data/testresult.xml')
     assert !source.nil?

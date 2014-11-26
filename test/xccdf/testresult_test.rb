@@ -66,16 +66,6 @@ class TestTestResult < OpenSCAP::TestCase
     tr.destroy
   end
 
-  def assert_default_score(scores, low, high)
-    assert scores.size == 1
-    s = scores['urn:xccdf:scoring:default']
-    assert !s.nil?
-    assert s[:system] == 'urn:xccdf:scoring:default'
-    assert low < s[:value]
-    assert s[:value] < high
-    assert s[:max] == 100
-  end
-
   def test_waive_and_score
     tr = new_tr
     benchmark = benchmark_for_tr

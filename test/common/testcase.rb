@@ -34,5 +34,16 @@ module OpenSCAP
 
     def test_x
     end
+
+    protected
+    def assert_default_score(scores, low, high)
+      assert scores.size == 1
+      s = scores['urn:xccdf:scoring:default']
+      assert !s.nil?
+      assert s[:system] == 'urn:xccdf:scoring:default'
+      assert low < s[:value]
+      assert s[:value] < high
+      assert s[:max] == 100
+    end
   end
 end

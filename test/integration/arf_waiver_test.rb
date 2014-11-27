@@ -32,8 +32,19 @@ class TestArfWaiver < OpenSCAP::TestCase
     assert_default_score tr.score, -1, 1
     assert_default_score tr.score!(benchmark), 99, 101
 
+    # create updated DOM (that includes the override element and new score)
+    arf.test_result=tr
+    arf.source.save('modified.rds.xml')
     tr.destroy
     arf.destroy
+
+    arf2 = OpenSCAP::DS::Arf.new('modified.rds.xml')
+    tr2 = arf2.test_result('xccdf1')
+    assert_default_score tr.score, 99, 101
+    rr2 = tr2.rr['xccdf_moc.elpmaxe.www_rule_first']
+    assert rr2.result == 'pass'
+    tr2.destroy
+    arf2.destroy
   end
 
   private

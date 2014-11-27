@@ -17,6 +17,8 @@ require 'openscap/libc'
 module OpenSCAP
   module DS
     class Arf
+      attr_reader :source
+
       def initialize(param)
         case param
         when String, Hash

@@ -42,6 +42,11 @@ module OpenSCAP
         OpenSCAP::Xccdf::TestResult.new(source)
       end
 
+      def test_result=(tr)
+        source = tr.source
+        OpenSCAP.raise! unless OpenSCAP.ds_rds_session_replace_report_with_source(@session, source.raw) == 0
+      end
+
       def report_request(id=nil)
         source_p = OpenSCAP.ds_rds_session_select_report_request(@session, id)
 	source = OpenSCAP::Source.new source_p
@@ -62,6 +67,7 @@ module OpenSCAP
   attach_function :ds_rds_session_new_from_source, [:pointer], :pointer
   attach_function :ds_rds_session_free, [:pointer], :void
   attach_function :ds_rds_session_select_report, [:pointer, :string], :pointer
+  attach_function :ds_rds_session_replace_report_with_source, [:pointer, :pointer], :int
   attach_function :ds_rds_session_select_report_request, [:pointer, :string], :pointer
   attach_function :ds_rds_session_get_html_report, [:pointer], :pointer
 end

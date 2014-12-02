@@ -7,7 +7,8 @@ A FFI wrapper around the OpenSCAP library.
 
 Features/problems
 -------------
-Current version supports minimal set of functions needed to build own scanner.
+Current version supports minimal set of functions needed to build own scanner. This module
+is self documented by its test suite.
 
 Sample Scanner Implementation
 -------------

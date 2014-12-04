@@ -9,6 +9,7 @@
 # http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt.
 #
 
+require 'openscap'
 require 'openscap/source'
 require 'openscap/xccdf/benchmark'
 require 'openscap/xccdf/testresult'

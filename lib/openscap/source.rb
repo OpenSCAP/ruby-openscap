@@ -9,6 +9,8 @@
 # http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt.
 #
 
+require 'openscap'
+
 module OpenSCAP
   class Source
     def initialize(param)

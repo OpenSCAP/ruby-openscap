@@ -36,7 +36,7 @@ module OpenSCAP
       @raw = oscap_text_iterator
     end
 
-    def plaintext(lang=nil)
+    def plaintext(lang = nil)
       OpenSCAP.oscap_textlist_get_preferred_plaintext @raw, lang
     end
 

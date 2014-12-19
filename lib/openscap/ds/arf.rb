@@ -38,7 +38,7 @@ module OpenSCAP
         @source.destroy()
       end
 
-      def test_result(id=nil)
+      def test_result(id = nil)
         source = OpenSCAP.ds_rds_session_select_report(@session, id)
         OpenSCAP.raise!() if source.nil?
         OpenSCAP::Xccdf::TestResult.new(source)
@@ -49,7 +49,7 @@ module OpenSCAP
         OpenSCAP.raise! unless OpenSCAP.ds_rds_session_replace_report_with_source(@session, source.raw) == 0
       end
 
-      def report_request(id=nil)
+      def report_request(id = nil)
         source_p = OpenSCAP.ds_rds_session_select_report_request(@session, id)
         source = OpenSCAP::Source.new source_p
         OpenSCAP::DS::Sds.new(source)

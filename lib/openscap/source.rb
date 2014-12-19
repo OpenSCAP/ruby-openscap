@@ -43,7 +43,7 @@ module OpenSCAP
 
     end
 
-    def save(filepath=nil)
+    def save(filepath = nil)
       OpenSCAP.raise! unless OpenSCAP.oscap_source_save_as(@raw, filepath) == 0
     end
 

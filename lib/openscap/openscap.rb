@@ -24,7 +24,7 @@ module OpenSCAP
     return err.null? ? nil : err.read_string()
   end
 
-  def self.raise!(msg=nil)
+  def self.raise!(msg = nil)
     err = get_full_error
     if err.nil?
       err = msg.nil? ? '(unknown error)' : msg

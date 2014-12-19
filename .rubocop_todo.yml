@@ -122,11 +122,6 @@ Style/NegatedIf:
 Style/PerlBackrefs:
   Enabled: false
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/Proc:
-  Enabled: false
-
 # Offense count: 11
 # Cop supports --auto-correct.
 # Configuration parameters: AllowMultipleReturnValues.

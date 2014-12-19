@@ -63,7 +63,7 @@ module OpenSCAP
 
   callback :xml_reporter, [:string, :int, :string, :pointer], :int
   attach_function :oscap_source_validate, [:pointer, :xml_reporter, :pointer], :int
-  XmlReporterCallback = Proc.new do |filename, line_number, error_message, e|
+  XmlReporterCallback = proc do |filename, line_number, error_message, e|
     offset = e.get_string(0).length
     msg = "#{filename}:#{line_number}: #{error_message}"
     if msg.length + offset + 1 < e.size

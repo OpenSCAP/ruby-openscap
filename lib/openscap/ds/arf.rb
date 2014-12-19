@@ -51,7 +51,7 @@ module OpenSCAP
 
       def report_request(id=nil)
         source_p = OpenSCAP.ds_rds_session_select_report_request(@session, id)
-	source = OpenSCAP::Source.new source_p
+        source = OpenSCAP::Source.new source_p
         OpenSCAP::DS::Sds.new(source)
       end
 

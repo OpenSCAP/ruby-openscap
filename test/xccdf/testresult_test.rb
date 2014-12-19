@@ -103,6 +103,6 @@ class TestTestResult < OpenSCAP::TestCase
     assert !source.nil?
     tr = OpenSCAP::Xccdf::TestResult.new(source)
     source.destroy
-    return tr
+    tr
   end
 end

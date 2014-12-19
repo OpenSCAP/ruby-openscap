@@ -33,7 +33,7 @@ module OpenSCAP
         textlist = OpenSCAP::TextList.new(OpenSCAP.xccdf_profile_get_title(@raw))
         title = textlist.plaintext(prefered_lang)
         textlist.destroy
-        return title
+        title
       end
     end
   end

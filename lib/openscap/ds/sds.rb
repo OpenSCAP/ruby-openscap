@@ -34,13 +34,13 @@ module OpenSCAP
       def select_checklist!(p = {})
         checklist = select_checklist(p)
         OpenSCAP.raise! if checklist.nil? or checklist.raw.null?
-        return checklist
+        checklist
       end
 
       def html_guide(profile = nil)
         html = OpenSCAP.ds_sds_session_get_html_guide(@raw, profile)
         OpenSCAP.raise! if html.nil?
-        return html
+        html
       end
 
       def destroy

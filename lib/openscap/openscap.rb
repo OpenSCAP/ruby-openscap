@@ -16,12 +16,12 @@ module OpenSCAP
   ffi_lib ['libopenscap.so.8', 'openscap']
 
   def self.error?
-    return oscap_err()
+    oscap_err()
   end
 
   def self.get_full_error
     err = oscap_err_get_full_error
-    return err.null? ? nil : err.read_string()
+    err.null? ? nil : err.read_string()
   end
 
   def self.raise!(msg = nil)

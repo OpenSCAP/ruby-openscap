@@ -22,7 +22,7 @@ module OpenSCAP
       end
 
       def sds?
-        return OpenSCAP.xccdf_session_is_sds(@s)
+        OpenSCAP.xccdf_session_is_sds(@s)
       end
 
       def load(opts = {})

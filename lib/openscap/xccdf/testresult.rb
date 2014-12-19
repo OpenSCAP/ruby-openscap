@@ -35,11 +35,11 @@ module OpenSCAP
       end
 
       def id
-        return OpenSCAP.xccdf_result_get_id(@raw)
+        OpenSCAP.xccdf_result_get_id(@raw)
       end
 
       def profile
-        return OpenSCAP.xccdf_result_get_profile(@raw)
+        OpenSCAP.xccdf_result_get_profile(@raw)
       end
 
       def score

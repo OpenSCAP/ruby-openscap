@@ -61,7 +61,7 @@ module OpenSCAP
         return nil if html_p.null?
         html = html_p.read_string()
         OpenSCAP::LibC.free html_p
-        return html
+        html
       end
     end
   end

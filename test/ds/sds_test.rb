@@ -75,6 +75,6 @@ class TestSds < OpenSCAP::TestCase
     assert !@s.nil?
     sds = OpenSCAP::DS::Sds.new :source => @s
     assert !sds.nil?
-    return sds
+    sds
   end
 end

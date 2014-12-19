@@ -134,11 +134,6 @@ Style/RedundantReturn:
 Style/SignalException:
   Enabled: false
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/SpaceAfterNot:
-  Enabled: false
-
 # Offense count: 94
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.

@@ -21,7 +21,7 @@ class TestOscapVersion < OpenSCAP::TestCase
   end
 
   def test_double_read_error
-    assert ! OpenSCAP.error?
+    assert !OpenSCAP.error?
     msg = OpenSCAP.get_full_error
     assert msg.nil?
     msg = OpenSCAP.get_full_error

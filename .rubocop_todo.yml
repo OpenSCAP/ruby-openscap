@@ -66,12 +66,6 @@ Style/EmptyLinesAroundMethodBody:
 
 # Offense count: 2
 # Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-Style/EmptyLinesAroundModuleBody:
-  Enabled: false
-
-# Offense count: 2
-# Cop supports --auto-correct.
 Style/EmptyLiteral:
   Enabled: false
 
@@ -89,17 +83,6 @@ Style/HashSyntax:
 # Offense count: 4
 # Configuration parameters: MaxLineLength.
 Style/IfUnlessModifier:
-  Enabled: false
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-Style/IndentHash:
-  Enabled: true
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/IndentationConsistency:
   Enabled: false
 
 # Offense count: 5

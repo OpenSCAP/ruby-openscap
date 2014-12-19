@@ -54,5 +54,4 @@ module OpenSCAP
   attach_function :ds_sds_session_free, [:pointer], :void
   attach_function :ds_sds_session_select_checklist, [:pointer, :string, :string, :string], :pointer
   attach_function :ds_sds_session_get_html_guide, [:pointer, :string], :string
-
 end

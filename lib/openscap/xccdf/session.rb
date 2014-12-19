@@ -29,7 +29,7 @@ module OpenSCAP
       def load(opts = {})
         o = {
           :datastream_id => nil,
-          :component_id => nil,
+          :component_id => nil
         }.merge(opts)
         if sds?
           OpenSCAP.xccdf_session_set_datastream_id(@s, o[:datastream_id])
@@ -65,7 +65,7 @@ module OpenSCAP
           :report_file => nil,
           :oval_results => false,
           :oval_variables => false,
-          :engines_results => false,
+          :engines_results => false
         }.merge!(opts)
         OpenSCAP.raise! unless OpenSCAP.xccdf_session_set_arf_export(@s, o[:rds_file])
         OpenSCAP.raise! unless OpenSCAP.xccdf_session_set_xccdf_export(@s, o[:xccdf_file])

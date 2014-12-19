@@ -45,11 +45,6 @@ Style/AccessorMethodName:
 Style/AndOr:
   Enabled: false
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/Blocks:
-  Enabled: false
-
 # Offense count: 2
 # Configuration parameters: IndentWhenRelativeTo, SupportedStyles, IndentOneStep.
 Style/CaseIndentation:

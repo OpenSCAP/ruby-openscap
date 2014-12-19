@@ -64,6 +64,7 @@ class TestArf < OpenSCAP::TestCase
   end
 
   private
+
   def new_arf
     create_arf
     arf = OpenSCAP::DS::Arf.new('report.rds.xml')

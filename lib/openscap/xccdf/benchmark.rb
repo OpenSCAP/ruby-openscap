@@ -38,6 +38,7 @@ module OpenSCAP
       end
 
       private
+
       def profiles_init
         profiles = {}
         profit = OpenSCAP.xccdf_benchmark_get_profiles raw

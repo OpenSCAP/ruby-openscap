@@ -90,6 +90,7 @@ class TestTestResult < OpenSCAP::TestCase
   end
 
   private
+
   def benchmark_for_tr
     source = OpenSCAP::Source.new('../data/xccdf.xml')
     benchmark = OpenSCAP::Xccdf::Benchmark.new source

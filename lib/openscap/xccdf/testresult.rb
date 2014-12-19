@@ -64,6 +64,7 @@ module OpenSCAP
       end
 
       private
+
       def init_ruleresults
         @rr = Hash.new
         rr_it = OpenSCAP.xccdf_result_get_rule_results(@raw)

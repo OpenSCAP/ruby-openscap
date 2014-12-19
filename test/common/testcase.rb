@@ -36,6 +36,7 @@ module OpenSCAP
     end
 
     protected
+
     def assert_default_score(scores, low, high)
       assert scores.size == 1
       s = scores['urn:xccdf:scoring:default']

@@ -68,6 +68,7 @@ class TestSds < OpenSCAP::TestCase
   end
 
   private
+
   def new_sds
     filename = '../data/sds-complex.xml'
     @s = OpenSCAP::Source.new filename

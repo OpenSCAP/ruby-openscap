@@ -48,6 +48,7 @@ class TestArfWaiver < OpenSCAP::TestCase
   end
 
   private
+
   def benchmark
     @benchmark ||= benchmark_init
   end

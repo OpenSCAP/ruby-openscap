@@ -54,11 +54,6 @@ Style/CaseIndentation:
 Style/Documentation:
   Enabled: false
 
-# Offense count: 7
-# Cop supports --auto-correct.
-Style/EmptyLinesAroundAccessModifier:
-  Enabled: false
-
 # Offense count: 2
 # Cop supports --auto-correct.
 Style/EmptyLiteral:

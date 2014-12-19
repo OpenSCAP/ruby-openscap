@@ -17,7 +17,7 @@ class TestOscapVersion < OpenSCAP::TestCase
     OpenSCAP.oscap_init
     version = OpenSCAP.oscap_get_version
     OpenSCAP.oscap_cleanup
-    assert version.include?(".")
+    assert version.include?('.')
   end
 
   def test_double_read_error

@@ -27,7 +27,7 @@ class TestTestResult < OpenSCAP::TestCase
       msg = e.to_s
     end
     assert msg.start_with?("Expected 'TestResult' element while found 'Benchmark'."),
-           "Message was: " + msg
+           'Message was: ' + msg
   end
 
   def test_result_create_and_query_properties

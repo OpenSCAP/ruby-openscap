@@ -90,10 +90,10 @@ class TestArfWaiver < OpenSCAP::TestCase
   end
 
   def arf_init
-    @s = OpenSCAP::Xccdf::Session.new("../data/sds-complex.xml")
+    @s = OpenSCAP::Xccdf::Session.new('../data/sds-complex.xml')
     @s.load
     @s.evaluate
-    @s.export_results(:rds_file => "report.rds.xml")
-    OpenSCAP::DS::Arf.new("report.rds.xml")
+    @s.export_results(:rds_file => 'report.rds.xml')
+    OpenSCAP::DS::Arf.new('report.rds.xml')
   end
 end

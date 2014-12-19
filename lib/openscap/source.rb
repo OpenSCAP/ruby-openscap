@@ -18,7 +18,7 @@ module OpenSCAP
     def initialize(param)
       case param
       when nil
-        raise OpenSCAPError, "No filename specified!"
+        raise OpenSCAPError, 'No filename specified!'
       when String
         @raw = OpenSCAP.oscap_source_new_from_file(param)
       when Hash

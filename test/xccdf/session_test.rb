@@ -16,13 +16,13 @@ class TestSession < OpenSCAP::TestCase
   def test_session_new_bad
     msg = nil
     begin
-      s = OpenSCAP::Xccdf::Session.new("")
+      s = OpenSCAP::Xccdf::Session.new('')
       assert false
     rescue OpenSCAP::OpenSCAPError => e
       msg = e.to_s
     end
-    assert msg.start_with?('failed to load external entity ""'), "Message was: " + msg
-    assert msg.include?('Unable to parse XML at:'), "Message was: " + msg
+    assert msg.start_with?('failed to load external entity ""'), 'Message was: ' + msg
+    assert msg.include?('Unable to parse XML at:'), 'Message was: ' + msg
   end
 
   def test_session_new_nil
@@ -33,11 +33,11 @@ class TestSession < OpenSCAP::TestCase
     rescue OpenSCAP::OpenSCAPError => e
       msg = e.to_s
     end
-    assert msg.start_with?("No filename specified!"), "Message was: " + msg
+    assert msg.start_with?('No filename specified!'), 'Message was: ' + msg
   end
 
   def test_sds_false
-    @s = OpenSCAP::Xccdf::Session.new("../data/xccdf.xml")
+    @s = OpenSCAP::Xccdf::Session.new('../data/xccdf.xml')
     assert ! @s.sds?
   end
 end

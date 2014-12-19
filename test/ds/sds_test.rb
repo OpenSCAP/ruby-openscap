@@ -57,7 +57,7 @@ class TestSds < OpenSCAP::TestCase
     sds = new_sds
     msg = nil
     begin
-      benchmark = sds.select_checklist! :datastream_id => "wrong"
+      benchmark = sds.select_checklist! :datastream_id => 'wrong'
       assert false
     rescue OpenSCAP::OpenSCAPError => e
       msg = e.to_s

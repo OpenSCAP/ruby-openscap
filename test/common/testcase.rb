@@ -14,7 +14,7 @@ require 'test/unit'
 module OpenSCAP
   class TestCase < Test::Unit::TestCase
     def setup
-      workdir = "test/output"
+      workdir = 'test/output'
       if Dir.pwd.end_with? 'test/output'
         cleanup # Older TestCase do not run cleanup method.
       end
@@ -27,7 +27,7 @@ module OpenSCAP
 
     def cleanup
       @s.destroy if @s
-      Dir.chdir "../.."
+      Dir.chdir '../..'
       OpenSCAP.raise! if OpenSCAP.error?
       OpenSCAP.oscap_cleanup
     end

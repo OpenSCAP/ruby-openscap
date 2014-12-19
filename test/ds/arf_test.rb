@@ -22,26 +22,26 @@ class TestArf < OpenSCAP::TestCase
     rescue OpenSCAP::OpenSCAPError => e
       msg = e.to_s
     end
-    assert msg.start_with?("Cannot initialize OpenSCAP::DS:Arf with ''"), "Message was: " + msg
+    assert msg.start_with?("Cannot initialize OpenSCAP::DS:Arf with ''"), 'Message was: ' + msg
   end
 
   def test_arf_new_wrong_format
     msg = nil
     begin
-      s = OpenSCAP::DS::Arf.new("../data/xccdf.xml")
+      s = OpenSCAP::DS::Arf.new('../data/xccdf.xml')
       assert false
     rescue OpenSCAP::OpenSCAPError => e
       msg = e.to_s
     end
     assert msg.include?('Could not create Result DataStream session: File is not Result DataStream.'),
-           "Message was: " + msg
+           'Message was: ' + msg
   end
 
   def test_create_arf_and_get_html
     arf = new_arf
     html = arf.html
     arf.destroy
-    assert html.start_with?('<!DOCTYPE html><html'), "DOCTYPE missing."
+    assert html.start_with?('<!DOCTYPE html><html'), 'DOCTYPE missing.'
     assert html.include?('OpenSCAP')
     assert html.include?('Compliance and Scoring')
   end
@@ -57,23 +57,23 @@ class TestArf < OpenSCAP::TestCase
 
   def test_new_memory
     create_arf
-    raw_data = File.read("report.rds.xml")
+    raw_data = File.read('report.rds.xml')
     assert raw_data.length > 0
-    arf = OpenSCAP::DS::Arf.new :content => raw_data, :path => "report.rds.xml"
+    arf = OpenSCAP::DS::Arf.new :content => raw_data, :path => 'report.rds.xml'
     arf.destroy
   end
 
   private
   def new_arf
     create_arf
-    arf = OpenSCAP::DS::Arf.new("report.rds.xml")
+    arf = OpenSCAP::DS::Arf.new('report.rds.xml')
   end
 
   def create_arf
-    @s = OpenSCAP::Xccdf::Session.new("../data/sds-complex.xml")
-    @s.load(:component_id => "scap_org.open-scap_cref_second-xccdf.xml")
-    @s.profile = "xccdf_moc.elpmaxe.www_profile_1"
+    @s = OpenSCAP::Xccdf::Session.new('../data/sds-complex.xml')
+    @s.load(:component_id => 'scap_org.open-scap_cref_second-xccdf.xml')
+    @s.profile = 'xccdf_moc.elpmaxe.www_profile_1'
     @s.evaluate
-    @s.export_results(:rds_file => "report.rds.xml")
+    @s.export_results(:rds_file => 'report.rds.xml')
   end
 end

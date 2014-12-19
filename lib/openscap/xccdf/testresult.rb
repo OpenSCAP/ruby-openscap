@@ -99,7 +99,7 @@ module OpenSCAP
   attach_function :xccdf_result_recalculate_scores, [:pointer, :pointer], :int
   attach_function :xccdf_result_export_source, [:pointer, :string], :pointer
 
-  attach_function :xccdf_result_get_rule_results, [:pointer] ,:pointer
+  attach_function :xccdf_result_get_rule_results, [:pointer], :pointer
   attach_function :xccdf_rule_result_iterator_has_more, [:pointer], :bool
   attach_function :xccdf_rule_result_iterator_free, [:pointer], :void
   attach_function :xccdf_rule_result_iterator_next, [:pointer], :pointer

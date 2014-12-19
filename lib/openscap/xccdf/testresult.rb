@@ -84,7 +84,7 @@ module OpenSCAP
             :system => OpenSCAP.xccdf_score_get_system(s),
             :value => OpenSCAP.xccdf_score_get_score(s),
             :max => OpenSCAP.xccdf_score_get_maximum(s)
-            }
+          }
         end
         OpenSCAP.xccdf_score_iterator_free(scorit)
         scores

@@ -34,7 +34,7 @@ class TestArf < OpenSCAP::TestCase
       msg = e.to_s
     end
     assert msg.include?('Could not create Result DataStream session: File is not Result DataStream.'),
-        "Message was: " + msg
+           "Message was: " + msg
   end
 
   def test_create_arf_and_get_html
@@ -50,7 +50,7 @@ class TestArf < OpenSCAP::TestCase
     arf = new_arf
     tr = arf.test_result
     assert tr.profile == 'xccdf_moc.elpmaxe.www_profile_1',
-      "TestResult.profile was '#{tr.profile}'"
+           "TestResult.profile was '#{tr.profile}'"
     tr.destroy
     arf.destroy
   end

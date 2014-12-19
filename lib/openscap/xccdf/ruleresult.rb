@@ -40,8 +40,8 @@ module OpenSCAP
         t = OpenSCAP::Text.new
         t.text = param[:raw_text]
         if !OpenSCAP.xccdf_rule_result_override(@rr,
-              OpenSCAP::XccdfResult[param[:new_result]],
-              param[:time], param[:authority], t.raw)
+                                                OpenSCAP::XccdfResult[param[:new_result]],
+                                                param[:time], param[:authority], t.raw)
           OpenSCAP.raise!
         end
       end
@@ -67,5 +67,5 @@ module OpenSCAP
                      :informational,
                      :fixed)
   attach_function :xccdf_rule_result_override,
-    [:pointer, XccdfResult, :string, :string, :pointer], :bool
+                  [:pointer, XccdfResult, :string, :string, :pointer], :bool
 end

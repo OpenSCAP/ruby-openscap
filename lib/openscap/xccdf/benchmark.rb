@@ -23,7 +23,7 @@ module OpenSCAP
           @raw = OpenSCAP.xccdf_benchmark_import_source p.raw
         else
           raise OpenSCAP::OpenSCAPError,
-            "Cannot initialize OpenSCAP::Xccdf::Benchmark with '#{p}'"
+                "Cannot initialize OpenSCAP::Xccdf::Benchmark with '#{p}'"
         end
         OpenSCAP.raise! if @raw.null?
       end

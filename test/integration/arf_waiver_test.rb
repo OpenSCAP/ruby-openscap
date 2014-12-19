@@ -33,7 +33,7 @@ class TestArfWaiver < OpenSCAP::TestCase
     assert_default_score tr.score!(benchmark), 99, 101
 
     # create updated DOM (that includes the override element and new score)
-    arf.test_result=tr
+    arf.test_result = tr
     arf.source.save('modified.rds.xml')
     tr.destroy
     arf.destroy

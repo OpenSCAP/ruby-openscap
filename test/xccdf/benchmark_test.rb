@@ -15,7 +15,7 @@ require 'openscap/ds/sds'
 require 'openscap/source'
 require 'openscap/xccdf/benchmark'
 
-class TestBenchmark< OpenSCAP::TestCase
+class TestBenchmark < OpenSCAP::TestCase
   def test_new_from_file
     @s = OpenSCAP::Source.new '../data/xccdf.xml'
     b = OpenSCAP::Xccdf::Benchmark.new @s

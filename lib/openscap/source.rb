@@ -18,40 +18,40 @@ module OpenSCAP
       when nil
         raise OpenSCAPError, "No filename specified!"
       when String
-        @s = OpenSCAP.oscap_source_new_from_file(param)
+        @raw = OpenSCAP.oscap_source_new_from_file(param)
       when Hash
-        @s = OpenSCAP.oscap_source_new_from_memory param[:content], param[:content].length, param[:path]
+        @raw = OpenSCAP.oscap_source_new_from_memory param[:content], param[:content].length, param[:path]
       when FFI::Pointer
-        @s = param
+        @raw = param
       else
         raise OpenSCAP::OpenSCAPError, "Cannot initialize OpenSCAP::Source with '#{param}'"
       end
-      OpenSCAP.raise! if @s.null?
+      OpenSCAP.raise! if @raw.null?
     end
 
     def type
-      OpenSCAP.oscap_document_type_to_string(OpenSCAP.oscap_source_get_scap_type(@s))
+      OpenSCAP.oscap_document_type_to_string(OpenSCAP.oscap_source_get_scap_type(@raw))
     end
 
     def validate!
       e = FFI::MemoryPointer.new(:char, 4096)
-      if 0 != OpenSCAP.oscap_source_validate(@s, XmlReporterCallback, e)
+      if 0 != OpenSCAP.oscap_source_validate(@raw, XmlReporterCallback, e)
         OpenSCAP.raise! e.read_string
       end
 
     end
 
     def raw
-      @s
+      @raw
     end
 
     def save(filepath=nil)
-      OpenSCAP.raise! unless OpenSCAP.oscap_source_save_as(raw, filepath) == 0
+      OpenSCAP.raise! unless OpenSCAP.oscap_source_save_as(@raw, filepath) == 0
     end
 
     def destroy
-      OpenSCAP.oscap_source_free(@s)
-      @s = nil
+      OpenSCAP.oscap_source_free(@raw)
+      @raw = nil
     end
   end
 

@@ -79,9 +79,9 @@ class TestSource < OpenSCAP::TestCase
   def test_save
     s = OpenSCAP::Source.new("../data/testresult.xml")
     filename = './newly_created.xml'
-    assert !File.exists?(filename)
+    assert !File.exist?(filename)
     s.save(filename)
-    assert File.exists?(filename)
+    assert File.exist?(filename)
     FileUtils.rm_rf filename
   end
 end

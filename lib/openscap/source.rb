@@ -40,7 +40,6 @@ module OpenSCAP
       if 0 != OpenSCAP.oscap_source_validate(@raw, XmlReporterCallback, e)
         OpenSCAP.raise! e.read_string
       end
-
     end
 
     def save(filepath = nil)

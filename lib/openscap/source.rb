@@ -13,6 +13,8 @@ require 'openscap'
 
 module OpenSCAP
   class Source
+    attr_reader :raw
+
     def initialize(param)
       case param
       when nil
@@ -39,10 +41,6 @@ module OpenSCAP
         OpenSCAP.raise! e.read_string
       end
 
-    end
-
-    def raw
-      @raw
     end
 
     def save(filepath=nil)

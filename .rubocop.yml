@@ -6,3 +6,7 @@ Metrics/AbcSize:
   Exclude:
    - 'test/**/*'
 
+Metrics/LineLength:
+  Max: 110
+  Exclude:
+   - 'test/**/*'

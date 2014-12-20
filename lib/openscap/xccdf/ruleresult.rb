@@ -34,9 +34,7 @@ module OpenSCAP
       end
 
       def override!(param)
-        if OpenSCAP::XccdfResult[param[:new_result]] > OpenSCAP::XccdfResult[:fixed]
-          fail OpenSCAPError, "Could not recognize result type: '#{param[:new_result]}'"
-        end
+        validate_xccdf_result! param[:new_result]
         t = OpenSCAP::Text.new
         t.text = param[:raw_text]
         unless OpenSCAP.xccdf_rule_result_override(@rr,
@@ -48,6 +46,14 @@ module OpenSCAP
 
       def destroy
         OpenSCAP.xccdf_rule_result_free @rr
+      end
+
+      private
+
+      def validate_xccdf_result!(result_label)
+        if OpenSCAP::XccdfResult[result_label] > OpenSCAP::XccdfResult[:fixed]
+          fail OpenSCAPError, "Could not recognize result type: '#{result_label}'"
+        end
       end
     end
   end

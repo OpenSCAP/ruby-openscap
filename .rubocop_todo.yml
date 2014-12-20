@@ -20,11 +20,6 @@ Metrics/PerceivedComplexity:
 Style/AndOr:
   Enabled: false
 
-# Offense count: 2
-# Configuration parameters: IndentWhenRelativeTo, SupportedStyles, IndentOneStep.
-Style/CaseIndentation:
-  Enabled: false
-
 # Offense count: 36
 Style/Documentation:
   Enabled: false

@@ -18,11 +18,11 @@ module OpenSCAP
 
       def initialize(param)
         @raw = case param
-        when OpenSCAP::Source
-          @raw = OpenSCAP.ds_sds_session_new_from_source param.raw
-        when Hash
-          @raw = OpenSCAP.ds_sds_session_new_from_source param[:source].raw
-        end
+               when OpenSCAP::Source
+                 OpenSCAP.ds_sds_session_new_from_source param.raw
+               when Hash
+                 OpenSCAP.ds_sds_session_new_from_source param[:source].raw
+               end
         OpenSCAP.raise! if @raw.null?
       end
 

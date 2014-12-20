@@ -27,7 +27,7 @@ class TestArfWaiver < OpenSCAP::TestCase
                  :time => 'yesterday',
                  :authority => 'John Hacker',
                  :raw_text => 'This should have passed')
-    rr.result == 'pass'
+    assert rr.result == 'pass'
 
     assert_default_score tr.score, -1, 1
     assert_default_score tr.score!(benchmark), 99, 101

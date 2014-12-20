@@ -27,7 +27,7 @@ module OpenSCAP
 
     def destroy
       OpenSCAP.oscap_text_free(raw)
-      raw = nil
+      @raw = nil
     end
   end
 

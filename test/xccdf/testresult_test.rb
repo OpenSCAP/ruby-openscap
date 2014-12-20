@@ -21,7 +21,7 @@ class TestTestResult < OpenSCAP::TestCase
     assert !source.nil?
     msg = nil
     begin
-      s = OpenSCAP::Xccdf::TestResult.new(source)
+      OpenSCAP::Xccdf::TestResult.new(source)
       assert false
     rescue OpenSCAP::OpenSCAPError => e
       msg = e.to_s

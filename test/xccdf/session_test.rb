@@ -16,7 +16,7 @@ class TestSession < OpenSCAP::TestCase
   def test_session_new_bad
     msg = nil
     begin
-      s = OpenSCAP::Xccdf::Session.new('')
+      OpenSCAP::Xccdf::Session.new('')
       assert false
     rescue OpenSCAP::OpenSCAPError => e
       msg = e.to_s
@@ -28,7 +28,7 @@ class TestSession < OpenSCAP::TestCase
   def test_session_new_nil
     msg = nil
     begin
-      s = OpenSCAP::Xccdf::Session.new(nil)
+      OpenSCAP::Xccdf::Session.new(nil)
       assert false
     rescue OpenSCAP::OpenSCAPError => e
       msg = e.to_s

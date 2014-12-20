@@ -17,7 +17,7 @@ class TestSource < OpenSCAP::TestCase
   def test_source_new_nil
     msg = nil
     begin
-      s = OpenSCAP::Source.new(nil)
+      OpenSCAP::Source.new(nil)
       assert false
     rescue OpenSCAP::OpenSCAPError => e
       msg = e.to_s

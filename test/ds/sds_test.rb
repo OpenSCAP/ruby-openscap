@@ -25,7 +25,7 @@ class TestSds < OpenSCAP::TestCase
     assert !@s.nil?
     msg = nil
     begin
-      sds = OpenSCAP::DS::Sds.new :source => @s
+      OpenSCAP::DS::Sds.new :source => @s
       assert false
     rescue OpenSCAP::OpenSCAPError => e
       msg = e.to_s

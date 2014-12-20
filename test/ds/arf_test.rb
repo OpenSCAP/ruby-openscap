@@ -17,7 +17,7 @@ class TestArf < OpenSCAP::TestCase
   def test_arf_new_nil
     msg = nil
     begin
-      s = OpenSCAP::DS::Arf.new(nil)
+      OpenSCAP::DS::Arf.new(nil)
       assert false
     rescue OpenSCAP::OpenSCAPError => e
       msg = e.to_s
@@ -28,7 +28,7 @@ class TestArf < OpenSCAP::TestCase
   def test_arf_new_wrong_format
     msg = nil
     begin
-      s = OpenSCAP::DS::Arf.new('../data/xccdf.xml')
+      OpenSCAP::DS::Arf.new('../data/xccdf.xml')
       assert false
     rescue OpenSCAP::OpenSCAPError => e
       msg = e.to_s
@@ -67,7 +67,7 @@ class TestArf < OpenSCAP::TestCase
 
   def new_arf
     create_arf
-    arf = OpenSCAP::DS::Arf.new('report.rds.xml')
+    OpenSCAP::DS::Arf.new('report.rds.xml')
   end
 
   def create_arf

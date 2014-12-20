@@ -38,7 +38,7 @@ class TestBenchmark < OpenSCAP::TestCase
     @s = OpenSCAP::Source.new '../data/testresult.xml'
     msg = nil
     begin
-      bench = OpenSCAP::Xccdf::Benchmark.new @s
+      OpenSCAP::Xccdf::Benchmark.new @s
       assert false
     rescue OpenSCAP::OpenSCAPError => e
       msg = e.to_s

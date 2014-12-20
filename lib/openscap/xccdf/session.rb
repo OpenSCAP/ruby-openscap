@@ -66,7 +66,7 @@ module OpenSCAP
           :oval_variables => false,
           :engines_results => false
         }.merge!(opts)
-        set_export_targets o
+        export_targets o
         export
       end
 
@@ -84,7 +84,7 @@ module OpenSCAP
         OpenSCAP.raise! unless OpenSCAP.xccdf_session_export_arf(@s) == 0
       end
 
-      def set_export_targets(opts = {})
+      def export_targets(opts = {})
         OpenSCAP.raise! unless OpenSCAP.xccdf_session_set_arf_export(@s, opts[:rds_file])
         OpenSCAP.raise! unless OpenSCAP.xccdf_session_set_xccdf_export(@s, opts[:xccdf_file])
         OpenSCAP.raise! unless OpenSCAP.xccdf_session_set_report_export(@s, opts[:report_file])

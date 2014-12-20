@@ -33,8 +33,3 @@ Style/Documentation:
 # Configuration parameters: MinBodyLength.
 Style/GuardClause:
   Enabled: false
-
-# Offense count: 4
-# Configuration parameters: MaxLineLength.
-Style/IfUnlessModifier:
-  Enabled: false

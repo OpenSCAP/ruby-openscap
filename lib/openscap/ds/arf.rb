@@ -27,9 +27,7 @@ module OpenSCAP
         else
           fail OpenSCAP::OpenSCAPError, "Cannot initialize OpenSCAP::DS:Arf with '#{param}'"
         end
-        if @session.null?
-          OpenSCAP.raise!
-        end
+        OpenSCAP.raise! if @session.null?
       end
 
       def destroy

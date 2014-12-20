@@ -16,9 +16,7 @@ module OpenSCAP
         fail OpenSCAPError, 'No filename specified!' unless input_filename
         @input_filename = input_filename
         @s = OpenSCAP.xccdf_session_new(input_filename)
-        if @s.null?
-          OpenSCAP.raise!
-        end
+        OpenSCAP.raise! if @s.null?
       end
 
       def sds?
@@ -34,9 +32,7 @@ module OpenSCAP
           OpenSCAP.xccdf_session_set_datastream_id(@s, o[:datastream_id])
           OpenSCAP.xccdf_session_set_component_id(@s, o[:component_id])
         end
-        if OpenSCAP.xccdf_session_load(@s) != 0
-          OpenSCAP.raise!
-        end
+        OpenSCAP.raise! if OpenSCAP.xccdf_session_load(@s) != 0
         OpenSCAP.raise! unless OpenSCAP.xccdf_session_load_check_engine_plugins(@s) == 0
       end
 
@@ -48,9 +44,7 @@ module OpenSCAP
       end
 
       def evaluate
-        if OpenSCAP.xccdf_session_evaluate(@s) != 0
-          OpenSCAP.raise!
-        end
+        OpenSCAP.raise! if OpenSCAP.xccdf_session_evaluate(@s) != 0
       end
 
       def remediate

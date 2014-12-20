@@ -31,7 +31,7 @@ module OpenSCAP
     else
       err += "\n#{msg}"
     end
-    raise OpenSCAPError, err
+    fail OpenSCAPError, err
   end
 
   attach_function :oscap_init, [], :void

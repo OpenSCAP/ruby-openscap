@@ -29,7 +29,7 @@ module OpenSCAP
           @raw = OpenSCAP.xccdf_result_import_source(t)
           OpenSCAP.raise! if @raw.null?
         else
-          raise OpenSCAP::OpenSCAPError, "Cannot initialize TestResult with #{t}"
+          fail OpenSCAP::OpenSCAPError, "Cannot initialize TestResult with #{t}"
         end
         init_ruleresults
       end

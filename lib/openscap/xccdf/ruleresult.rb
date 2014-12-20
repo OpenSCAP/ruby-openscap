@@ -20,7 +20,7 @@ module OpenSCAP
         when FFI::Pointer
           @rr = t
         else
-          raise OpenSCAP::OpenSCAPError, "Cannot initialize TestResult with #{t}"
+          fail OpenSCAP::OpenSCAPError, "Cannot initialize TestResult with #{t}"
         end
       end
 
@@ -35,7 +35,7 @@ module OpenSCAP
 
       def override!(param)
         if OpenSCAP::XccdfResult[param[:new_result]] > OpenSCAP::XccdfResult[:fixed]
-          raise OpenSCAPError, "Could not recognize result type: '#{param[:new_result]}'"
+          fail OpenSCAPError, "Could not recognize result type: '#{param[:new_result]}'"
         end
         t = OpenSCAP::Text.new
         t.text = param[:raw_text]

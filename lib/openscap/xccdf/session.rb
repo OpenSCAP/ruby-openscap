@@ -13,7 +13,7 @@ module OpenSCAP
   module Xccdf
     class Session
       def initialize(input_filename)
-        raise OpenSCAPError, 'No filename specified!' unless input_filename
+        fail OpenSCAPError, 'No filename specified!' unless input_filename
         @input_filename = input_filename
         @s = OpenSCAP.xccdf_session_new(input_filename)
         if @s.null?
@@ -43,7 +43,7 @@ module OpenSCAP
       def profile=(p)
         @profile = p
         if OpenSCAP.xccdf_session_set_profile_id(@s, p) == false
-          raise OpenSCAPError, "No profile '" + p + "' found"
+          fail OpenSCAPError, "No profile '" + p + "' found"
         end
       end
 

@@ -66,7 +66,7 @@ module OpenSCAP
       private
 
       def init_ruleresults
-        @rr = Hash.new
+        @rr = {}
         rr_it = OpenSCAP.xccdf_result_get_rule_results(@raw)
         while OpenSCAP.xccdf_rule_result_iterator_has_more(rr_it) do
           rr_raw = OpenSCAP.xccdf_rule_result_iterator_next(rr_it)
@@ -77,7 +77,7 @@ module OpenSCAP
       end
 
       def score_init
-        scores = Hash.new
+        scores = {}
         scorit = OpenSCAP.xccdf_result_get_scores(@raw)
         while OpenSCAP.xccdf_score_iterator_has_more(scorit) do
           s = OpenSCAP.xccdf_score_iterator_next(scorit)

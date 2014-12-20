@@ -54,11 +54,6 @@ Style/CaseIndentation:
 Style/Documentation:
   Enabled: false
 
-# Offense count: 2
-# Cop supports --auto-correct.
-Style/EmptyLiteral:
-  Enabled: false
-
 # Offense count: 6
 # Configuration parameters: MinBodyLength.
 Style/GuardClause:

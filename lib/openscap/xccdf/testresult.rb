@@ -68,7 +68,7 @@ module OpenSCAP
       def init_ruleresults
         @rr = {}
         rr_it = OpenSCAP.xccdf_result_get_rule_results(@raw)
-        while OpenSCAP.xccdf_rule_result_iterator_has_more(rr_it) do
+        while OpenSCAP.xccdf_rule_result_iterator_has_more(rr_it)
           rr_raw = OpenSCAP.xccdf_rule_result_iterator_next(rr_it)
           rr = OpenSCAP::Xccdf::RuleResult.new rr_raw
           @rr[rr.id] = rr
@@ -79,7 +79,7 @@ module OpenSCAP
       def score_init
         scores = {}
         scorit = OpenSCAP.xccdf_result_get_scores(@raw)
-        while OpenSCAP.xccdf_score_iterator_has_more(scorit) do
+        while OpenSCAP.xccdf_score_iterator_has_more(scorit)
           s = OpenSCAP.xccdf_score_iterator_next(scorit)
           scores[OpenSCAP.xccdf_score_get_system(s)] = {
             :system => OpenSCAP.xccdf_score_get_system(s),

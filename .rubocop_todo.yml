@@ -69,8 +69,3 @@ Style/HashSyntax:
 # Configuration parameters: MaxLineLength.
 Style/IfUnlessModifier:
   Enabled: false
-
-# Offense count: 2
-# Cop supports --auto-correct.
-Style/WhileUntilDo:
-  Enabled: false

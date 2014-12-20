@@ -35,12 +35,12 @@ module OpenSCAP
       def destroy
         OpenSCAP.ds_rds_session_free(@session)
         @session = nil
-        @source.destroy()
+        @source.destroy
       end
 
       def test_result(id = nil)
         source = OpenSCAP.ds_rds_session_select_report(@session, id)
-        OpenSCAP.raise!() if source.nil?
+        OpenSCAP.raise! if source.nil?
         OpenSCAP::Xccdf::TestResult.new(source)
       end
 
@@ -59,7 +59,7 @@ module OpenSCAP
         html_p = OpenSCAP.ds_rds_session_get_html_report @session
         OpenSCAP.raise! if OpenSCAP.error?
         return nil if html_p.null?
-        html = html_p.read_string()
+        html = html_p.read_string
         OpenSCAP::LibC.free html_p
         html
       end

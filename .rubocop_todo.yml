@@ -77,11 +77,6 @@ Style/IfUnlessModifier:
 
 # Offense count: 1
 # Cop supports --auto-correct.
-Style/NegatedIf:
-  Enabled: false
-
-# Offense count: 1
-# Cop supports --auto-correct.
 Style/PerlBackrefs:
   Enabled: false
 

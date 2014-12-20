@@ -39,9 +39,9 @@ module OpenSCAP
         end
         t = OpenSCAP::Text.new
         t.text = param[:raw_text]
-        if !OpenSCAP.xccdf_rule_result_override(@rr,
-                                                OpenSCAP::XccdfResult[param[:new_result]],
-                                                param[:time], param[:authority], t.raw)
+        unless OpenSCAP.xccdf_rule_result_override(@rr,
+                                                   OpenSCAP::XccdfResult[param[:new_result]],
+                                                   param[:time], param[:authority], t.raw)
           OpenSCAP.raise!
         end
       end

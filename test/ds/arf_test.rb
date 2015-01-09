@@ -14,6 +14,8 @@ require 'openscap/ds/arf'
 require 'common/testcase'
 
 class TestArf < OpenSCAP::TestCase
+  REPORT = 'report.rds.xml'
+
   def test_arf_new_nil
     msg = nil
     begin
@@ -57,9 +59,9 @@ class TestArf < OpenSCAP::TestCase
 
   def test_new_memory
     create_arf
-    raw_data = File.read('report.rds.xml')
+    raw_data = File.read(REPORT)
     assert raw_data.length > 0
-    arf = OpenSCAP::DS::Arf.new :content => raw_data, :path => 'report.rds.xml'
+    arf = OpenSCAP::DS::Arf.new :content => raw_data, :path => REPORT
     arf.destroy
   end
 
@@ -67,7 +69,7 @@ class TestArf < OpenSCAP::TestCase
 
   def new_arf
     create_arf
-    OpenSCAP::DS::Arf.new('report.rds.xml')
+    OpenSCAP::DS::Arf.new(REPORT)
   end
 
   def create_arf

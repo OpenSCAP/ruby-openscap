@@ -65,6 +65,18 @@ class TestArf < OpenSCAP::TestCase
     arf.destroy
   end
 
+  def test_new_bz_memory
+    create_arf
+    system('/bin/bzip2 ' + REPORT)
+    bziped_file = REPORT + '.bz2'
+    raw_data = File.open(bziped_file, 'rb').read
+    assert !raw_data.empty?
+    len = File.size(bziped_file)
+    FileUtils.rm bziped_file
+    arf = OpenSCAP::DS::Arf.new :content => raw_data, :path => bziped_file, :length => len
+    arf.destroy
+  end
+
   private
 
   def new_arf

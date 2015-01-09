@@ -22,7 +22,10 @@ module OpenSCAP
       when String
         @raw = OpenSCAP.oscap_source_new_from_file(param)
       when Hash
-        @raw = OpenSCAP.oscap_source_new_from_memory param[:content], param[:content].length, param[:path]
+        param[:length] = param[:content].length unless param[:length]
+        buf = FFI::MemoryPointer.new(:char, param[:length])
+        buf.put_bytes(0, param[:content])
+        @raw = OpenSCAP.oscap_source_new_from_memory param[:content], param[:length], param[:path]
       when FFI::Pointer
         @raw = param
       else
@@ -53,7 +56,7 @@ module OpenSCAP
   end
 
   attach_function :oscap_source_new_from_file, [:string], :pointer
-  attach_function :oscap_source_new_from_memory, [:string, :int, :string], :pointer
+  attach_function :oscap_source_new_from_memory, [:pointer, :int, :string], :pointer
   attach_function :oscap_source_get_scap_type, [:pointer], :int
   attach_function :oscap_source_free, [:pointer], :void
   attach_function :oscap_source_save_as, [:pointer, :string], :int

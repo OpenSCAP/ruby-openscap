@@ -22,10 +22,7 @@ module OpenSCAP
       when String
         @raw = OpenSCAP.oscap_source_new_from_file(param)
       when Hash
-        param[:length] = param[:content].length unless param[:length]
-        buf = FFI::MemoryPointer.new(:char, param[:length])
-        buf.put_bytes(0, param[:content])
-        @raw = OpenSCAP.oscap_source_new_from_memory param[:content], param[:length], param[:path]
+        @raw = create_from_memory param
       when FFI::Pointer
         @raw = param
       else
@@ -52,6 +49,15 @@ module OpenSCAP
     def destroy
       OpenSCAP.oscap_source_free(@raw)
       @raw = nil
+    end
+
+    private
+
+    def create_from_memory(param)
+      param[:length] = param[:content].length unless param[:length]
+      buf = FFI::MemoryPointer.new(:char, param[:length])
+      buf.put_bytes(0, param[:content])
+      OpenSCAP.oscap_source_new_from_memory param[:content], param[:length], param[:path]
     end
   end
 

@@ -67,7 +67,7 @@ class TestArf < OpenSCAP::TestCase
 
   def test_new_bz_memory
     create_arf
-    system('/bin/bzip2 ' + REPORT)
+    system('/usr/bin/bzip2 ' + REPORT)
     bziped_file = REPORT + '.bz2'
     raw_data = File.open(bziped_file, 'rb').read
     assert !raw_data.empty?

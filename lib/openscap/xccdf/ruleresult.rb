@@ -20,7 +20,7 @@ module OpenSCAP
         when FFI::Pointer
           @rr = t
         else
-          fail OpenSCAP::OpenSCAPError, "Cannot initialize TestResult with #{t}"
+          fail OpenSCAP::OpenSCAPError, "Cannot initialize OpenSCAP::Xccdf::RuleResult with #{t}"
         end
       end
 

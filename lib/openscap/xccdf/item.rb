@@ -24,12 +24,18 @@ module OpenSCAP
         end
       end
 
+      def id
+        OpenSCAP.xccdf_item_get_id @raw
+      end
+
       def destroy
         OpenSCAP.xccdf_item_free @raw
         @raw = nil
       end
     end
   end
+
+  attach_function :xccdf_item_get_id, [:pointer], :string
   attach_function :xccdf_item_get_content, [:pointer], :pointer
   attach_function :xccdf_item_free, [:pointer], :void
 

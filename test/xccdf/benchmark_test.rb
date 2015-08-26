@@ -46,7 +46,7 @@ class TestBenchmark < OpenSCAP::TestCase
 
   def test_items_in_benchmark
     b = benchmark_from_file
-    b.items
+    assert b.items.size > 0
   end
 
   private

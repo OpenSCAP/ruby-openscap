@@ -61,9 +61,9 @@ module OpenSCAP
         items_it = OpenSCAP.xccdf_item_get_content raw
         while OpenSCAP.xccdf_item_iterator_has_more items_it
           item_p = OpenSCAP.xccdf_item_iterator_next items_it
-          OpenSCAP::Xccdf::Item.new item_p
+          item = OpenSCAP::Xccdf::Item.new item_p
+          items[item.id] = item
           # TODO: iterate through childs
-          # TODO: add to 'items' dict
         end
         OpenSCAP.xccdf_item_iterator_free items_it
         items

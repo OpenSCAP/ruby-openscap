@@ -44,6 +44,11 @@ class TestBenchmark < OpenSCAP::TestCase
     assert msg.start_with?('Failed to import XCCDF content from'), msg
   end
 
+  def test_items_in_benchmark
+    b = benchmark_from_file
+    b.items
+  end
+
   private
 
   def benchmark_from_file

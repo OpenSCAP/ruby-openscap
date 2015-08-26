@@ -15,13 +15,14 @@ require 'openscap/text'
 module OpenSCAP
   module Xccdf
     class Item
+      def self.build(t)
+        fail OpenSCAP::OpenSCAPError, "Cannot initialize OpenSCAP::Xccdf::Item with #{t}" \
+          unless t.is_a?(FFI::Pointer)
+        OpenSCAP::Xccdf::Item.new t
+      end
+
       def initialize(t)
-        case t
-        when FFI::Pointer
-          @raw = t
-        else
-          fail OpenSCAP::OpenSCAPError, "Cannot initialize OpenSCAP::Xccdf::Item with #{t}"
-        end
+        @raw = t
       end
 
       def id
@@ -42,7 +43,7 @@ module OpenSCAP
         items_it = OpenSCAP.xccdf_item_get_content @raw
         while OpenSCAP.xccdf_item_iterator_has_more items_it
           item_p = OpenSCAP.xccdf_item_iterator_next items_it
-          item = OpenSCAP::Xccdf::Item.new item_p
+          item = OpenSCAP::Xccdf::Item.build item_p
           collect.merge! item.sub_items
           collect[item.id] = item
         end

@@ -30,5 +30,10 @@ module OpenSCAP
       end
     end
   end
+  attach_function :xccdf_item_get_content, [:pointer], :pointer
   attach_function :xccdf_item_free, [:pointer], :void
+
+  attach_function :xccdf_item_iterator_has_more, [:pointer], :bool
+  attach_function :xccdf_item_iterator_next, [:pointer], :pointer
+  attach_function :xccdf_item_iterator_free, [:pointer], :void
 end

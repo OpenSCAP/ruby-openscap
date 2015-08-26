@@ -11,6 +11,7 @@
 
 require 'openscap/source'
 require 'openscap/xccdf/profile'
+require 'openscap/xccdf/item'
 
 module OpenSCAP
   module Xccdf
@@ -32,6 +33,10 @@ module OpenSCAP
         @profiles ||= profiles_init
       end
 
+      def items
+        @items ||= items_init
+      end
+
       def destroy
         OpenSCAP.xccdf_benchmark_free @raw
         @raw = nil
@@ -49,6 +54,19 @@ module OpenSCAP
         end
         OpenSCAP.xccdf_profile_iterator_free profit
         profiles
+      end
+
+      def items_init
+        items = {}
+        items_it = OpenSCAP.xccdf_item_get_content raw
+        while OpenSCAP.xccdf_item_iterator_has_more items_it
+          item_p = OpenSCAP.xccdf_item_iterator_next items_it
+          OpenSCAP::Xccdf::Item.new item_p
+          # TODO: iterate through childs
+          # TODO: add to 'items' dict
+        end
+        OpenSCAP.xccdf_item_iterator_free items_it
+        items
       end
     end
   end

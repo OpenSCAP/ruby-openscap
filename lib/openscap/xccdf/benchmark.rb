@@ -62,6 +62,7 @@ module OpenSCAP
         while OpenSCAP.xccdf_item_iterator_has_more items_it
           item_p = OpenSCAP.xccdf_item_iterator_next items_it
           item = OpenSCAP::Xccdf::Item.new item_p
+          items.merge! item.sub_items
           items[item.id] = item
           # TODO: iterate through childs
         end

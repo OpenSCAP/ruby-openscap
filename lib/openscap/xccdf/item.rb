@@ -28,9 +28,26 @@ module OpenSCAP
         OpenSCAP.xccdf_item_get_id @raw
       end
 
+      def sub_items
+        @sub_items ||= sub_items_init
+      end
+
       def destroy
         OpenSCAP.xccdf_item_free @raw
         @raw = nil
+      end
+
+      def sub_items_init
+        collect = {}
+        items_it = OpenSCAP.xccdf_item_get_content @raw
+        while OpenSCAP.xccdf_item_iterator_has_more items_it
+          item_p = OpenSCAP.xccdf_item_iterator_next items_it
+          item = OpenSCAP::Xccdf::Item.new item_p
+          collect.merge! item.sub_items
+          collect[item.id] = item
+        end
+        OpenSCAP.xccdf_item_iterator_free items_it
+        collect
       end
     end
   end

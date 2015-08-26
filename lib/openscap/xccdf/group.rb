@@ -10,6 +10,7 @@
 #
 
 require 'openscap/exceptions'
+require 'openscap/xccdf'
 require 'openscap/xccdf/item'
 
 module OpenSCAP

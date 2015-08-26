@@ -11,6 +11,8 @@
 
 require 'openscap/exceptions'
 require 'openscap/text'
+require 'openscap/xccdf/group'
+require 'openscap/xccdf/rule'
 
 module OpenSCAP
   module Xccdf
@@ -18,7 +20,15 @@ module OpenSCAP
       def self.build(t)
         fail OpenSCAP::OpenSCAPError, "Cannot initialize OpenSCAP::Xccdf::Item with #{t}" \
           unless t.is_a?(FFI::Pointer)
-        OpenSCAP::Xccdf::Item.new t
+        # This is Abstract base class that enables you to build its child
+        case OpenSCAP.xccdf_item_get_type t
+        when :group
+          OpenSCAP::Xccdf::Group.new t
+        when :rule
+          OpenSCAP::Xccdf::Rule.new t
+        else
+          fail OpenSCAP::OpenSCAPError, "Unknown Xccdf::Item type: #{OpenSCAP.xccdf_item_get_type t}"
+        end
       end
 
       def initialize(t)
@@ -56,6 +66,14 @@ module OpenSCAP
   attach_function :xccdf_item_get_id, [:pointer], :string
   attach_function :xccdf_item_get_content, [:pointer], :pointer
   attach_function :xccdf_item_free, [:pointer], :void
+
+  XccdfItemType = enum(:benchmark, 0x0100,
+                       :profile, 0x0200,
+                       :result, 0x0400,
+                       :rule, 0x1000,
+                       :group, 0x2000,
+                       :value, 0x4000)
+  attach_function :xccdf_item_get_type, [:pointer], XccdfItemType
 
   attach_function :xccdf_item_iterator_has_more, [:pointer], :bool
   attach_function :xccdf_item_iterator_next, [:pointer], :pointer

@@ -14,5 +14,8 @@ require 'openscap/openscap'
 module OpenSCAP
   module Xccdf
     NUMERIC = :float
+
+    class Item
+    end
   end
 end

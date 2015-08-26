@@ -30,7 +30,7 @@ module OpenSCAP
 
       def result
         OpenSCAP.xccdf_test_result_type_get_text \
-            OpenSCAP.xccdf_rule_result_get_result(@rr)
+          OpenSCAP.xccdf_rule_result_get_result(@rr)
       end
 
       def override!(param)

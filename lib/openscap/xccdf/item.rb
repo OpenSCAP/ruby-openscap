@@ -32,6 +32,9 @@ module OpenSCAP
       end
 
       def initialize(t)
+        if self.class == OpenSCAP::Xccdf::Item
+          fail OpenSCAP::OpenSCAPError, 'Cannot initialize Xccdf::Item abstract base class.'
+        end
         @raw = t
       end
 

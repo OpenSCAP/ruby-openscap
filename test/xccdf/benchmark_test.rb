@@ -47,6 +47,10 @@ class TestBenchmark < OpenSCAP::TestCase
   def test_items_in_benchmark
     b = benchmark_from_file
     assert b.items.size == 138
+    rules_count = b.items.count { |_, i| i.is_a?(OpenSCAP::Xccdf::Rule) }
+    groups_count = b.items.count { |_, i| i.is_a?(OpenSCAP::Xccdf::Group) }
+    assert rules_count == 76, "Got #{rules_count} rules"
+    assert groups_count == 62, "Got #{groups_count} groups"
   end
 
   private

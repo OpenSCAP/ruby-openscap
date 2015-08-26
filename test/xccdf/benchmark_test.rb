@@ -17,9 +17,7 @@ require 'openscap/xccdf/benchmark'
 
 class TestBenchmark < OpenSCAP::TestCase
   def test_new_from_file
-    @s = OpenSCAP::Source.new '../data/xccdf.xml'
-    b = OpenSCAP::Xccdf::Benchmark.new @s
-    assert !b.nil?
+    b = benchmark_from_file
     b.destroy
   end
 
@@ -44,5 +42,15 @@ class TestBenchmark < OpenSCAP::TestCase
       msg = e.to_s
     end
     assert msg.start_with?('Failed to import XCCDF content from'), msg
+  end
+
+  private
+
+  def benchmark_from_file
+    source = OpenSCAP::Source.new '../data/xccdf.xml'
+    b = OpenSCAP::Xccdf::Benchmark.new source
+    source.destroy
+    assert !b.nil?
+    b
   end
 end

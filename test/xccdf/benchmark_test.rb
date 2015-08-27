@@ -51,6 +51,7 @@ class TestBenchmark < OpenSCAP::TestCase
     groups_count = b.items.count { |_, i| i.is_a?(OpenSCAP::Xccdf::Group) }
     assert rules_count == 76, "Got #{rules_count} rules"
     assert groups_count == 62, "Got #{groups_count} groups"
+    b.destroy
   end
 
   def test_items_title

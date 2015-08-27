@@ -51,6 +51,8 @@ module OpenSCAP
         @raw = nil
       end
 
+      private
+
       def sub_items_init
         collect = {}
         items_it = OpenSCAP.xccdf_item_get_content @raw

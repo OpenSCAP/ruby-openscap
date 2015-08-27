@@ -42,6 +42,13 @@ module OpenSCAP
         OpenSCAP.xccdf_item_get_id @raw
       end
 
+      def title(prefered_lang = nil)
+        textlist = OpenSCAP::TextList.new(OpenSCAP.xccdf_item_get_title(@raw))
+        title = textlist.plaintext(prefered_lang)
+        textlist.destroy
+        title
+      end
+
       def sub_items
         @sub_items ||= sub_items_init
       end
@@ -71,6 +78,7 @@ module OpenSCAP
   attach_function :xccdf_item_get_id, [:pointer], :string
   attach_function :xccdf_item_get_content, [:pointer], :pointer
   attach_function :xccdf_item_free, [:pointer], :void
+  attach_function :xccdf_item_get_title, [:pointer], :pointer
 
   XccdfItemType = enum(:benchmark, 0x0100,
                        :profile, 0x0200,

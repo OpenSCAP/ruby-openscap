@@ -53,6 +53,13 @@ class TestBenchmark < OpenSCAP::TestCase
     assert groups_count == 62, "Got #{groups_count} groups"
   end
 
+  def test_items_title
+    b = benchmark_from_file
+    prelink_rule = b.items['xccdf_org.ssgproject.content_rule_disable_prelink']
+    assert prelink_rule.title == 'Prelinking Disabled', prelink_rule.title
+    b.destroy
+  end
+
   private
 
   def benchmark_from_file

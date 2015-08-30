@@ -61,6 +61,14 @@ class TestBenchmark < OpenSCAP::TestCase
     b.destroy
   end
 
+  def test_items_description
+    b = benchmark_from_file
+    install_hids_rule = b.items['xccdf_org.ssgproject.content_rule_install_hids']
+    expected_result = "\nThe Red Hat platform includes a sophisticated auditing system\nand SELinux, which provide host-based intrusion detection capabilities.\n"
+    assert install_hids_rule.description == expected_result, install_hids_rule.description
+    b.destroy
+  end
+
   private
 
   def benchmark_from_file

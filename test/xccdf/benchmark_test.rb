@@ -69,6 +69,14 @@ class TestBenchmark < OpenSCAP::TestCase
     b.destroy
   end
 
+  def test_items_rationale
+    b = benchmark_from_file
+    aide_rule = b.items['xccdf_org.ssgproject.content_rule_package_aide_installed']
+    expected_rationale = "\nThe AIDE package must be installed if it is to be available for integrity checking.\n"
+    assert aide_rule.rationale == expected_rationale, aide_rule.rationale
+    b.destroy
+  end
+
   private
 
   def benchmark_from_file

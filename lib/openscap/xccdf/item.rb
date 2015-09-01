@@ -56,6 +56,13 @@ module OpenSCAP
         description
       end
 
+      def rationale(prefered_lang = nil)
+        textlist = OpenSCAP::TextList.new(OpenSCAP.xccdf_item_get_rationale(@raw))
+        rationale = textlist.plaintext(prefered_lang)
+        textlist.destroy
+        rationale
+      end
+
       def sub_items
         @sub_items ||= sub_items_init
       end
@@ -87,6 +94,7 @@ module OpenSCAP
   attach_function :xccdf_item_free, [:pointer], :void
   attach_function :xccdf_item_get_title, [:pointer], :pointer
   attach_function :xccdf_item_get_description, [:pointer], :pointer
+  attach_function :xccdf_item_get_rationale, [:pointer], :pointer
 
   XccdfItemType = enum(:benchmark, 0x0100,
                        :profile, 0x0200,

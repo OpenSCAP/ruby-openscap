@@ -84,6 +84,18 @@ class TestBenchmark < OpenSCAP::TestCase
     b.destroy
   end
 
+  def test_items_references
+    b = benchmark_from_file
+    install_hids_rule = b.items['xccdf_org.ssgproject.content_rule_install_hids']
+    expected_references = [{:href=> "http://csrc.nist.gov/publications/nistpubs/800-53-Rev3/sp800-53-rev3-final.pdf",
+                            :title=>"SC-7",
+                            :url_html=> "<a href='http://csrc.nist.gov/publications/nistpubs/800-53-Rev3/sp800-53-rev3-final.pdf'>SC-7</a>"},
+                           {:href=>"http://iase.disa.mil/cci/index.html",
+                            :title=>"1263",
+                            :url_html=>"<a href='http://iase.disa.mil/cci/index.html'>1263</a>"}]
+    assert_equal(expected_references, install_hids_rule.references, "Install hids references should be equal")
+  end
+
   private
 
   def benchmark_from_file

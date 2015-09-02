@@ -15,6 +15,27 @@ require 'openscap/xccdf/item'
 module OpenSCAP
   module Xccdf
     class Rule < Item
+      def severity
+        severity = OpenSCAP.xccdf_rule_get_severity(@raw)
+        severity_mapping = {
+          :xccdf_level_not_defined => 'Not defined',
+          :xccdf_unknown => 'Unknown',
+          :xccdf_info => 'Info',
+          :xccdf_low => 'Low',
+          :xccdf_medium => 'Medium',
+          :xccdf_high => 'High'
+        }
+        severity_mapping[severity] ? severity_mapping[severity] : severity_mapping[:xccdf_unknown]
+      end
     end
   end
+  XccdfSeverity = enum(
+    :xccdf_level_not_defined, 0,
+    :xccdf_unknown, 1,
+    :xccdf_info,
+    :xccdf_low,
+    :xccdf_medium,
+    :xccdf_high
+  )
+  attach_function :xccdf_rule_get_severity, [:pointer], XccdfSeverity
 end

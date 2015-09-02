@@ -77,6 +77,13 @@ class TestBenchmark < OpenSCAP::TestCase
     b.destroy
   end
 
+  def test_items_severity
+    b = benchmark_from_file
+    prelink_rule = b.items['xccdf_org.ssgproject.content_rule_disable_prelink']
+    assert prelink_rule.severity == 'Low', prelink_rule.severity
+    b.destroy
+  end
+
   private
 
   def benchmark_from_file

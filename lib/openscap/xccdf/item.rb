@@ -68,11 +68,7 @@ module OpenSCAP
         refs = []
         refs_it = OpenSCAP.xccdf_item_get_references(@raw)
         while OpenSCAP.oscap_reference_iterator_has_more refs_it
-          ref = {}
-          ref_p = OpenSCAP::Xccdf::Reference.new(OpenSCAP.oscap_reference_iterator_next refs_it)
-          ref[:title] = ref_p.title
-          ref[:href] = ref_p.href
-          ref[:url_html] = ref_p.html_link
+          ref = OpenSCAP::Xccdf::Reference.new(OpenSCAP.oscap_reference_iterator_next refs_it)
           refs << ref
         end
         OpenSCAP.oscap_reference_iterator_free refs_it

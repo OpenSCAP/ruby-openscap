@@ -29,6 +29,14 @@ module OpenSCAP
       def html_link
         "<a href='#{href}'>#{title}</a>"
       end
+
+      def to_hash
+        {
+          :title => title,
+          :href => href,
+          :html_link => html_link
+        }
+      end
     end
   end
   attach_function :oscap_reference_get_href, [:pointer], :string

@@ -16,7 +16,7 @@ module OpenSCAP
       end
 
       # system is a reserved word in Rails, so didn't use it
-      def get_system
+      def fix_system
         OpenSCAP.xccdf_fix_get_system(@raw)
       end
 
@@ -28,7 +28,7 @@ module OpenSCAP
         {
           :id => id,
           :platform => platform,
-          :system => get_system,
+          :system => fix_system,
           :content => content
         }
       end

@@ -28,6 +28,7 @@ module OpenSCAP
         }
         severity_mapping[severity] ? severity_mapping[severity] : severity_mapping[:xccdf_unknown]
       end
+
       def fixes
         fixes = []
         items_it = OpenSCAP.xccdf_rule_get_fixes(@raw)

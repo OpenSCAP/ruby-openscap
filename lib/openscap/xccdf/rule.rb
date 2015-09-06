@@ -11,6 +11,7 @@
 
 require 'openscap/exceptions'
 require 'openscap/xccdf/item'
+require 'openscap/xccdf/fix'
 
 module OpenSCAP
   module Xccdf
@@ -27,6 +28,16 @@ module OpenSCAP
         }
         severity_mapping[severity] ? severity_mapping[severity] : severity_mapping[:xccdf_unknown]
       end
+
+      def fixes
+        fixes = []
+        items_it = OpenSCAP.xccdf_rule_get_fixes(@raw)
+        while OpenSCAP.xccdf_fix_iterator_has_more items_it
+          fixes << OpenSCAP::Xccdf::Fix.new(OpenSCAP.xccdf_fix_iterator_next(items_it))
+        end
+        OpenSCAP.xccdf_fix_iterator_free items_it
+        fixes
+      end
     end
   end
   XccdfSeverity = enum(
@@ -38,4 +49,8 @@ module OpenSCAP
     :xccdf_high
   )
   attach_function :xccdf_rule_get_severity, [:pointer], XccdfSeverity
+  attach_function :xccdf_rule_get_fixes, [:pointer], :pointer
+  attach_function :xccdf_fix_iterator_has_more, [:pointer], :bool
+  attach_function :xccdf_fix_iterator_next, [:pointer], :pointer
+  attach_function :xccdf_fix_iterator_free, [:pointer], :void
 end

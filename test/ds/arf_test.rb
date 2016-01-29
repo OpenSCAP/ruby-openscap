@@ -14,7 +14,7 @@ require 'openscap/ds/arf'
 require 'common/testcase'
 
 class TestArf < OpenSCAP::TestCase
-  REPORT = 'report.rds.xml'
+  REPORT = 'report.rds.xml'.freeze
 
   def test_arf_new_nil
     msg = nil

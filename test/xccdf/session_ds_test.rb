@@ -119,7 +119,7 @@ class TestSessionDS < OpenSCAP::TestCase
 
   def assert_exported(files)
     # libopenscap compiled with --enable-debug creates debug files
-    FileUtils.rm_rf(Dir.glob 'oscap_debug.log.*')
+    FileUtils.rm_rf(Dir.glob('oscap_debug.log.*'))
     assert files.sort == Dir.glob('*').sort
   end
 end

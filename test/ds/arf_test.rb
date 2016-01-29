@@ -75,6 +75,13 @@ class TestArf < OpenSCAP::TestCase
     arf.destroy
   end
 
+  def test_new_bz_file
+    bziped_file = new_arf_bz
+    arf = OpenSCAP::DS::Arf.new(bziped_file)
+    arf.destroy
+    FileUtils.rm bziped_file
+  end
+
   private
 
   def new_arf_bz

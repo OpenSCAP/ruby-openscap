@@ -41,7 +41,7 @@ class TestBenchmark < OpenSCAP::TestCase
     rescue OpenSCAP::OpenSCAPError => e
       msg = e.to_s
     end
-    assert msg.start_with?('Failed to import XCCDF content from'), msg
+    assert msg.start_with?("Find element 'TestResult' while expecting element: 'Benchmark'"), msg
   end
 
   def test_items_in_benchmark

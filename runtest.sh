@@ -1,7 +1,7 @@
 set -e -o pipefail
 set -x
 
-rm openscap-*.gem || true
+rm -f openscap-*.gem
 gem build openscap.gemspec
 gem install openscap-*.gem
 rake test

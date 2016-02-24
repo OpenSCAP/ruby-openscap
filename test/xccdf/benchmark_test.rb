@@ -94,6 +94,7 @@ class TestBenchmark < OpenSCAP::TestCase
                              :href      => 'http://iase.disa.mil/cci/index.html',
                              :html_link => "<a href='http://iase.disa.mil/cci/index.html'>1263</a>" }]
     assert_equal(expected_references, install_hids_rule.references.map(&:to_hash), 'Install hids references should be equal')
+    b.destroy
   end
 
   def test_items_fixes
@@ -108,6 +109,7 @@ class TestBenchmark < OpenSCAP::TestCase
     }]
     assert_equal(expected_content, login_defs_rule.fixes.map(&:content), 'Fix content should match')
     assert_equal(expected_hashes, login_defs_rule.fixes.map(&:to_hash), 'Fix hash should match')
+    b.destroy
   end
 
   private

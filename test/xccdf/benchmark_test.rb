@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2014 Red Hat Inc.
+# Copyright (c) 2014--2016 Red Hat Inc.
 #
 # This software is licensed to you under the GNU General Public License,
 # version 2 (GPLv2). There is NO WARRANTY for this software, express or
@@ -14,7 +14,6 @@ require 'openscap'
 require 'openscap/ds/sds'
 require 'openscap/source'
 require 'openscap/xccdf/benchmark'
-require 'openscap/xccdf/policy_model'
 
 class TestBenchmark < OpenSCAP::TestCase
   def test_new_from_file
@@ -111,12 +110,6 @@ class TestBenchmark < OpenSCAP::TestCase
     assert_equal(expected_content, login_defs_rule.fixes.map(&:content), 'Fix content should match')
     assert_equal(expected_hashes, login_defs_rule.fixes.map(&:to_hash), 'Fix hash should match')
     b.destroy
-  end
-
-  def test_policy_model_creation
-    b = benchmark_from_file
-    pm = OpenSCAP::Xccdf::PolicyModel.new b
-    pm.destroy
   end
 
   private

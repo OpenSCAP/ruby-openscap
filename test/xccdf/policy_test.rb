@@ -22,7 +22,8 @@ class TestPolicy < OpenSCAP::TestCase
     b = OpenSCAP::Xccdf::Benchmark.new @s
     pm = OpenSCAP::Xccdf::PolicyModel.new b
     assert !b.nil?
-    assert pm.policies.size == 0, pm.policies.to_s
+    assert pm.policies.size == 1, pm.policies.to_s
+    assert pm.policies['xccdf_org.ssgproject.content_profile_common']
     pm.destroy
   end
 end

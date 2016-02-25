@@ -14,6 +14,8 @@ require 'openscap/exceptions'
 module OpenSCAP
   module Xccdf
     class Policy
+      attr_reader :raw
+
       def initialize(p)
         case p
         when FFI::Pointer

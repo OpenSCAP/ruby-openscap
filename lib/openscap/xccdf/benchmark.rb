@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2014 Red Hat Inc.
+# Copyright (c) 2014--2016 Red Hat Inc.
 #
 # This software is licensed to you under the GNU General Public License,
 # version 2 (GPLv2). There is NO WARRANTY for this software, express or
@@ -23,8 +23,8 @@ module OpenSCAP
         when OpenSCAP::Source
           @raw = OpenSCAP.xccdf_benchmark_import_source p.raw
         else
-          fail OpenSCAP::OpenSCAPError,
-               "Cannot initialize OpenSCAP::Xccdf::Benchmark with '#{p}'"
+          raise OpenSCAP::OpenSCAPError,
+                "Cannot initialize OpenSCAP::Xccdf::Benchmark with '#{p}'"
         end
         OpenSCAP.raise! if @raw.null?
       end

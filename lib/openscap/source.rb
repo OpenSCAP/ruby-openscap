@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2014 Red Hat Inc.
+# Copyright (c) 2014--2016 Red Hat Inc.
 #
 # This software is licensed to you under the GNU General Public License,
 # version 2 (GPLv2). There is NO WARRANTY for this software, express or
@@ -18,7 +18,7 @@ module OpenSCAP
     def initialize(param)
       case param
       when nil
-        fail OpenSCAPError, 'No filename specified!'
+        raise OpenSCAPError, 'No filename specified!'
       when String
         @raw = OpenSCAP.oscap_source_new_from_file(param)
       when Hash
@@ -26,7 +26,7 @@ module OpenSCAP
       when FFI::Pointer
         @raw = param
       else
-        fail OpenSCAP::OpenSCAPError, "Cannot initialize OpenSCAP::Source with '#{param}'"
+        raise OpenSCAP::OpenSCAPError, "Cannot initialize OpenSCAP::Source with '#{param}'"
       end
       OpenSCAP.raise! if @raw.null?
     end

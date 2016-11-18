@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2014 Red Hat Inc.
+# Copyright (c) 2014--2016 Red Hat Inc.
 #
 # This software is licensed to you under the GNU General Public License,
 # version 2 (GPLv2). There is NO WARRANTY for this software, express or
@@ -25,7 +25,7 @@ module OpenSCAP
           @source = OpenSCAP::Source.new(param)
           @session = OpenSCAP.ds_rds_session_new_from_source @source.raw
         else
-          fail OpenSCAP::OpenSCAPError, "Cannot initialize OpenSCAP::DS:Arf with '#{param}'"
+          raise OpenSCAP::OpenSCAPError, "Cannot initialize OpenSCAP::DS:Arf with '#{param}'"
         end
         OpenSCAP.raise! if @session.null?
       end

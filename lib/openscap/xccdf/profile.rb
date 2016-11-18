@@ -21,7 +21,7 @@ module OpenSCAP
         when FFI::Pointer
           @raw = p
         else
-          fail OpenSCAP::OpenSCAPError, "Cannot initialize OpenSCAP::Xccdf::Profile with #{p}"
+          raise OpenSCAP::OpenSCAPError, "Cannot initialize OpenSCAP::Xccdf::Profile with #{p}"
         end
       end
 

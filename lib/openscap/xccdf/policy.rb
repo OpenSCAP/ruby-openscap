@@ -21,8 +21,8 @@ module OpenSCAP
         when FFI::Pointer
           @raw = p
         else
-          fail OpenSCAP::OpenSCAPError,
-               "Cannot initialize OpenSCAP::Xccdf::Policy with '#{p}'"
+          raise OpenSCAP::OpenSCAPError,
+                "Cannot initialize OpenSCAP::Xccdf::Policy with '#{p}'"
         end
         OpenSCAP.raise! if @raw.null?
       end

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2014 Red Hat Inc.
+# Copyright (c) 2014--2016 Red Hat Inc.
 #
 # This software is licensed to you under the GNU General Public License,
 # version 2 (GPLv2). There is NO WARRANTY for this software, express or
@@ -20,7 +20,7 @@ module OpenSCAP
         when FFI::Pointer
           @rr = t
         else
-          fail OpenSCAP::OpenSCAPError, "Cannot initialize OpenSCAP::Xccdf::RuleResult with #{t}"
+          raise OpenSCAP::OpenSCAPError, "Cannot initialize OpenSCAP::Xccdf::RuleResult with #{t}"
         end
       end
 
@@ -52,7 +52,7 @@ module OpenSCAP
 
       def validate_xccdf_result!(result_label)
         if OpenSCAP::XccdfResult[result_label] > OpenSCAP::XccdfResult[:fixed]
-          fail OpenSCAPError, "Could not recognize result type: '#{result_label}'"
+          raise OpenSCAPError, "Could not recognize result type: '#{result_label}'"
         end
       end
     end

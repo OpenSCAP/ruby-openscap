@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2014 Red Hat Inc.
+# Copyright (c) 2014--2016 Red Hat Inc.
 #
 # This software is licensed to you under the GNU General Public License,
 # version 2 (GPLv2). There is NO WARRANTY for this software, express or
@@ -29,7 +29,7 @@ module OpenSCAP
           @raw = OpenSCAP.xccdf_result_import_source(t)
           OpenSCAP.raise! if @raw.null?
         else
-          fail OpenSCAP::OpenSCAPError, "Cannot initialize TestResult with #{t}"
+          raise OpenSCAP::OpenSCAPError, "Cannot initialize TestResult with #{t}"
         end
         init_ruleresults
       end

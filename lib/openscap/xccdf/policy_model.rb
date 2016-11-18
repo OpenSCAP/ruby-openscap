@@ -23,8 +23,8 @@ module OpenSCAP
         when OpenSCAP::Xccdf::Benchmark
           @raw = OpenSCAP.xccdf_policy_model_new(b.raw)
         else
-          fail OpenSCAP::OpenSCAPError,
-               "Cannot initialize OpenSCAP::Xccdf::PolicyModel with '#{b}'"
+          raise OpenSCAP::OpenSCAPError,
+                "Cannot initialize OpenSCAP::Xccdf::PolicyModel with '#{b}'"
         end
         OpenSCAP.raise! if @raw.null?
       end

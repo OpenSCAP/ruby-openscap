@@ -26,7 +26,7 @@ module OpenSCAP
       when FFI::Pointer
         @raw = param
       else
-        raise OpenSCAP::OpenSCAPError, "Cannot initialize OpenSCAP::Source with '#{param}'"
+        raise OpenSCAP::OpenSCAPError, "Cannot initialize #{self.class.name} with '#{param}'"
       end
       OpenSCAP.raise! if @raw.null?
     end

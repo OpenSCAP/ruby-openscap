@@ -25,7 +25,7 @@ module OpenSCAP
           @source = OpenSCAP::Source.new(param)
           @session = OpenSCAP.ds_rds_session_new_from_source @source.raw
         else
-          raise OpenSCAP::OpenSCAPError, "Cannot initialize OpenSCAP::DS:Arf with '#{param}'"
+          raise OpenSCAP::OpenSCAPError, "Cannot initialize #{self.class.name} with '#{param}'"
         end
         OpenSCAP.raise! if @session.null?
       end

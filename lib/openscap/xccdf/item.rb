@@ -19,7 +19,7 @@ module OpenSCAP
   module Xccdf
     class Item
       def self.build(t)
-        raise OpenSCAP::OpenSCAPError, "Cannot initialize OpenSCAP::Xccdf::Item with #{t}" \
+        raise OpenSCAP::OpenSCAPError, "Cannot initialize #{self.class.name} with #{t}" \
           unless t.is_a?(FFI::Pointer)
         # This is Abstract base class that enables you to build its child
         case OpenSCAP.xccdf_item_get_type t
@@ -28,13 +28,13 @@ module OpenSCAP
         when :rule
           OpenSCAP::Xccdf::Rule.new t
         else
-          raise OpenSCAP::OpenSCAPError, "Unknown Xccdf::Item type: #{OpenSCAP.xccdf_item_get_type t}"
+          raise OpenSCAP::OpenSCAPError, "Unknown #{self.class.name} type: #{OpenSCAP.xccdf_item_get_type t}"
         end
       end
 
       def initialize(t)
         if self.class == OpenSCAP::Xccdf::Item
-          raise OpenSCAP::OpenSCAPError, 'Cannot initialize Xccdf::Item abstract base class.'
+          raise OpenSCAP::OpenSCAPError, "Cannot initialize #{self.class.name} abstract base class."
         end
         @raw = t
       end

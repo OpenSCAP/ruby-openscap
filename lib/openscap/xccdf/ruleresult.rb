@@ -20,7 +20,7 @@ module OpenSCAP
         when FFI::Pointer
           @rr = t
         else
-          raise OpenSCAP::OpenSCAPError, "Cannot initialize OpenSCAP::Xccdf::RuleResult with #{t}"
+          raise OpenSCAP::OpenSCAPError, "Cannot initialize #{self.class.name} with #{t}"
         end
       end
 

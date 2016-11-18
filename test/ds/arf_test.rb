@@ -24,7 +24,7 @@ class TestArf < OpenSCAP::TestCase
     rescue OpenSCAP::OpenSCAPError => e
       msg = e.to_s
     end
-    assert msg.start_with?("Cannot initialize OpenSCAP::DS:Arf with ''"), 'Message was: ' + msg
+    assert msg.start_with?("Cannot initialize OpenSCAP::DS::Arf with ''"), 'Message was: ' + msg
   end
 
   def test_arf_new_wrong_format

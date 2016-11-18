@@ -13,7 +13,7 @@ module OpenSCAP
   module Xccdf
     class Fix
       def initialize(raw)
-        raise OpenSCAP::OpenSCAPError, "Cannot initialize OpenSCAP::Xccdf::Reference with '#{raw}'" \
+        raise OpenSCAP::OpenSCAPError, "Cannot initialize #{self.class.name} with '#{raw}'" \
           unless raw.is_a?(FFI::Pointer)
         @raw = raw
       end

@@ -22,7 +22,7 @@ module OpenSCAP
         when OpenSCAP::Source
           @raw = OpenSCAP.xccdf_tailoring_import_source source.raw, benchmark
         else
-          raise OpenSCAP::OpenSCAPError, "Cannot initialize OpenSCAP::Xccdf::Tailoring with '#{source}'"
+          raise OpenSCAP::OpenSCAPError, "Cannot initialize #{self.class.name} with '#{source}'"
         end
         OpenSCAP.raise! if @raw.null?
       end

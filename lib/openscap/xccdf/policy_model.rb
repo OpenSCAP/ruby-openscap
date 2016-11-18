@@ -42,7 +42,7 @@ module OpenSCAP
 
       def policies_init
         policies = {}
-        OpenSCAP.raise! unless OpenSCAP.xccdf_policy_model_build_all_useful_policies(raw) == 0
+        OpenSCAP.raise! unless OpenSCAP.xccdf_policy_model_build_all_useful_policies(raw).zero?
         polit = OpenSCAP.xccdf_policy_model_get_policies raw
         while OpenSCAP.xccdf_policy_iterator_has_more polit
           policy_p = OpenSCAP.xccdf_policy_iterator_next polit

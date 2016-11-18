@@ -33,7 +33,7 @@ module OpenSCAP
           OpenSCAP.xccdf_session_set_component_id(@s, o[:component_id])
         end
         OpenSCAP.raise! unless OpenSCAP.xccdf_session_load(@s).zero?
-        OpenSCAP.raise! unless OpenSCAP.xccdf_session_load_check_engine_plugins(@s) == 0
+        OpenSCAP.raise! unless OpenSCAP.xccdf_session_load_check_engine_plugins(@s).zero?
       end
 
       def profile=(p)
@@ -48,7 +48,7 @@ module OpenSCAP
       end
 
       def remediate
-        OpenSCAP.raise! unless OpenSCAP.xccdf_session_remediate(@s) == 0
+        OpenSCAP.raise! unless OpenSCAP.xccdf_session_remediate(@s).zero?
       end
 
       def export_results(opts = {})
@@ -72,10 +72,10 @@ module OpenSCAP
       private
 
       def export
-        OpenSCAP.raise! unless OpenSCAP.xccdf_session_export_oval(@s) == 0
-        OpenSCAP.raise! unless OpenSCAP.xccdf_session_export_check_engine_plugins(@s) == 0
-        OpenSCAP.raise! unless OpenSCAP.xccdf_session_export_xccdf(@s) == 0
-        OpenSCAP.raise! unless OpenSCAP.xccdf_session_export_arf(@s) == 0
+        OpenSCAP.raise! unless OpenSCAP.xccdf_session_export_oval(@s).zero?
+        OpenSCAP.raise! unless OpenSCAP.xccdf_session_export_check_engine_plugins(@s).zero?
+        OpenSCAP.raise! unless OpenSCAP.xccdf_session_export_xccdf(@s).zero?
+        OpenSCAP.raise! unless OpenSCAP.xccdf_session_export_arf(@s).zero?
       end
 
       def export_targets(opts = {})

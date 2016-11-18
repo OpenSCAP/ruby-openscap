@@ -44,7 +44,7 @@ module OpenSCAP
 
       def test_result=(tr)
         source = tr.source
-        OpenSCAP.raise! unless OpenSCAP.ds_rds_session_replace_report_with_source(@session, source.raw) == 0
+        OpenSCAP.raise! unless OpenSCAP.ds_rds_session_replace_report_with_source(@session, source.raw).zero?
       end
 
       def report_request(id = nil)

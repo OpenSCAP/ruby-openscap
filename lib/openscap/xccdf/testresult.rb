@@ -49,7 +49,7 @@ module OpenSCAP
       def score!(benchmark)
         # recalculate the scores in the scope of given benchmark
         @score = nil
-        OpenSCAP.raise! unless OpenSCAP.xccdf_result_recalculate_scores(@raw, benchmark.raw) == 0
+        OpenSCAP.raise! unless OpenSCAP.xccdf_result_recalculate_scores(@raw, benchmark.raw).zero?
         score
       end
 

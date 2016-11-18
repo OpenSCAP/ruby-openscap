@@ -60,7 +60,7 @@ class TestArf < OpenSCAP::TestCase
   def test_new_memory
     create_arf
     raw_data = File.read(REPORT)
-    assert raw_data.length > 0
+    refute raw_data.empty?
     arf = OpenSCAP::DS::Arf.new :content => raw_data, :path => REPORT
     arf.destroy
   end

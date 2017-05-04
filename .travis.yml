@@ -1,0 +1,19 @@
+language: ruby
+rvm:
+- "2.1"
+- "2.2.6"
+- "2.3.3"
+- "2.4.0"
+- ruby-head
+- jruby-head
+sudo: false
+cache: bundler
+addons:
+  apt:
+    packages:
+      - libopenscap8-dev
+matrix:
+  allow_failures:
+  - rvm: ruby-head
+  - rvm: jruby-head
+  fast_finish: true

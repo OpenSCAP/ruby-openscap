@@ -2,8 +2,11 @@ require 'bundler'
 
 Bundler::GemHelper.install_tasks :name => 'openscap'
 
-task :test do
-  $LOAD_PATH.unshift('lib')
-  $LOAD_PATH.unshift('test')
-  Dir.glob('./test/**/*_test.rb') { |f| require f }
+require "rake/testtask"
+Rake::TestTask.new do |t|
+  t.libs << "test"
+  t.test_files = FileList["test/**/*_test.rb"]
+  t.verbose = true
 end
+
+task :default => ["test"]

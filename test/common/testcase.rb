@@ -32,9 +32,6 @@ module OpenSCAP
       OpenSCAP.oscap_cleanup
     end
 
-    def test_x
-    end
-
     protected
 
     def assert_default_score(scores, low, high)

@@ -1,0 +1,23 @@
+PATH
+  remote: .
+  specs:
+    openscap (0.4.7)
+      ffi (>= 1.0.9)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ffi (1.9.18)
+    rake (12.0.0)
+
+PLATFORMS
+  ruby
+  x86_64-darwin-15
+
+DEPENDENCIES
+  bundler (>= 1.0.0)
+  openscap!
+  rake
+
+BUNDLED WITH
+   1.14.6

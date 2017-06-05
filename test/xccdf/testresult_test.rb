@@ -44,20 +44,20 @@ class TestTestResult < OpenSCAP::TestCase
     assert tr.rr.size == 28
     assert tr.rr.key?('xccdf_org.ssgproject.content_rule_disable_prelink')
     assert tr.rr.key?('xccdf_org.ssgproject.content_rule_no_direct_root_logins')
-    assert 'fail' == tr.rr['xccdf_org.ssgproject.content_rule_disable_prelink'].result
-    assert 'notchecked' == tr.rr['xccdf_org.ssgproject.content_rule_no_direct_root_logins'].result
+    assert tr.rr['xccdf_org.ssgproject.content_rule_disable_prelink'].result == 'fail'
+    assert tr.rr['xccdf_org.ssgproject.content_rule_no_direct_root_logins'].result == 'notchecked'
     tr.destroy
   end
 
   def test_override
     tr = new_tr
     rr = tr.rr['xccdf_org.ssgproject.content_rule_disable_prelink']
-    assert 'fail' == rr.result
+    assert rr.result == 'fail'
     rr.override!(:new_result => :pass,
                  :time => 'yesterday',
                  :authority => 'John Hacker',
                  :raw_text => 'We are testing prelink on this machine')
-    assert 'pass' == rr.result
+    assert rr.result == 'pass'
     tr.destroy
   end
 
@@ -75,12 +75,12 @@ class TestTestResult < OpenSCAP::TestCase
     assert_default_score tr.score!(benchmark), 34, 35
 
     rr = tr.rr['xccdf_org.ssgproject.content_rule_disable_prelink']
-    assert 'fail' == rr.result
+    assert rr.result == 'fail'
     rr.override!(:new_result => :pass,
                  :time => 'yesterday',
                  :authority => 'John Hacker',
                  :raw_text => 'We are testing prelink on this machine')
-    assert 'pass' == rr.result
+    assert rr.result == 'pass'
 
     assert_default_score tr.score, 34, 35
     assert_default_score tr.score!(benchmark), 47, 48

@@ -21,3 +21,9 @@ Sample Scanner Implementation
     s.export_results(:rds_file => "results.rds.xml")
     s.destroy
 
+Development Requirements
+-------------
+On fedora you can install requirements by issuing
+
+    dnf install ruby-devel rubygem-ffi rubygem-rake rubygem-bundler openscap
+    gem install rubocop

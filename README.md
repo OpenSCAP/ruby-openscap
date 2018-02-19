@@ -23,7 +23,23 @@ Sample Scanner Implementation
 
 Development Requirements
 -------------
-On fedora you can install requirements by issuing
+On Fedora or RHEL you can install requirements by issuing
 
-    dnf install ruby-devel rubygem-ffi rubygem-rake rubygem-bundler openscap
+    yum install ruby-devel rubygem-ffi rubygem-rake rubygem-bundler openscap
+
+Test Requirements
+-------------
+For tests on RHEL7, you need minitest package and specific older version of rubocop.
+
+    yum install rubygem-minitest
+    gem install rubocop -v 0.42.0
+
+On Fedora, more packages are necessary, but rubocop can be latest version
+
+    dnf install rubygem-minitest rubygem-test-unit rubygems-devel
     gem install rubocop
+
+Tests are then performed using script
+
+    ./runtest.sh
+

@@ -44,7 +44,7 @@ class TestSds < OpenSCAP::TestCase
     sds = new_sds
     benchmark_source = sds.select_checklist!
     benchmark = OpenSCAP::Xccdf::Benchmark.new benchmark_source
-    benchmark.profiles.keys.each do |id|
+    benchmark.profiles.each_key do |id|
       guide = sds.html_guide id
       assert !guide.nil?
       assert guide.include?(id)

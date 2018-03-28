@@ -64,6 +64,17 @@ module OpenSCAP
         rationale
       end
 
+      def idents
+        idenss = []
+        idenss_it = OpenSCAP.xccdf_rule_get_idents(@raw)        
+        while OpenSCAP.xccdf_ident_iterator_has_more idenss_it          
+          idens = OpenSCAP::Xccdf::Ident.new(OpenSCAP.xccdf_ident_iterator_next(idenss_it))
+          idenss << idens
+        end
+        OpenSCAP.xccdf_ident_iterator_free idenss_it
+        idenss
+      end
+
       def references
         refs = []
         refs_it = OpenSCAP.xccdf_item_get_references(@raw)
@@ -124,4 +135,9 @@ module OpenSCAP
   attach_function :oscap_reference_iterator_has_more, [:pointer], :bool
   attach_function :oscap_reference_iterator_next, [:pointer], :pointer
   attach_function :oscap_reference_iterator_free, [:pointer], :void
+
+  attach_function :xccdf_rule_get_idents, [:pointer], :pointer
+  attach_function :xccdf_ident_iterator_has_more, [:pointer], :bool
+  attach_function :xccdf_ident_iterator_next, [:pointer], :pointer
+  attach_function :xccdf_ident_iterator_free, [:pointer], :void
 end

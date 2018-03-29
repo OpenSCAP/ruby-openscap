@@ -25,13 +25,8 @@ module OpenSCAP
       def id
         OpenSCAP.xccdf_ident_get_id(@raw)
       end
-
-
     end
   end
   attach_function :xccdf_ident_get_system, [:pointer], :string
   attach_function :xccdf_ident_get_id, [:pointer], :string
 end
-
-
-

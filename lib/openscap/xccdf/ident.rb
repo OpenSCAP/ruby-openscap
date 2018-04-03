@@ -11,7 +11,7 @@
 
 module OpenSCAP
   module Xccdf
-    class Ident 
+    class Ident
       def initialize(raw)
         raise OpenSCAP::OpenSCAPError, "Cannot initialize #{self.class.name} with '#{raw}'" \
           unless raw.is_a?(FFI::Pointer)

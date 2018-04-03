@@ -62,7 +62,7 @@ module OpenSCAP
         rationale = textlist.plaintext(prefered_lang)
         textlist.destroy
         rationale
-      end    
+      end
 
       def references
         refs = []

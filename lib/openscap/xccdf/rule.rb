@@ -12,6 +12,7 @@
 require 'openscap/exceptions'
 require 'openscap/xccdf/item'
 require 'openscap/xccdf/fix'
+require 'openscap/xccdf/ident'
 
 module OpenSCAP
   module Xccdf

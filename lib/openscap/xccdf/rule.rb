@@ -41,14 +41,13 @@ module OpenSCAP
       end
 
       def idents
-        idenss = []
-        idenss_it = OpenSCAP.xccdf_rule_get_idents(@raw)
-        while OpenSCAP.xccdf_ident_iterator_has_more idenss_it
-          idens = OpenSCAP::Xccdf::Ident.new(OpenSCAP.xccdf_ident_iterator_next(idenss_it))
-          idenss << idens
+        idents = []
+        idents_it = OpenSCAP.xccdf_rule_get_idents(@raw)
+        while OpenSCAP.xccdf_ident_iterator_has_more idents_it
+          idents << OpenSCAP::Xccdf::Ident.new(OpenSCAP.xccdf_ident_iterator_next(idents_it))
         end
-        OpenSCAP.xccdf_ident_iterator_free idenss_it
-        idenss
+        OpenSCAP.xccdf_ident_iterator_free idents_it
+        idents
       end
     end
   end

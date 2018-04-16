@@ -12,6 +12,7 @@
 require 'openscap/exceptions'
 require 'openscap/xccdf/item'
 require 'openscap/xccdf/fix'
+require 'openscap/xccdf/ident'
 
 module OpenSCAP
   module Xccdf
@@ -38,6 +39,17 @@ module OpenSCAP
         OpenSCAP.xccdf_fix_iterator_free items_it
         fixes
       end
+
+      def idents
+        idenss = []
+        idenss_it = OpenSCAP.xccdf_rule_get_idents(@raw)
+        while OpenSCAP.xccdf_ident_iterator_has_more idenss_it
+          idens = OpenSCAP::Xccdf::Ident.new(OpenSCAP.xccdf_ident_iterator_next(idenss_it))
+          idenss << idens
+        end
+        OpenSCAP.xccdf_ident_iterator_free idenss_it
+        idenss
+      end
     end
   end
   XccdfSeverity = enum(
@@ -53,4 +65,9 @@ module OpenSCAP
   attach_function :xccdf_fix_iterator_has_more, [:pointer], :bool
   attach_function :xccdf_fix_iterator_next, [:pointer], :pointer
   attach_function :xccdf_fix_iterator_free, [:pointer], :void
+
+  attach_function :xccdf_rule_get_idents, [:pointer], :pointer
+  attach_function :xccdf_ident_iterator_has_more, [:pointer], :bool
+  attach_function :xccdf_ident_iterator_next, [:pointer], :pointer
+  attach_function :xccdf_ident_iterator_free, [:pointer], :void
 end

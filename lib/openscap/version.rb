@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2014--2016 Red Hat Inc.
+# Copyright (c) 2014--2018 Red Hat Inc.
 #
 # This software is licensed to you under the GNU General Public License,
 # version 2 (GPLv2). There is NO WARRANTY for this software, express or
@@ -10,5 +10,5 @@
 #
 
 module OpenSCAP
-  VERSION = '0.4.7'.freeze
+  VERSION = '0.4.8'.freeze
 end

@@ -37,9 +37,7 @@ module OpenSCAP
 
     def validate!
       e = FFI::MemoryPointer.new(:char, 4096)
-      unless OpenSCAP.oscap_source_validate(@raw, XmlReporterCallback, e).zero?
-        OpenSCAP.raise! e.read_string
-      end
+      OpenSCAP.raise!(e.read_string) unless OpenSCAP.oscap_source_validate(@raw, XmlReporterCallback, e).zero?
     end
 
     def save(filepath = nil)

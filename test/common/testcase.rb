@@ -17,7 +17,7 @@ module OpenSCAP
     end
 
     def cleanup
-      @s.destroy if @s
+      @s&.destroy
       Dir.chdir '../..'
       OpenSCAP.raise! if OpenSCAP.error?
       OpenSCAP.oscap_cleanup

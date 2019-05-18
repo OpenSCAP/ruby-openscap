@@ -1,5 +1,5 @@
 require 'date'
-require File.expand_path('../lib/openscap/version', __FILE__)
+require File.expand_path('lib/openscap/version', __dir__)
 
 GEMSPEC = Gem::Specification.new do |gem|
   gem.name = 'openscap'

@@ -12,6 +12,7 @@ module OpenSCAP
       def self.build(t)
         raise OpenSCAP::OpenSCAPError, "Cannot initialize #{self.class.name} with #{t}" \
           unless t.is_a?(FFI::Pointer)
+
         # This is Abstract base class that enables you to build its child
         case OpenSCAP.xccdf_item_get_type t
         when :group
@@ -27,6 +28,7 @@ module OpenSCAP
         if self.class == OpenSCAP::Xccdf::Item
           raise OpenSCAP::OpenSCAPError, "Cannot initialize #{self.class.name} abstract base class."
         end
+
         @raw = t
       end
 

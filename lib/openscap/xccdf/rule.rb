@@ -18,7 +18,7 @@ module OpenSCAP
           :xccdf_medium => 'Medium',
           :xccdf_high => 'High'
         }
-        severity_mapping[severity] ? severity_mapping[severity] : severity_mapping[:xccdf_unknown]
+        severity_mapping[severity] || severity_mapping[:xccdf_unknown]
       end
 
       def fixes

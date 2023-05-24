@@ -18,8 +18,10 @@ GEMSPEC = Gem::Specification.new do |gem|
   gem.description = "A FFI wrapper around the OpenSCAP library.
   Currently it provides only subset of libopenscap functionality."
 
-  gem.add_development_dependency 'bundler', '>=1.0.0'
-  gem.add_runtime_dependency 'ffi', '>= 1.0.9'
+  gem.add_development_dependency 'test-unit'
+  gem.add_development_dependency :rake
+  gem.add_development_dependency :rubocop
+  gem.add_runtime_dependency 'ffi', '~> 1.15.5'
 
   gem.files = Dir['{lib,test}/**/*'] + ['COPYING', 'README.md', 'Rakefile']
   gem.require_path = 'lib'

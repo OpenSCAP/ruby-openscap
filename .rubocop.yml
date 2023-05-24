@@ -18,6 +18,10 @@ Layout/LineLength:
   Exclude:
    - 'test/**/*'
 
+Lint/FloatComparison:
+  Exclude:
+    - 'test/**/*'
+
 Metrics/MethodLength:
   Max: 13
   Exclude:
@@ -28,3 +32,9 @@ Style/HashSyntax:
 
 Style/SymbolArray:
   EnforcedStyle: brackets
+
+Naming/MethodParameterName:
+  Enabled: false
+
+Gemspec/RequireMFA:
+  Enabled: false

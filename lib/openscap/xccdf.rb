@@ -6,7 +6,7 @@ module OpenSCAP
   module Xccdf
     NUMERIC = :float
 
-    class Item
+    class Item # rubocop:disable Lint/EmptyClass
     end
   end
 end

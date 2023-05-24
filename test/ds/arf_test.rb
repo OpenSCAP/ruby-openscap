@@ -52,7 +52,7 @@ class TestArf < OpenSCAP::TestCase
     create_arf
     raw_data = File.read(REPORT)
     refute raw_data.empty?
-    arf = OpenSCAP::DS::Arf.new :content => raw_data, :path => REPORT
+    arf = OpenSCAP::DS::Arf.new content: raw_data, path: REPORT
     arf.destroy
   end
 
@@ -62,7 +62,7 @@ class TestArf < OpenSCAP::TestCase
     assert !raw_data.empty?
     len = File.size(bziped_file)
     FileUtils.rm bziped_file
-    arf = OpenSCAP::DS::Arf.new :content => raw_data, :path => bziped_file, :length => len
+    arf = OpenSCAP::DS::Arf.new content: raw_data, path: bziped_file, length: len
     arf.destroy
   end
 
@@ -88,9 +88,9 @@ class TestArf < OpenSCAP::TestCase
 
   def create_arf
     @s = OpenSCAP::Xccdf::Session.new('../data/sds-complex.xml')
-    @s.load(:component_id => 'scap_org.open-scap_cref_second-xccdf.xml')
+    @s.load(component_id: 'scap_org.open-scap_cref_second-xccdf.xml')
     @s.profile = 'xccdf_moc.elpmaxe.www_profile_1'
     @s.evaluate
-    @s.export_results(:rds_file => 'report.rds.xml')
+    @s.export_results(rds_file: 'report.rds.xml')
   end
 end

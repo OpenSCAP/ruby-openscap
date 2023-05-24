@@ -27,12 +27,6 @@ Metrics/MethodLength:
   Exclude:
    - 'test/**/*'
 
-Style/HashSyntax:
-  EnforcedStyle: hash_rockets
-
-Style/SymbolArray:
-  EnforcedStyle: brackets
-
 Naming/MethodParameterName:
   Enabled: false
 

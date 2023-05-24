@@ -2,7 +2,7 @@
 
 require 'bundler'
 
-Bundler::GemHelper.install_tasks :name => 'openscap'
+Bundler::GemHelper.install_tasks name: 'openscap'
 
 task :test do
   $LOAD_PATH.unshift('lib')

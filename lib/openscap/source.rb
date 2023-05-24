@@ -51,13 +51,13 @@ module OpenSCAP
   end
 
   attach_function :oscap_source_new_from_file, [:string], :pointer
-  attach_function :oscap_source_new_from_memory, [:pointer, :int, :string], :pointer
+  attach_function :oscap_source_new_from_memory, %i[pointer int string], :pointer
   attach_function :oscap_source_get_scap_type, [:pointer], :int
   attach_function :oscap_source_free, [:pointer], :void
-  attach_function :oscap_source_save_as, [:pointer, :string], :int
+  attach_function :oscap_source_save_as, %i[pointer string], :int
 
-  callback :xml_reporter, [:string, :int, :string, :pointer], :int
-  attach_function :oscap_source_validate, [:pointer, :xml_reporter, :pointer], :int
+  callback :xml_reporter, %i[string int string pointer], :int
+  attach_function :oscap_source_validate, %i[pointer xml_reporter pointer], :int
   XmlReporterCallback = proc do |filename, line_number, error_message, e|
     offset = e.get_string(0).length
     msg = "#{filename}:#{line_number}: #{error_message}"

@@ -24,9 +24,9 @@ module OpenSCAP
 
       def to_hash
         {
-          :title => title,
-          :href => href,
-          :html_link => html_link
+          title:,
+          href:,
+          html_link:
         }
       end
     end

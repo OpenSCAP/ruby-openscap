@@ -18,7 +18,7 @@ class TestTestResult < OpenSCAP::TestCase
       msg = e.to_s
     end
     assert msg.start_with?("Expected 'TestResult' element while found 'Benchmark'."),
-           'Message was: ' + msg
+           "Message was: #{msg}"
   end
 
   def test_result_create_and_query_properties
@@ -44,10 +44,10 @@ class TestTestResult < OpenSCAP::TestCase
     tr = new_tr
     rr = tr.rr['xccdf_org.ssgproject.content_rule_disable_prelink']
     assert rr.result == 'fail'
-    rr.override!(:new_result => :pass,
-                 :time => 'yesterday',
-                 :authority => 'John Hacker',
-                 :raw_text => 'We are testing prelink on this machine')
+    rr.override!(new_result: :pass,
+                 time: 'yesterday',
+                 authority: 'John Hacker',
+                 raw_text: 'We are testing prelink on this machine')
     assert rr.result == 'pass'
     tr.destroy
   end
@@ -67,10 +67,10 @@ class TestTestResult < OpenSCAP::TestCase
 
     rr = tr.rr['xccdf_org.ssgproject.content_rule_disable_prelink']
     assert rr.result == 'fail'
-    rr.override!(:new_result => :pass,
-                 :time => 'yesterday',
-                 :authority => 'John Hacker',
-                 :raw_text => 'We are testing prelink on this machine')
+    rr.override!(new_result: :pass,
+                 time: 'yesterday',
+                 authority: 'John Hacker',
+                 raw_text: 'We are testing prelink on this machine')
     assert rr.result == 'pass'
 
     assert_default_score tr.score, 34, 35

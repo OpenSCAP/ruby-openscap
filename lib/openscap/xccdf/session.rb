@@ -17,8 +17,8 @@ module OpenSCAP
 
       def load(opts = {})
         o = {
-          :datastream_id => nil,
-          :component_id => nil
+          datastream_id: nil,
+          component_id: nil
         }.merge(opts)
         if sds?
           OpenSCAP.xccdf_session_set_datastream_id(@s, o[:datastream_id])
@@ -31,7 +31,7 @@ module OpenSCAP
       def profile=(p)
         @profile = p
         if OpenSCAP.xccdf_session_set_profile_id(@s, p) == false
-          raise OpenSCAPError, "No profile '" + p + "' found"
+          raise OpenSCAPError, "No profile '#{p}' found"
         end
       end
 
@@ -45,12 +45,12 @@ module OpenSCAP
 
       def export_results(opts = {})
         o = {
-          :rds_file => nil,
-          :xccdf_file => nil,
-          :report_file => nil,
-          :oval_results => false,
-          :oval_variables => false,
-          :engines_results => false
+          rds_file: nil,
+          xccdf_file: nil,
+          report_file: nil,
+          oval_results: false,
+          oval_variables: false,
+          engines_results: false
         }.merge!(opts)
         export_targets o
         export
@@ -94,13 +94,13 @@ module OpenSCAP
 
   attach_function :xccdf_session_is_sds, [:pointer], :bool
 
-  attach_function :xccdf_session_set_profile_id, [:pointer, :string], :bool
-  attach_function :xccdf_session_set_datastream_id, [:pointer, :string], :void
-  attach_function :xccdf_session_set_component_id, [:pointer, :string], :void
-  attach_function :xccdf_session_set_arf_export, [:pointer, :string], :bool
-  attach_function :xccdf_session_set_xccdf_export, [:pointer, :string], :bool
-  attach_function :xccdf_session_set_report_export, [:pointer, :string], :bool
-  attach_function :xccdf_session_set_oval_variables_export, [:pointer, :bool], :void
-  attach_function :xccdf_session_set_oval_results_export, [:pointer, :bool], :void
-  attach_function :xccdf_session_set_check_engine_plugins_results_export, [:pointer, :bool], :void
+  attach_function :xccdf_session_set_profile_id, %i[pointer string], :bool
+  attach_function :xccdf_session_set_datastream_id, %i[pointer string], :void
+  attach_function :xccdf_session_set_component_id, %i[pointer string], :void
+  attach_function :xccdf_session_set_arf_export, %i[pointer string], :bool
+  attach_function :xccdf_session_set_xccdf_export, %i[pointer string], :bool
+  attach_function :xccdf_session_set_report_export, %i[pointer string], :bool
+  attach_function :xccdf_session_set_oval_variables_export, %i[pointer bool], :void
+  attach_function :xccdf_session_set_oval_results_export, %i[pointer bool], :void
+  attach_function :xccdf_session_set_check_engine_plugins_results_export, %i[pointer bool], :void
 end

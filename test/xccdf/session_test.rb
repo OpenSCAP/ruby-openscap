@@ -12,7 +12,7 @@ class TestSession < OpenSCAP::TestCase
     rescue OpenSCAP::OpenSCAPError => e
       msg = e.to_s
     end
-    assert msg.start_with?("Unable to open file: ''"), 'Message was: ' + msg
+    assert msg.start_with?("Unable to open file: ''"), "Message was: #{msg}"
   end
 
   def test_session_new_nil
@@ -23,7 +23,7 @@ class TestSession < OpenSCAP::TestCase
     rescue OpenSCAP::OpenSCAPError => e
       msg = e.to_s
     end
-    assert msg.start_with?('No filename specified!'), 'Message was: ' + msg
+    assert msg.start_with?('No filename specified!'), "Message was: #{msg}"
   end
 
   def test_sds_false

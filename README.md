@@ -7,7 +7,7 @@ A FFI wrapper around the OpenSCAP library.
 
 Features/problems
 -------------
-Current version supports minimal set of functions needed to build own scanner. This module
+Current version supports minimal set of functions needed to build own scanner. This gem
 is self documented by its test suite.
 
 Sample Scanner Implementation
@@ -23,28 +23,17 @@ Sample Scanner Implementation
 
 Development Requirements
 -------------
-On Fedora, command is
+On Fedora, commands are
 
-    dnf install ruby-devel rubygem-rake rubygem-ffi rubygem-bundler openscap
-
-On RHEL you can install requirements by issuing
-
-    yum install ruby-devel rubygem-rake rubygem-bundler openscap
-    gem install ffi # or install rubygem-ffi RPM package from EPEL
+    dnf install openscap
+    bundle install
 
 
 Test Requirements
 -------------
 On Fedora, more packages are necessary, but rubocop can be of the latest version
 
-    dnf install rubygem-minitest rubygem-test-unit rubygems-devel bzip2
-    gem install rubocop
-
-For tests on RHEL7, you need minitest package and specific older version of rubocop.
-Newer versions of rubocop requires Ruby >= 2.1.0
-
-    yum install rubygem-minitest bzip2
-    gem install rubocop -v 0.50.0
+    dnf install bzip2
 
 Tests are then performed using script
 

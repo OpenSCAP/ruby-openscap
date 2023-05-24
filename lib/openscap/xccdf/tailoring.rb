@@ -43,7 +43,7 @@ module OpenSCAP
     end
   end
 
-  attach_function :xccdf_tailoring_import_source, [:pointer, :pointer], :pointer
+  attach_function :xccdf_tailoring_import_source, %i[pointer pointer], :pointer
   attach_function :xccdf_tailoring_free, [:pointer], :void
 
   attach_function :xccdf_tailoring_get_profiles, [:pointer], :pointer

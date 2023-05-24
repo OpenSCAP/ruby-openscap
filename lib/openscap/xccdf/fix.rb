@@ -29,10 +29,10 @@ module OpenSCAP
 
       def to_hash
         {
-          :id => id,
-          :platform => platform,
-          :system => fix_system,
-          :content => content
+          id:,
+          platform:,
+          system: fix_system,
+          content:
         }
       end
     end

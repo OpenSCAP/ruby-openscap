@@ -14,10 +14,10 @@ class TestArfWaiver < OpenSCAP::TestCase
     assert_default_score tr.score, -1, 1
     assert_default_score tr.score!(benchmark), -1, 1
 
-    rr.override!(:new_result => :pass,
-                 :time => 'yesterday',
-                 :authority => 'John Hacker',
-                 :raw_text => 'This should have passed')
+    rr.override!(new_result: :pass,
+                 time: 'yesterday',
+                 authority: 'John Hacker',
+                 raw_text: 'This should have passed')
     assert rr.result == 'pass'
 
     assert_default_score tr.score, -1, 1
@@ -85,7 +85,7 @@ class TestArfWaiver < OpenSCAP::TestCase
     @s = OpenSCAP::Xccdf::Session.new('../data/sds-complex.xml')
     @s.load
     @s.evaluate
-    @s.export_results(:rds_file => 'report.rds.xml')
+    @s.export_results(rds_file: 'report.rds.xml')
     OpenSCAP::DS::Arf.new('report.rds.xml')
   end
 end

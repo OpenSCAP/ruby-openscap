@@ -8,5 +8,6 @@ group :development do
   gem 'rake'
   gem 'rubocop'
   gem 'rubocop-performance'
+  gem 'rubocop-thread_safety'
   gem 'test-unit'
 end

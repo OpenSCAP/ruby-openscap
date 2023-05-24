@@ -1,12 +1,19 @@
 inherit_from:
   - .rubocop_todo.yml
 
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.2.2
+  AllowSymlinksInCacheRootDirectory: true
+  SuggestExtensions:
+    rubocop-rake: false
+
 Metrics/AbcSize:
   Max: 16
   Exclude:
    - 'test/**/*'
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 110
   Exclude:
    - 'test/**/*'
@@ -21,7 +28,3 @@ Style/HashSyntax:
 
 Style/SymbolArray:
   EnforcedStyle: brackets
-
-Naming/UncommunicativeMethodParamName:
-  Exclude:
-    - '**/*'

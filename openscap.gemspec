@@ -6,7 +6,6 @@ require File.expand_path('lib/openscap/version', __dir__)
 GEMSPEC = Gem::Specification.new do |gem|
   gem.name = 'openscap'
   gem.version = OpenSCAP::VERSION
-  gem.date = Date.today.to_s
   gem.platform = Gem::Platform::RUBY
 
   gem.author = 'Simon Lukasik'

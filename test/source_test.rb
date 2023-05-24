@@ -13,7 +13,7 @@ class TestSource < OpenSCAP::TestCase
     rescue OpenSCAP::OpenSCAPError => e
       msg = e.to_s
     end
-    assert msg.start_with?('No filename specified!'), 'Message was: ' + msg
+    assert msg.start_with?('No filename specified!'), "Message was: #{msg}"
   end
 
   def test_source_new_ok
@@ -59,11 +59,11 @@ class TestSource < OpenSCAP::TestCase
       msg = e.to_s
     end
     assert msg.start_with?('Invalid XCCDF Checklist (1.2) content in ../data/invalid.xml.'),
-           'Message was: ' + msg
+           "Message was: #{msg}"
     assert msg.include?("../data/invalid.xml:3: Element '{http"),
-           'Message was: ' + msg
+           "Message was: #{msg}"
     assert msg.include?('This element is not expected. Expected is'),
-           'Message was: ' + msg
+           "Message was: #{msg}"
     s.destroy
   end
 

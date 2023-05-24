@@ -15,7 +15,7 @@ class TestArf < OpenSCAP::TestCase
     rescue OpenSCAP::OpenSCAPError => e
       msg = e.to_s
     end
-    assert msg.start_with?("Cannot initialize OpenSCAP::DS::Arf with ''"), 'Message was: ' + msg
+    assert msg.start_with?("Cannot initialize OpenSCAP::DS::Arf with ''"), "Message was: #{msg}"
   end
 
   def test_arf_new_wrong_format
@@ -27,7 +27,7 @@ class TestArf < OpenSCAP::TestCase
       msg = e.to_s
     end
     assert msg.include?('Could not create Result DataStream session: File is not Result DataStream.'),
-           'Message was: ' + msg
+           "Message was: #{msg}"
   end
 
   def test_create_arf_and_get_html
@@ -58,7 +58,7 @@ class TestArf < OpenSCAP::TestCase
 
   def test_new_bz_memory
     bziped_file = new_arf_bz
-    raw_data = File.open(bziped_file, 'rb').read
+    raw_data = File.binread(bziped_file)
     assert !raw_data.empty?
     len = File.size(bziped_file)
     FileUtils.rm bziped_file
@@ -77,8 +77,8 @@ class TestArf < OpenSCAP::TestCase
 
   def new_arf_bz
     create_arf
-    system('/usr/bin/bzip2 ' + REPORT)
-    REPORT + '.bz2'
+    system("/usr/bin/bzip2 #{REPORT}")
+    "#{REPORT}.bz2"
   end
 
   def new_arf

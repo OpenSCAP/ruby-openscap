@@ -8,8 +8,7 @@ require 'openscap/xccdf/ruleresult'
 module OpenSCAP
   module Xccdf
     class TestResult
-      attr_reader :rr
-      attr_reader :raw
+      attr_reader :rr, :raw
 
       def initialize(t)
         case t

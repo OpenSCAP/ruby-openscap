@@ -31,7 +31,7 @@ module OpenSCAP
       def profile=(p)
         @profile = p
         if OpenSCAP.xccdf_session_set_profile_id(@s, p) == false
-          raise OpenSCAPError, "No profile '" + p + "' found"
+          raise OpenSCAPError, "No profile '#{p}' found"
         end
       end
 

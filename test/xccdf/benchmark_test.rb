@@ -78,12 +78,12 @@ class TestBenchmark < OpenSCAP::TestCase
   def test_items_references
     b = benchmark_from_file
     install_hids_rule = b.items['xccdf_org.ssgproject.content_rule_install_hids']
-    expected_references = [{ :title => 'SC-7',
-                             :href => 'http://csrc.nist.gov/publications/nistpubs/800-53-Rev3/sp800-53-rev3-final.pdf',
-                             :html_link => "<a href='http://csrc.nist.gov/publications/nistpubs/800-53-Rev3/sp800-53-rev3-final.pdf'>SC-7</a>" },
-                           { :title => '1263',
-                             :href => 'http://iase.disa.mil/cci/index.html',
-                             :html_link => "<a href='http://iase.disa.mil/cci/index.html'>1263</a>" }]
+    expected_references = [{ title: 'SC-7',
+                             href: 'http://csrc.nist.gov/publications/nistpubs/800-53-Rev3/sp800-53-rev3-final.pdf',
+                             html_link: "<a href='http://csrc.nist.gov/publications/nistpubs/800-53-Rev3/sp800-53-rev3-final.pdf'>SC-7</a>" },
+                           { title: '1263',
+                             href: 'http://iase.disa.mil/cci/index.html',
+                             html_link: "<a href='http://iase.disa.mil/cci/index.html'>1263</a>" }]
     assert_equal(expected_references, install_hids_rule.references.map(&:to_hash), 'Install hids references should be equal')
     b.destroy
   end
@@ -93,10 +93,10 @@ class TestBenchmark < OpenSCAP::TestCase
     login_defs_rule = b.items['xccdf_org.ssgproject.content_rule_accounts_minimum_age_login_defs']
     expected_content = ["var_accounts_minimum_age_login_defs=\"<sub xmlns=\"http://checklists.nist.gov/xccdf/1.2\" idref=\"xccdf_org.ssgproject.content_value_var_accounts_minimum_age_login_defs\" use=\"legacy\"/>\"\ngrep -q ^PASS_MIN_DAYS /etc/login.defs &amp;&amp; \\\nsed -i \"s/PASS_MIN_DAYS.*/PASS_MIN_DAYS\\t$var_accounts_minimum_age_login_defs/g\" /etc/login.defs\nif ! [ $? -eq 0 ]\nthen\n  echo -e \"PASS_MIN_DAYS\\t$var_accounts_minimum_age_login_defs\" &gt;&gt; /etc/login.defs\nfi\n"]
     expected_hashes = [{
-      :id => nil,
-      :platform => nil,
-      :content => expected_content.first,
-      :system => 'urn:xccdf:fix:script:sh'
+      id: nil,
+      platform: nil,
+      content: expected_content.first,
+      system: 'urn:xccdf:fix:script:sh'
     }]
     assert_equal(expected_content, login_defs_rule.fixes.map(&:content), 'Fix content should match')
     assert_equal(expected_hashes, login_defs_rule.fixes.map(&:to_hash), 'Fix hash should match')

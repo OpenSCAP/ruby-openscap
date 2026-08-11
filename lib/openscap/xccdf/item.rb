@@ -25,7 +25,7 @@ module OpenSCAP
       end
 
       def initialize(t)
-        if self.class == OpenSCAP::Xccdf::Item
+        if instance_of?(OpenSCAP::Xccdf::Item)
           raise OpenSCAP::OpenSCAPError, "Cannot initialize #{self.class.name} abstract base class."
         end
 

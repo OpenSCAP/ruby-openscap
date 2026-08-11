@@ -15,7 +15,7 @@ class TestArf < OpenSCAP::TestCase
     rescue OpenSCAP::OpenSCAPError => e
       msg = e.to_s
     end
-    assert msg.start_with?("Cannot initialize OpenSCAP::DS::Arf with ''"), 'Message was: ' + msg
+    assert msg.start_with?("Cannot initialize OpenSCAP::DS::Arf with ''"), "Message was: #{msg}"
   end
 
   def test_arf_new_wrong_format
@@ -27,7 +27,7 @@ class TestArf < OpenSCAP::TestCase
       msg = e.to_s
     end
     assert msg.include?('Could not create Result DataStream session: File is not Result DataStream.'),
-           'Message was: ' + msg
+           "Message was: #{msg}"
   end
 
   def test_create_arf_and_get_html
@@ -52,17 +52,17 @@ class TestArf < OpenSCAP::TestCase
     create_arf
     raw_data = File.read(REPORT)
     refute raw_data.empty?
-    arf = OpenSCAP::DS::Arf.new :content => raw_data, :path => REPORT
+    arf = OpenSCAP::DS::Arf.new content: raw_data, path: REPORT
     arf.destroy
   end
 
   def test_new_bz_memory
     bziped_file = new_arf_bz
-    raw_data = File.open(bziped_file, 'rb').read
+    raw_data = File.binread(bziped_file)
     assert !raw_data.empty?
     len = File.size(bziped_file)
     FileUtils.rm bziped_file
-    arf = OpenSCAP::DS::Arf.new :content => raw_data, :path => bziped_file, :length => len
+    arf = OpenSCAP::DS::Arf.new content: raw_data, path: bziped_file, length: len
     arf.destroy
   end
 
@@ -77,8 +77,8 @@ class TestArf < OpenSCAP::TestCase
 
   def new_arf_bz
     create_arf
-    system('/usr/bin/bzip2 ' + REPORT)
-    REPORT + '.bz2'
+    system("/usr/bin/bzip2 #{REPORT}")
+    "#{REPORT}.bz2"
   end
 
   def new_arf
@@ -88,9 +88,9 @@ class TestArf < OpenSCAP::TestCase
 
   def create_arf
     @s = OpenSCAP::Xccdf::Session.new('../data/sds-complex.xml')
-    @s.load(:component_id => 'scap_org.open-scap_cref_second-xccdf.xml')
+    @s.load(component_id: 'scap_org.open-scap_cref_second-xccdf.xml')
     @s.profile = 'xccdf_moc.elpmaxe.www_profile_1'
     @s.evaluate
-    @s.export_results(:rds_file => 'report.rds.xml')
+    @s.export_results(rds_file: 'report.rds.xml')
   end
 end

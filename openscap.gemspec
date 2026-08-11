@@ -6,8 +6,8 @@ require File.expand_path('lib/openscap/version', __dir__)
 GEMSPEC = Gem::Specification.new do |gem|
   gem.name = 'openscap'
   gem.version = OpenSCAP::VERSION
-  gem.date = Date.today.to_s
   gem.platform = Gem::Platform::RUBY
+  gem.required_ruby_version = '>= 3.2.2'
 
   gem.author = 'Simon Lukasik'
   gem.email = 'isimluk@fedoraproject.org'
@@ -18,8 +18,7 @@ GEMSPEC = Gem::Specification.new do |gem|
   gem.description = "A FFI wrapper around the OpenSCAP library.
   Currently it provides only subset of libopenscap functionality."
 
-  gem.add_development_dependency 'bundler', '>=1.0.0'
-  gem.add_runtime_dependency 'ffi', '>= 1.0.9'
+  gem.add_runtime_dependency 'ffi', '~> 1.15.5'
 
   gem.files = Dir['{lib,test}/**/*'] + ['COPYING', 'README.md', 'Rakefile']
   gem.require_path = 'lib'

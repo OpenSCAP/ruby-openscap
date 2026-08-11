@@ -11,12 +11,12 @@ module OpenSCAP
       def severity
         severity = OpenSCAP.xccdf_rule_get_severity(@raw)
         severity_mapping = {
-          :xccdf_level_not_defined => 'Not defined',
-          :xccdf_unknown => 'Unknown',
-          :xccdf_info => 'Info',
-          :xccdf_low => 'Low',
-          :xccdf_medium => 'Medium',
-          :xccdf_high => 'High'
+          xccdf_level_not_defined: 'Not defined',
+          xccdf_unknown: 'Unknown',
+          xccdf_info: 'Info',
+          xccdf_low: 'Low',
+          xccdf_medium: 'Medium',
+          xccdf_high: 'High'
         }
         severity_mapping[severity] || severity_mapping[:xccdf_unknown]
       end

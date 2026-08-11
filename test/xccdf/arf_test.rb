@@ -38,7 +38,6 @@ class TestArf < OpenSCAP::TestCase
     _test_results = arf.test_result
     source_datastream = arf.report_request
     bench_source = source_datastream.select_checklist!
-    benchmark = OpenSCAP::Xccdf::Benchmark.new(bench_source)
-    benchmark
+    OpenSCAP::Xccdf::Benchmark.new(bench_source)
   end
 end

@@ -58,8 +58,8 @@ module OpenSCAP
 
   attach_function :ds_rds_session_new_from_source, [:pointer], :pointer
   attach_function :ds_rds_session_free, [:pointer], :void
-  attach_function :ds_rds_session_select_report, [:pointer, :string], :pointer
-  attach_function :ds_rds_session_replace_report_with_source, [:pointer, :pointer], :int
-  attach_function :ds_rds_session_select_report_request, [:pointer, :string], :pointer
+  attach_function :ds_rds_session_select_report, %i[pointer string], :pointer
+  attach_function :ds_rds_session_replace_report_with_source, %i[pointer pointer], :int
+  attach_function :ds_rds_session_select_report_request, %i[pointer string], :pointer
   attach_function :ds_rds_session_get_html_report, [:pointer], :pointer
 end

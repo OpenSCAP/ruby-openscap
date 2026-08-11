@@ -16,7 +16,7 @@ class TestSds < OpenSCAP::TestCase
     assert !@s.nil?
     msg = nil
     begin
-      OpenSCAP::DS::Sds.new :source => @s
+      OpenSCAP::DS::Sds.new source: @s
       assert false
     rescue OpenSCAP::OpenSCAPError => e
       msg = e.to_s
@@ -48,7 +48,7 @@ class TestSds < OpenSCAP::TestCase
     sds = new_sds
     msg = nil
     begin
-      benchmark = sds.select_checklist! :datastream_id => 'wrong'
+      benchmark = sds.select_checklist! datastream_id: 'wrong'
       assert false
     rescue OpenSCAP::OpenSCAPError => e
       msg = e.to_s
@@ -64,7 +64,7 @@ class TestSds < OpenSCAP::TestCase
     filename = '../data/sds-complex.xml'
     @s = OpenSCAP::Source.new filename
     assert !@s.nil?
-    sds = OpenSCAP::DS::Sds.new :source => @s
+    sds = OpenSCAP::DS::Sds.new source: @s
     assert !sds.nil?
     sds
   end

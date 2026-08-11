@@ -1,27 +1,38 @@
 inherit_from:
   - .rubocop_todo.yml
 
+require:
+  - rubocop-performance
+  - rubocop-thread_safety
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.2.2
+  AllowSymlinksInCacheRootDirectory: true
+  SuggestExtensions:
+    rubocop-rake: false
+
 Metrics/AbcSize:
   Max: 16
   Exclude:
    - 'test/**/*'
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 110
   Exclude:
    - 'test/**/*'
+
+Lint/FloatComparison:
+  Exclude:
+    - 'test/**/*'
 
 Metrics/MethodLength:
   Max: 13
   Exclude:
    - 'test/**/*'
 
-Style/HashSyntax:
-  EnforcedStyle: hash_rockets
+Naming/MethodParameterName:
+  Enabled: false
 
-Style/SymbolArray:
-  EnforcedStyle: brackets
-
-Naming/UncommunicativeMethodParamName:
-  Exclude:
-    - '**/*'
+Gemspec/RequireMFA:
+  Enabled: false
